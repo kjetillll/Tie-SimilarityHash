@@ -46,3 +46,123 @@ alesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
 <tr><td>Alvorlighetsgrad</td><td>Et tall på en melding. Tallet avgjør om meldingen ansees som feil, varsel eller info.</td></tr>
 <tr><td></td><td></td></tr>
 </table>
+## Hvordan kjøre kontroll av vitnemål
+
+### Kjøreopsjoner for kontroll
+
+    -u           Angir at kontrollene skal kjøres uten kontroll av karakterføringen.
+                 Nyttig for å kontrollere fagsammensetningen til en elev før han/hun
+                 foretar valg av fag og lignende.
+
+    -x           Normalt kjøres ikke fagkontrollene dersom det finnes meldinger av type FEIL i
+                 filkontrollene på et vitnemål. Med -x kjøres de likevel.
+
+    -v           Verbost modus hvor det skrives flere varsler fra filkontrollen.
+
+    -l n         Setter loggenivået i outputfilen til tallet n. Gyldige verdier er 0-11 (default: 5) og høyere nivå gir flere meldinger.
+
+    -d liste     Kommaseparert liste av vgdoknr som spesifiserer hvilke dokumenter som skal kontrolleres (default: alle).
+
+    -k kravkode  Hvilket krav man kjører fagkontroller mot (default: Sammensatt av programområdene i dokumentet.).
+
+    -T           Test-modus. Foreløpig betyr den ikke annet enn at den godtar at Vgdoknr
+                 starter på T, istedenfor V eller K, og at løpenr (fire siste tegn) kan bestå av store
+                 bokstaver A-Å i tillegg til vanlige sifre 0-9.
+
+    -H           I tillegg til den vanlige maskinlesbare outputen får man med -H også en html-rapport
+                 som en fil nr 2. Filene leveres som én output pakket i en TAR-fil.
+
+
+Kjøreopsjonene angis i http-header `X-NVB-KM`. Det skal kun finnes en slik header pr kall. Eksempler:
+
+     X-NVB-KM: -u
+     X-NVB-KM: -k FFMAT -l 3
+
+I første eksempel kjøres kontrollene uten karakterkontroll.
+
+I andre eksempel kjøres kontrollen/beregningen FFMAT istedenfor default-kontrollen for løpet. Loggenivået er 3 og mindre blir logget som `¤L`-linjer i output enn i defaulten som er 5.
+
+### Kjøreeksempler med `curl`
+
+Her antas at input på soltegnformatet ligger i filen vm.nvb og at output skrives til resultat.nvb
+
+    1. curl -d@vm.nvb -si -X POST https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
+    2. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -u" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
+    3. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -u -x" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
+    4. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -k GSK" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
+    5. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -H" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.tar
+
+Forklaring:
+
+    1. Sender innhold i vm.nvb til endepunktet (angitt url), kjører default kontroller på default loggenivå (dvs 5) og legger output i filen resultat.nvb
+    2. Nå uten karakterkontroller
+    3. Nå kjøres fagkontrollene selv om det skulle finnes feil i filkontrollene
+    4. Nå kjøres kontrollen GSK som gir SANN|USANN på om vitnemålet kan gi generell studiekompetanse i Samordna opptak til høyere utdanning
+    5. Som 1, men leverer i tillegg en html-rapport fra kjøringen
+
+### Loggenivå
+
+<table>
+<tr><td>**Nivå**</td><td>**Hva mer logges i forhold til forrige nivå**</td></tr>
+<tr><td>0</td><td>Logger ikke noe. Ingen ¤L-linjer på datafilen/resultatfilen.</td></tr>
+<tr><td>1</td><td>Logger bare systemfeil.</td></tr>
+<tr><td>2</td><td>Logger alle USANN-meldinger frem t.o.m. den meldingen som evt. viser hvorfor kontrollen
+avbrytes og vitnemålet forkastes. Dette vil normalt være meldinger om FEIL, men kan også
+være VARSLER. Eks: ”Mangler felles allmenne fag”. Grupperer meldingene for hvert
+vitnemålsnummer. Se kravmeldingtabell www.samordnaopptak.no/nvb/vmkrav.input
+.txt.html for fullstendig oversikt over USANN-meldinger.</td></tr>
+<tr><td>3</td><td>Logger også alle SANN-meldinger frem til og med den meldingen som evt. viser hvorfor
+vitnemålet forkastes. Eks: ”Krav til omfang for studieretningsfag oppfylt”. Skriver også
+hovedoverskrifter for kontrollene, eks: ”KONTROLL AV FELLES ALLMENNE FAG”. Se
+kravmeldingstabell i www.samordnaopptak.no/nvb/vmkrav.input.txt.html for fullstendig
+oversikt over SANN-meldinger.</td></tr>
+<tr><td>4</td><td>Logger hvilke fag som er "oppbrukt", altså hvilke fagkoder som har gått med til å tilfredsstille
+kravene under de ulike hovedkontrollene. Og gir FAGLOGG-meldinger, se
+www.samordnaopptak.no/nvb/vmkrav.input.txt.html for en fullstendig oversikt over slike.</td></tr>
+<tr><td>5</td><td>Gir en sluttrapport som viser vitnemålsmerknader, alle fag som er brukt i kontrollene, fag på
+vitnemålet som ikke ble brukt for å tilfredsstille kontroller, og totalomfang, antall karakterer,
+sum karakterer og karaktersnitt. Standardnivå for logger i den sentrale NVB-basen.</td></tr>
+<tr><td>6</td><td>Lager en sluttrapport for hver hovedkontroll.</td></tr>
+<tr><td>7</td><td>Logger hver enkelt kravuttrykkrad i det man starter kontroll av den. Se
+www.samordnaopptak.no/nvb/vmkrav.input.txt.html for en fullstendig oversikt over alle
+kravuttrykkrader. Nivå 7 og utover er mest for teknisk debugging.</td></tr>
+<tr><td>8</td><td>Logger operander med resultat som gir SANN, se
+www.samordnaopptak.no/nvb/vmkrav.input.txt.html for fullstendig oversikt over operander
+(gitt ved kravuttrykknr) og kjøring av ikke_oppbrukt(). ??????</td></tr>
+<tr><td>9</td><td>Logger alle operander uansett resultat.</td></tr>
+<tr><td>10</td><td>Viser også hvilke kravuttrykk som hoppes over, fordi resultatet allerede er gitt ved kontroll av
+andre kravuttrykk</td></tr>
+<tr><td>11-</td><td>F.o.m. 11: udefinert/udokumentert</td></tr>
+</table>
+
+## Filformat
+
+Filformatet er linjeinndelte rader (records) med ¤ som skille mellom hver verdi (felt). Tegn nummer 2
+på hver linje angir hvilken tabell linjens data gjelder.
+
+### Tegnsett
+
+UTF-8 er tegnsettet som benyttes. I dette tegnsettet kan hvert tegn
+bestå av mer enn en byte, feks består ¤ av to bytes: 194 og 164 (C2 og
+A4 i hex). Æ, Ø, Å og flere andre består også av 2-4 tegn. (På
+forespørsel kan det i en overgangsperiode vurderes å støtte det gamle
+tegnsettet ISO-8859-1 som ble brukt i kontroll.exe i forrige utgave av
+NVB).
+
+### Skilletegn
+
+Både input- og output-filer har fast feltskilletegn ¤. Dette ”soltegnet” er lite brukt ellers og lett å finne
+på norske Windows-tastaturer: shift-4. I tillegg til å skille hvert felt skal ¤ stå først på hver linje
+(unntak på side 10), men ikke sist med mindre siste felt har blank verdi.
+
+### Linjetypene i inputfilen
+
+<table>
+<tr><td>¤A</td><td>–</td><td>Startlinjen for hver skole/orgnr. Det kan være flere ¤A i samme fil.</td></tr>
+<tr><td>¤S</td><td>Orgnr</td><td></td></tr>
+<tr><td>¤V</td><td>Vgdoknr</td><td></td></tr>
+<tr><td>¤P</td><td>Vgdoknr og Promrkode</td><td></td></tr>
+<tr><td>¤F</td><td>Vgdoknr og Fagkode</td><td></td></tr>
+<tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td></td></tr>
+<tr><td>¤D</td><td>Vgdoknr</td><td></td></tr>
+</table>
