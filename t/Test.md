@@ -166,3 +166,12 @@ på norske Windows-tastaturer: shift-4. I tillegg til å skille hvert felt skal 
 <tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td>Vgdokmerknader, en linje for hver vitnemålsmerknad (eller kompetansebevismerknad)</td></tr>
 <tr><td>¤D</td><td>Vgdoknr</td><td>Vgdokannullering-linje</td></tr>
 </table>
+
+### Linjetypene i resultatfilen
+
+<table>
+<tr><td>¤R</td><td>–</td><td>Startlinjen, kun en pr fil, første linje</td></tr>
+<tr><td>¤K</td><td>Kontrollnr</td><td>Kontrollresultat, en linje pr kontroll kjørt. Default en ¤K-linje pr vitnemål i inputfilen</td></tr>
+<tr><td>¤E</td><td>Meldingsnr</td><td>Meldingslinje (info-, tips-, varsel- eller feilmelding)</td></tr>
+<tr><td>¤L</td><td>Kontrollnr + Linjenr</td><td>Logglinje</td></tr>
+</table>
