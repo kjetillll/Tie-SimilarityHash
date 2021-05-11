@@ -194,3 +194,45 @@ Oracle-eksempel: select to_char(datefelt,'YYYYMMDD')</td></tr>
 og sekundsangivelsen SS er to sifre 00-59. Ledende nuller skal være med (feks er 8:49 *ikke* akseptert når det skal stå 084900). Eksempel: fem over åtte på kvelden skrives 200500. Oracle-eksempel: select to_char(datefelt,'HH24MISS')</td></tr>
     <tr><td>T14</td><td>D8 og K6 sammenslått i ett tidspunkt-felt</td></tr>
 </table>    
+
+I kolonnene **Oblig.** står det Ja hvis feltet er obligatorisk. Det kan da ikke være tomt/blankt.
+
+### Feltbredde
+Selv om filformatet bruker skilletegn ¤ og slik sett ikke har fast bredde, er det likevel hensiktsmessig å
+definere en maksimumslengde på mange av feltene. Bl.a. fordi dataene ender opp i skjermtabeller som ikke
+nødvendigvis har uendelig plass i bredden og i databasefelt med definerte maxbredder.
+Inputdata som overskrider feltbredden angitt her vil medføre en varselmelding (¤E) fra valideringen og
+feltene vil avkuttes internt i kontrollmotoren / før import til NVB. At meldingen er av type varsel (og ikke feil) betyr at kjøringen
+ikke avbrytes pga for lange felt.
+
+### Linjeskift
+Linjeskift er binært byte 10 (hex-A) eller byte 13 (hex-D) eller flere påfølgende tegn av en eller begge
+av disse. Dette for at kontroll.exe skal tåle normal output uansett om filen kommer fra Windows, Mac,
+Linux, databasen el.l. Kontroll.exe hopper over tomme linjer (inkl. linjer med kun space og tab).
+
+### Skilletegnet ¤ i dataene
+Selv om skilletegnet ¤ er sjelden brukt er det likevel mulig at sluttbrukere skriver det inn i fritekstfelter.
+Et felt som inneholder ¤ i selve teksten omhylles med { og } som første og siste tegn i feltet for å
+beskytte skilletegnet. Dersom { eller } står inne i et felt behandles de som vanlige tegn. For å slippe å
+ta hensyn til dette kan man godt bare avgjøre at brukerinput aldri har behov for tegnet ¤ og automatisk
+erstatte det med f.eks. * når man lager fil til kontroll.exe og NVB, f.eks. vha funksjonen
+replace(felt,'¤','*') i Oracle.
+Kontroll.exe vil "trimme" feltverdiene for mellomrom og tab-tegn i starten eller slutten av feltet og det
+anbefales at det samme skjer for innlesing av resultatfilen.
+
+### Linjeskift i dataene
+For felter som inneholder linjeskift i selve dataene er det to alternativer:
+1. Feltet omhylles med { og } som første og siste tegn i feltet. Dermed vil det kunne finnes linjer i inputfilen som ikke starter med ¤.
+2. Eller linjeskift angis med de to tegnene \n Alternativ 2 anbefales og kan ordnes med f.eks. dette i Oracle: `select replace(felt,chr(10),'\n')` eller 
+`select replace(replace(felt,chr(10),'\n'),chr(13),'\n')`
+
+### Filformat JSON
+Mulighet for input- og outputfiler på JSON kommer kanskje i en senere versjon.
+
+### Tegnsett
+Valideringen foretrekker tegnsettet UTF-8. Dette har tatt over for ISO-8859-1 som ble bruke i forrige utgave av NVB.
+
+## Linjetyper og felter i inputfilen
+Feltnavnene her angir hva feltene heter i NVBs database. Hva de heter hos systemleverandørene er
+deres valg.
+Primærnøkkel er angitt med understreket feltnavn i tabellene under
