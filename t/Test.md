@@ -159,10 +159,10 @@ på norske Windows-tastaturer: shift-4. I tillegg til å skille hvert felt skal 
 
 <table>
 <tr><td>¤A</td><td>–</td><td>Startlinjen for hver skole/orgnr. Det kan være flere ¤A i samme fil.</td></tr>
-<tr><td>¤S</td><td>Orgnr</td><td></td></tr>
-<tr><td>¤V</td><td>Vgdoknr</td><td></td></tr>
-<tr><td>¤P</td><td>Vgdoknr og Promrkode</td><td></td></tr>
-<tr><td>¤F</td><td>Vgdoknr og Fagkode</td><td></td></tr>
-<tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td></td></tr>
-<tr><td>¤D</td><td>Vgdoknr</td><td></td></tr>
+<tr><td>¤S</td><td>Orgnr</td><td>Frivillige tilleggsopplysninger til ¤A om denne skolen / dette orgnummeret</td></tr>
+<tr><td>¤V</td><td>Vgdoknr</td><td>Vgdok-linje, dokumenthodet, vitnemålshodet - opplysninger det bare finnes en av på hvert vitnemål</td></tr>
+<tr><td>¤P</td><td>Vgdoknr og Promrkode</td><td>Vgdokpromr-linje, en linje for hvert programområde på dokumentet</td></tr>
+<tr><td>¤F</td><td>Vgdoknr og Fagkode</td><td>Vgdokfag-linje, en linje for hvert fag på dokumentet</td></tr>
+<tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td>Vgdokmerknader, en linje for hver vitnemålsmerknad (eller kompetansebevismerknad)</td></tr>
+<tr><td>¤D</td><td>Vgdoknr</td><td>Vgdokannullering-linje</td></tr>
 </table>
