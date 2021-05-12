@@ -1,12 +1,4 @@
 
-<style
-  type="text/css">
-td {vertical-align:top}
-h1 {color:red;}
-
-p {color:blue;}
-</style>
-
 # NVB-kontrollmotor – teknisk brukerdokumentasjon
 
 Unit.no, 11. mai 2021
@@ -399,3 +391,83 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 <tr><td>S33</td><td>Webadresse</td><td></td><td>A</td><td>www.skole.no</td><td colspan="2">Skolens hjemmeside på internettet ... http:// er unødvendig</td></tr>
 </table>
 
+### 6.3 Vgdok-linjer ¤V
+Spesielt om vgdoknr: Feltet Vgdoknr er unikt og skal aldri gjenbrukes dersom dokumentet er utstedt
+(gitt til eleven) eller sendt inn til NVB. Hvis et vitnemål eller kompetansebevis skal endres skal det få
+et nytt vgdoknr og det gamle skal annulleres (med en ¤D-linje, se side 23) selv om endringen er
+minimal. SO viser fram vitnemål til søkere til høyere utdanning og må da kunne vise nøyaktig det
+samme som står på orginaldokumentet på papir.
+
+<table>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td colspan="2">Forklaring</td></tr>
+<tr><td>V0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤V</td><td colspan="2">Alltid ¤V</td></tr>
+<tr><td>V1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V97995898620080001</td>
+  <td>Vgdoknr (dokumentidentifikator).<br>
+    • Første tegn er bokstaven V for vitnemål og K for kompetansebevis<br>
+    • Så følger orgnr ni siffer for utstederorganisasjonen (oftest en skole).<br>
+    • Deretter årstall, fire siffer.<br>
+    • Og til slutt et løpenr på fire siffer 0001-9999.<br>
+<br>
+    Her kan også gamle vmnr stå: 13 siffer. (Ingen systemleverandører må lage nye vgdoknr på gamle vitnemål) Lov for VIGO: Store bokstaver A-Å i løpenr i tillegg til sifre.</td></tr>
+<tr><td>V2</td><td>Foerstegangsvm</td><td></td><td>A1</td><td>J</td>
+  <td>J = ja<br>
+      N = nei<br>
+      Førstegangsvitnemål eller ikke står også på vitnemålet. Primærvitnemål heter<br/>dette i R94. Kan være J selv om eleven<br/>er eldre enn 21. Feltet er viktig i opptak<br/>til høgskoler/universiteter fordi det kan<br/>gi adgang til førstegangsvitnemålskvo-<br/>tene for søkere t.o.m. 21 år. Disse utgjør<br/>ofte 50% av studieplassene.</td></tr>
+<tr><td>V4</td><td>Reformkode</td><td>Ja</td><td>A3</td><td>KL</td><td>KL = Kunnskapsløftdokument<br/>R94 = Reform94-dokument<br/>Eldre reformer støttes ikke av NVB.</td></tr>
+<tr><td>V5</td><td>Vgdoktypekode</td><td>Ja</td><td>A2</td><td>VM</td><td>VM = vitnemål<br/>KB = kompetansebevis</td></tr>
+<tr><td>V6</td><td>Avgangsaar</td><td>Ja</td><td>N4</td><td style="text-align: right">2008</td><td>Avgangsår. Må ikke forveksles med årstallet i V9-Dato_utstedt eller innsendingsår til NVB. Årstallene i V9 og V6 kan være forskjellig. Skal normalt være likt tegnene 11-14 i felt V1. V6 settes også for kompetansebevis selv om det da ikke kan kalles avgangsår. Det året man har fullført og bestått vitnemålet. Etter de gamle reglene (som gjelder fremdeles?) skal det gamle året stå, selv om det er forbedringer. Bør presiseres....</td></tr>
+<tr><td>V7</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Utsteders/skolens organisasjonsnr.<br/>Normalt likt tegn 2 til 10 i V1 4</td></tr>
+<tr><td>V9</td><td>Utstedersted</td><td>Ja</td><td>A</td><td>Bergen</td><td>Utstedelsessted. Stedsnavn i ”sted og dato” som står ved siden av underskriftene på papirvitnemålet. Dette er et geografisk stedsnavn, for eksempel by, tettsted eller kommune. Ikke navn på skole, organisasjon eller annet.</td></tr>
+<tr><td>V10</td><td>Dato_utstedt</td><td>Ja</td><td>D8</td><td>20081224<br/>yyyymmdd</td><td>Utstedelsesdato. Datoen i ”sted og dato”<br/>som står ved siden av underskriftene.</td></tr>
+<tr><td>V11</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Borgen<br/>skole</td><td>Utsteders/skolens navn slik det står på<br/>papirdokumentet.</td></tr>
+<tr><td>V12</td><td>Rektornavn</td><td>Ja</td><td>A</td><td>Randi<br/>Rektor</td><td>Rektor eller den ansvarlige som har<br/>skrevet under. Slik det står på papiret.</td></tr>
+<tr><td>V13</td><td>Underskrivernavn</td><td>Ja</td><td>A</td><td>Sara<br/>Sekretær</td><td>Den andre personen som skrev under.<br/>Kontaktperson for dokumentet. Det skal<br/>vel alltid være to? ”For Sara Sekretær”</td></tr>
+<tr><td>V14</td><td>Foedtdato</td><td>Ja</td><td>N06</td><td style="text-align: right">010871</td><td>formen DDMMÅÅ. Første del av det 11-sifrede norske fødselsnummeret. Kan være et såkalt D-nr som starter på DD+40 (dvs dato 01 blir 41 osv på slike)</td></tr>
+<tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens person-<br/>nummer. De fem siste sifrene av det 11-</td></tr>
+sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>kunne bruke vitnemålet i opptak. Det<br/>gis FEIL dersom de to bakerste<br/>kontrollsifrene her er ugyldige.</td></tr>
+<tr><td>V16</td><td>Personnavn</td><td>Ja</td><td>A</td><td>Erik Elev<br><i>eller</i><br>Etternavn, Erik</td><td>Elevens/privatistens/lærlingens fulle navn. Fornavn, eventuelle mellomnavn og Etternavn med mellomrom mellom. Formen Etternavn komma mellomrom Fornavn Mellomnavn er også ok. Mellomnavn bør skrives fullt ut, men kan skrives som initialer med punktum bak. Slik det står på papirdokumentet.</td></tr>
+<tr><td>V17</td><td>Dispensasjonkode</td><td></td><td>A1</td><td>D</td><td>D, F eller blank. F kun for R94-vitnemål. D = vitnemålet er gitt
+dispensasjon fra fagkontrollene.
+F = forsøksvitnemål (ugyldig KL-kode)
+Dersom koden er D skal det finnes
+minst en ¤M-linje som forklarer årsaken
+til dispensasjonen.</td></tr>
+<tr><td>V18</td><td>Gsk_ok</td><td></td><td>A1</td><td>J</td><td>J, N eller blank.
+Kode J angir at det stod noe ala ”...og
+har oppnådd generell studiekomp-
+etanse” på dokumentet.
+Feltet brukes av SO til å gjenskape et
+skjermvitnemål som er mest mulig likt
+papirvitnemålet.
+Kode N her vil gi et VARSEL dersom
+kontroll.exe finner ut at fagene tilsier at
+GSK er oppnådd likevel, unntatt for
+yrkesfaglige vm. (Og kanskje et
+VARSEL i det omvendte tilfellet også,
+der V18=J uten at gsk er oppnådd ifølge
+kontrollmotoren)
+Trigger teksten ”...og har oppnådd
+generell studiekompetanse” i SOs
+fremvisning av vitnemål for søker selv.
+Forslag fra Extens:
+G=”og har generell studiekompetanse”
+F=”og har bestått(?) fagopplæring”
+Y=”og har yrkeskompetanse(?)”
+...slik at V18 styrer den linjen på
+vitnemålet</td></tr>
+<tr><td>V20</td><td>Omfang</td><td>Ja</td><td>N4</td><td style="text-align: right">2345</td><td>Omfangstallet som står på vitnemålet /<br/>kompetansebeviset. Feltet brukes både<br/>for R94-vitnemål og KL-dokumenter<br/>selv om det er forskjellige tallskalaer.</td></tr>
+<tr><td>V22</td><td>Orden</td><td></td><td>A</td><td>N</td><td>Tre gyldige koder i V22 og V23:</td></tr>
+<tr><td>V23</td><td>Adferd</td><td></td><td>A</td><td>G</td><td>G = God<br/>N =Nokså god</td></tr>
+L = Lite god<br/>Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
+<tr><td>V24</td><td>Antall_vedlegg</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
+<tr><td>V25</td><td>Filnavn_vedlegg</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
+<tr><td>V26</td><td>Maalformkode</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:
+B = bokmål
+N = nynorsk
+S = samisk
+A = annet
+Papirdokumentet ble skrevet ut på
+bokmål, nynorsk, nord-samisk eller
+annet språk. Kan brukes av SO som
+foretrukket målform i skjermvisning.</td></tr>
+</table>
