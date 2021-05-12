@@ -356,16 +356,16 @@ Hver ¤A-linje kan følges av en ¤S-linje med skoleinformasjon. SO bruker datae
 vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk). Det er frivillig om
 ¤S alltid sendes etter ¤A, eller kun når endringer har skjedd.
 
-<table style="vertical-align:top">
+<table>
 <tr><td><b>Feltnr</b></td><td><b>Feltnavn</b></td><td><b>Oblig.</b></td><td><b>Format</b></td><td><b>Eksempel</b></td><td><b>Forklaring</b></td></tr>
 <tr><td>S0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤S</td><td>Alltid ¤S</td></tr>
 <tr><td>S1</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Organisasjonsnr. Skal finnes i NVBs skoleregister og i Foretaksregisteret (på www.brreg.no)</td></tr>
-<tr><td>S2</td><td>Orgnr_gml</td><td></td><td>N9</td><td style="text-align: right">01020</td><td>Tidligere orgnr. Feltet brukes ikke av<br/>programmer, men kan være til hjelp for<br/>å nøste opp i endringer av navn og nr i<br/>NVB.</td></tr>
+<tr><td>S2</td><td>Orgnr_gml</td><td></td><td>N9</td><td style="text-align: right">01020</td><td>Tidligere orgnr. Feltet brukes ikke av programmer, men kan være til hjelp for å nøste opp i endringer av navn og nr i NVB.</td></tr>
 <tr><td>S3</td><td>Skolenr</td><td>Ja</td><td>N05</td><td style="text-align: right">00123</td><td>Skolens VIGO-nummer. Se A2 side 12.</td></tr>
 <tr><td>S4</td><td>Skolenr_gml</td><td></td><td>N05</td><td></td><td>Tidligere VIGO-skolenr.</td></tr>
-<tr><td>S5</td><td>Orgnavn</td><td></td><td>A</td><td></td><td>Organisasjonens navn slik det er i<br/>Enhetsregisteret (www.brreg.no)</td></tr>
-<tr><td>S6</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Ås<br/>videregå-<br/>ende skole</td><td>Skolens fulle navn slik det er når filen<br/>lages</td></tr>
-<tr><td>S7</td><td>Fylkesnr</td><td>Ja</td><td>N2</td><td style="text-align: right">03</td><td>Fylket skolen ligger i. Oftest samme<br/>som de to første sifrene i S3, unntatt for<br/>privatskoler. Skoler i utlandet kan bruke<br/>fylkesnr 24 og kommunetall 0.</td></tr>
+<tr><td>S5</td><td>Orgnavn</td><td></td><td>A</td><td></td><td>Organisasjonens navn slik det er i Enhetsregisteret (www.brreg.no)</td></tr>
+<tr><td>S6</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Ås videregå- ende skole</td><td>Skolens fulle navn slik det er når filen lages</td></tr>
+<tr><td>S7</td><td>Fylkesnr</td><td>Ja</td><td>N2</td><td style="text-align: right">03</td><td>Fylket skolen ligger i. Oftest samme som de to første sifrene i S3, unntatt for privatskoler. Skoler i utlandet kan bruke fylkesnr 24 og kommunetall 0.</td></tr>
 <tr><td>S8</td><td>Kommunetall</td><td>Ja</td><td>N2</td><td style="text-align: right">01</td><td>Skolens kommunetall. S7+S8 utgjør tilsammen et gyldig norsk firesifret kommunenr slik de er definert av SSB. Dersom «skolen» er et eksamenskontor el.l., bruk kommunen der kontoret er.</td></tr>
 <tr><td>S9</td><td>Bydelsnavn</td><td></td><td>A</td><td></td><td>Frivillig. Bydel for de største byene som har offisielle bydelsadministrasjoner. Bruk navnet her siden inndeling og nummerering stadig endres. Bruk kun bydelsnr dersom navnet er ukjent. (SO har blitt spurt om bydelsstatistikk før...)
     <tr><td>S10</td><td>Skoletype</td><td>Ja</td><td>A1</td><td>F</td>
@@ -374,10 +374,10 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 	K = kommunal<br>
 	S = statlig<br>
 	U = utenlandsk (se side 30 for skoler med manglende orgnr)</td></tr>
-<tr><td>S11</td><td>Eksamensrett</td><td></td><td>A1</td><td>J</td><td>J eller ingenting. Om skolen har<br/>eksamensrett</td></tr>
-<tr><td>S12</td><td>Orgnr_eier</td><td></td><td>N9</td><td></td><td>Dersom orgnr i S1 er eid eller er en<br/>filial av et annet orgnr. S12 er oftest<br/>mest aktuelt for private skoler.</td></tr>
-<tr><td>S13</td><td>Kontaktperson</td><td>Ja</td><td>A</td><td>Donald<br/>Duck</td><td>Navn på kontaktperson for NVB på<br/>skolen</td></tr>
-<tr><td>S14</td><td>Kontaktperson_tittel</td><td></td><td>A</td><td>Rektor</td><td>Vedkommendes rolle på skolen, f.eks.<br/>rektor, inspektør, sekretær etc</td></tr>
+<tr><td>S11</td><td>Eksamensrett</td><td></td><td>A1</td><td>J</td><td>J eller ingenting. Om skolen har eksamensrett</td></tr>
+<tr><td>S12</td><td>Orgnr_eier</td><td></td><td>N9</td><td></td><td>Dersom orgnr i S1 er eid eller er en filial av et annet orgnr. S12 er oftest mest aktuelt for private skoler.</td></tr>
+<tr><td>S13</td><td>Kontaktperson</td><td>Ja</td><td>A</td><td>Donald Duck</td><td>Navn på kontaktperson for NVB på skolen</td></tr>
+<tr><td>S14</td><td>Kontaktperson_tittel</td><td></td><td>A</td><td>Rektor</td><td>Vedkommendes rolle på skolen, f.eks. rektor, inspektør, sekretær etc</td></tr>
 <tr><td>S15</td><td>Kontaktperson_epost</td><td></td><td>A</td><td style="text-align: right">97713246</td><td>E-postadresse til kontaktpersonen</td></tr>
 <tr><td>S16</td><td>Kontaktperson_tlf</td><td></td><td>A</td><td style="text-align: right">97713246</td><td>Telefonnr til kontaktperson.</td></tr>
 <tr><td>S17</td><td>Kontaktperson2</td><td></td><td>A</td><td></td><td>Tilsvarende S13. Annen person.</td></tr>
@@ -389,12 +389,13 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 <tr><td>S23</td><td>Adrpostnr</td><td></td><td>N04</td><td style="text-align: right">6440</td><td>Skolens postadresse, postnr. Skal være utfylt for norske adresser. Skal ikke være utfylt dersom S25 er utfylt. Skal kun inneholde norske postnr, utenlandske postnr flyttes over til S24.</td></tr>
 <tr><td>S24</td><td>Adrpoststed</td><td>Ja</td><td>A</td><td>Bud</td><td colspan="2">Skolens postadresse: land, helst på</td></tr>
 <tr><td>S25</td><td>Adrlandnavn</td><td></td><td>A</td><td></td><td colspan="2">Skolens postadresse: land, helst på engelsk. Oppgi blank verdi for norske adresser. (Norge, Noreg, Norway o.l. er unødvendig). S23 er alltid blank hvis S25 er utfylt og omvendt.</td></tr>
-<tr><td>S26</td><td>Adrbesoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, gatenavn+nr<br/>eller sted. Unødvendig å fylle ut S26-<br/>S29 om besøks- og postadresse er like.</td></tr>
-<tr><td>S27</td><td>Adrpostnr_besoek</td><td></td><td>N04</td><td></td><td colspan="2">Skolens besøksadresse, postnr. Norsk<br/>postnr hvis utfylt. Utenlandske postnr<br/>flyttes over til S28.</td></tr>
+<tr><td>S26</td><td>Adrbesoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, gatenavn+nr eller sted. Unødvendig å fylle ut S26- S29 om besøks- og postadresse er like.</td></tr>
+<tr><td>S27</td><td>Adrpostnr_besoek</td><td></td><td>N04</td><td></td><td colspan="2">Skolens besøksadresse, postnr. Norsk postnr hvis utfylt. Utenlandske postnr flyttes over til S28.</td></tr>
 <tr><td>S28</td><td>Adrpoststed_besoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, poststed.</td></tr>
-<tr><td>S29</td><td>Adrlandnavn_besoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, land. S27 skal<br/>ikke være utfylt hvis S29 er det og<br/>omvendt.</td></tr>
+<tr><td>S29</td><td>Adrlandnavn_besoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, land. S27 skal ikke være utfylt hvis S29 er det og omvendt.</td></tr>
 <tr><td>S30</td><td>Telefonnr</td><td>Ja</td><td>A</td><td style="text-align: right">71232100</td><td colspan="2">Skolens telefonnr</td></tr>
 <tr><td>S31</td><td>Telefaksnr</td><td></td><td>A</td><td style="text-align: right">71232101</td><td colspan="2">Skolens telefaksnr</td></tr>
-<tr><td>S32</td><td>Epost</td><td></td><td>A</td><td>post@skole.<br/>no</td><td colspan="2">Skolens epostadresse, bør være utfylt<br/>dersom S15 og S19 er blanke. Flere<br/>adresse adskilles med , (komma)</td></tr>
-<tr><td>S33</td><td>Webadresse</td><td></td><td>A</td><td>www.skole.<br/>no</td><td colspan="2">Skolens hjemmeside på internettet ...<br/>http:// er unødvendig</td></tr>
+<tr><td>S32</td><td>Epost</td><td></td><td>A</td><td>post@skole.no</td><td colspan="2">Skolens epostadresse, bør være utfylt dersom S15 og S19 er blanke. Flere adresse adskilles med , (komma)</td></tr>
+<tr><td>S33</td><td>Webadresse</td><td></td><td>A</td><td>www.skole.no</td><td colspan="2">Skolens hjemmeside på internettet ... http:// er unødvendig</td></tr>
 </table>
+
