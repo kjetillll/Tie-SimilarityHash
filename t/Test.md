@@ -244,15 +244,14 @@ i ¤V og ¤D uten en ¤A.
 ¤V- og ¤D-linjer skal stå under ¤A-en de tilhører (samme orgnr). Alle ¤A-linjene skal altså ikke
 samles i toppen av filen (mer om dette i avsnitt 6.8 Rekkefølgen av linjetyper side 24)
 
-<table cellspacing="0" border="0">
-	<colgroup span="6" width="133"></colgroup>
+<table>
 	<tr>
-		<td>Feltnr</td>
-		<td>Feltnavn</td>
-		<td>Oblig.</td>
-		<td>Format</td>
-		<td>Eksempel</td>
-		<td>Forklaring</td>
+		<td><b>Feltnr</b></td>
+		<td><b>Feltnavn</b></td>
+		<td><b>Oblig.</b></td>
+		<td><b>Format</b></td>
+		<td><b>Eksempel</b></td>
+		<td><b>Forklaring</b></td>
 	</tr>
 	<tr>
 		<td>A0</td>
