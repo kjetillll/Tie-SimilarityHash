@@ -351,32 +351,21 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 <table>
 <tr><td><b>Feltnr</b></td><td><b>Feltnavn</b></td><td><b>Oblig.</b></td><td><b>Format</b></td><td><b>Eksempel</b></td><td><b>Forklaring</b></td></tr>
 <tr><td>S0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤S</td><td>Alltid ¤S</td></tr>
-<tr><td>S1</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Organisasjonsnr. Skal finnes i NVBs</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>skoleregister og i Foretaksregisteret (på</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>www.brreg.no )</td></tr>
+<tr><td>S1</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Organisasjonsnr. Skal finnes i NVBs skoleregister og i Foretaksregisteret (på www.brreg.no)</td></tr>
 <tr><td>S2</td><td>Orgnr_gml</td><td></td><td>N9</td><td style="text-align: right">01020</td><td>Tidligere orgnr. Feltet brukes ikke av<br/>programmer, men kan være til hjelp for<br/>å nøste opp i endringer av navn og nr i<br/>NVB.</td></tr>
 <tr><td>S3</td><td>Skolenr</td><td>Ja</td><td>N05</td><td style="text-align: right">00123</td><td>Skolens VIGO-nummer. Se A2 side 12.</td></tr>
 <tr><td>S4</td><td>Skolenr_gml</td><td></td><td>N05</td><td></td><td>Tidligere VIGO-skolenr.</td></tr>
 <tr><td>S5</td><td>Orgnavn</td><td></td><td>A</td><td></td><td>Organisasjonens navn slik det er i<br/>Enhetsregisteret (www.brreg.no)</td></tr>
 <tr><td>S6</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Ås<br/>videregå-<br/>ende skole</td><td>Skolens fulle navn slik det er når filen<br/>lages</td></tr>
 <tr><td>S7</td><td>Fylkesnr</td><td>Ja</td><td>N2</td><td style="text-align: right">03</td><td>Fylket skolen ligger i. Oftest samme<br/>som de to første sifrene i S3, unntatt for<br/>privatskoler. Skoler i utlandet kan bruke<br/>fylkesnr 24 og kommunetall 0.</td></tr>
-<tr><td>S8</td><td>Kommunetall</td><td>Ja</td><td>N2</td><td style="text-align: right">01</td><td>Skolens kommunetall. S7+S8 utgjør</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>tilsammen et gyldig norsk firesifret</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>kommunenr slik de er definert av SSB.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Dersom «skolen» er et eksamenskontor</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>el.l., bruk kommunen der kontoret er.</td></tr>
-<tr><td>S9</td><td>Bydelsnavn</td><td></td><td>A</td><td></td><td>Frivillig. Bydel for de største byene som</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>har offisielle bydelsadministrasjoner.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Bruk navnet her siden inndeling og</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>nummerering stadig endres. Bruk kun</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>bydelsnr dersom navnet er ukjent. (SO</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>har blitt spurt om bydelsstatistikk før...)</td></tr>
-<tr><td>S10</td><td>Skoletype</td><td>Ja</td><td>A1</td><td>F</td><td>F = fylkeskommunal (de fleste v.g.s.)</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>P = privat</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>K= kommunal</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>S = statlig</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>U = utenlandsk (se side 30 for skoler</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>med manglende orgnr)</td></tr>
+<tr><td>S8</td><td>Kommunetall</td><td>Ja</td><td>N2</td><td style="text-align: right">01</td><td>Skolens kommunetall. S7+S8 utgjør tilsammen et gyldig norsk firesifret kommunenr slik de er definert av SSB. Dersom «skolen» er et eksamenskontor el.l., bruk kommunen der kontoret er.</td></tr>
+<tr><td>S9</td><td>Bydelsnavn</td><td></td><td>A</td><td></td><td>Frivillig. Bydel for de største byene som har offisielle bydelsadministrasjoner. Bruk navnet her siden inndeling og nummerering stadig endres. Bruk kun bydelsnr dersom navnet er ukjent. (SO har blitt spurt om bydelsstatistikk før...)
+    <tr><td>S10</td><td>Skoletype</td><td>Ja</td><td>A1</td><td>F</td>
+    <td>F = fylkeskommunal (de fleste v.g.s.)<br>
+	P = privat<br>
+	K = kommunal<br>
+	S = statlig<br>
+	U = utenlandsk (se side 30 for skoler med manglende orgnr)</td></tr>
 <tr><td>S11</td><td>Eksamensrett</td><td></td><td>A1</td><td>J</td><td>J eller ingenting. Om skolen har<br/>eksamensrett</td></tr>
 <tr><td>S12</td><td>Orgnr_eier</td><td></td><td>N9</td><td></td><td>Dersom orgnr i S1 er eid eller er en<br/>filial av et annet orgnr. S12 er oftest<br/>mest aktuelt for private skoler.</td></tr>
 <tr><td>S13</td><td>Kontaktperson</td><td>Ja</td><td>A</td><td>Donald<br/>Duck</td><td>Navn på kontaktperson for NVB på<br/>skolen</td></tr>
@@ -389,18 +378,9 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 <tr><td>S20</td><td>Kontaktperson2_tlf</td><td></td><td>A</td><td></td><td>Tilsvarende S16</td></tr>
 <tr><td>S21</td><td>Adrlinje1</td><td></td><td>A</td><td></td><td>Skolens postadresse</td></tr>
 <tr><td>S22</td><td>Adrlinje2</td><td></td><td></td><td></td><td>Skolens postadresse</td></tr>
-<tr><td>S23</td><td>Adrpostnr</td><td></td><td>N04</td><td style="text-align: right">6440</td><td>Skolens postadresse, postnr. Skal være</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>utfylt for norske adresser. Skal ikke</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>være utfylt dersom S25 er utfylt. Skal</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>kun inneholde norske postnr,</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>utenlandske postnr flyttes over til S24.</td></tr>
-<tr><td style="text-align: right" colspan="6">13</td></tr>
+<tr><td>S23</td><td>Adrpostnr</td><td></td><td>N04</td><td style="text-align: right">6440</td><td>Skolens postadresse, postnr. Skal være utfylt for norske adresser. Skal ikke være utfylt dersom S25 er utfylt. Skal kun inneholde norske postnr, utenlandske postnr flyttes over til S24.</td></tr>
 <tr><td>S24</td><td>Adrpoststed</td><td>Ja</td><td>A</td><td>Bud</td><td colspan="2">Skolens postadresse: land, helst på</td></tr>
-<tr><td>S25</td><td>Adrlandnavn</td><td></td><td>A</td><td></td><td colspan="2">Skolens postadresse: land, helst på</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">engelsk. Oppgi blank verdi for norske</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">adresser. (Norge, Noreg, Norway o.l. er</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">unødvendig). S23 er alltid blank hvis</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">S25 er utfylt og omvendt.</td></tr>
+<tr><td>S25</td><td>Adrlandnavn</td><td></td><td>A</td><td></td><td colspan="2">Skolens postadresse: land, helst på engelsk. Oppgi blank verdi for norske adresser. (Norge, Noreg, Norway o.l. er unødvendig). S23 er alltid blank hvis S25 er utfylt og omvendt.</td></tr>
 <tr><td>S26</td><td>Adrbesoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, gatenavn+nr<br/>eller sted. Unødvendig å fylle ut S26-<br/>S29 om besøks- og postadresse er like.</td></tr>
 <tr><td>S27</td><td>Adrpostnr_besoek</td><td></td><td>N04</td><td></td><td colspan="2">Skolens besøksadresse, postnr. Norsk<br/>postnr hvis utfylt. Utenlandske postnr<br/>flyttes over til S28.</td></tr>
 <tr><td>S28</td><td>Adrpoststed_besoek</td><td></td><td>A</td><td></td><td colspan="2">Skolens besøksadresse, poststed.</td></tr>
