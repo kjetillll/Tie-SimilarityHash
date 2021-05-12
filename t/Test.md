@@ -457,3 +457,603 @@ S = samisk<br>
 A = annet<br>
 Papirdokumentet ble skrevet ut på bokmål, nynorsk, nord-samisk eller annet språk. Kan brukes av SO som foretrukket målform i skjermvisning.</td></tr>
 </table>
+
+#### 6.4 Vgdokpromr-linjer ¤P
+Vgdokpromr-tabellen har en linje pr programområde på et dokument. Normalt 3 stk pr vitnemål og 1
+på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med kun fellesfag.
+¤P-linjer må ha en ¤V-linje i filen med samme Vgdoknr.
+
+<table>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>P0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤P</td><td>Alltid ¤P</td></tr>
+<tr><td>P1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V97995898</td><td>Dokumentidentifikatoren.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">620080002</td><td>Se V1 side 14.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>(en linje)</td><td></td></tr>
+<tr><td>P2</td><td>Promrkode</td><td>Ja</td><td>A</td><td>STUSP1---</td><td>Lovlige koder er programområdekoder</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">-</td><td>som er eller har vært eksportert fra</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Grep. Tilsvarer</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>kurskode1-3 i $V-linjene R94.</td></tr>
+<tr><td>P3</td><td>Nivaakode</td><td>Ja</td><td>A3</td><td>VG1</td><td>Nivåkode. VG1, VG2, VG3, VG4</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eller VG5. Det kan være flere ¤P-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>linjer med samme nivaakode i samme</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>dokument (under samme ¤V).</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Nivaakode er altså ikke nødvendigvis</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>unikt. For V4=R94 godtas også GK,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>VK1, VK2, VKI og VKII (disse kon-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>verteres internt til VG1, VG2 og VG3)</td></tr>
+<tr><td>P4</td><td>Paastandkode</td><td></td><td>A2</td><td>F</td><td>Blank = står ingenting</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>B = Bestått</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>F = Fullført, alle fag er tatt, men ikke</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>bestått</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>FB = Fullført og bestått</td></tr>
+<tr><td style="text-align: right" colspan="6">17</td></tr>
+</table>
+<h2 class="pagenumber">Page 18</h2>
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td>(”Bestått” står på vitnemålnivå, ikke<br/>pr år, når dokumenttypen er VM).<br/>Kontroll.exe krever at siste års ¤P har<br/>P4 = B eller F eller FB for vitnemål i<br/>KL). Koder H, I og M godtas også.</td></tr>
+<tr><td>P5</td><td>Paastand</td><td></td><td>A</td><td>Fullført</td><td>Hva som faktisk stod på dokumentet.</td></tr>
+<tr><td>P6</td><td>Fravaer_dager</td><td>Ja 5</td><td>N3</td><td style="text-align: right">0</td><td>Fravær dette året, dager og timer.</td></tr>
+<tr><td>P7</td><td>Fravaer_timer</td><td>Ja</td><td>N3</td><td style="text-align: right">12</td><td>Normalt tall uten desimaler. Inkl 0.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Obligatorisk hvis minst en standpunkt-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>karakter finnes.</td></tr>
+<tr><td>P8</td><td>Utdprogramkode</td><td></td><td>A</td><td></td><td>Frivillig felt. Bør kunne avledes fra</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>P2-Promrkode og Grep. Utdannings-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>programmet står på dokumentet for</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>hvert programområde. AA, BA, BY,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>DH, EL, FO, HN, HS, ID, KP, MD,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>ME, MK, NA, RM, SA, SS, ST, TB,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>TF, TP eller TR. Noen av de er</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>gyldige kun i KL, andre kun i R94, det</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>fremgår av UDIR-rundskriv.</td></tr>
+<tr><td>P9</td><td>Aarstall</td><td></td><td>N4</td><td></td><td>Årstall. Valgfritt. P9 = V6-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Avgangsaar for siste P3 (typisk i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>VG3).</td></tr>
+<tr><td colspan="6">6.5 Vgdokfag-linjer ¤F</td></tr>
+<tr><td colspan="6">Det skal eksistere en ¤F-linje for hvert vitnemålsfag som føres på vitnemålet/kompetansebeviset. Det</td></tr>
+<tr><td colspan="6">skal være minst en ¤F for hver ¤V. F2-Fagkode inngår i primærnøkkelen, det kan aldri være mer enn</td></tr>
+<tr><td colspan="6">en av samme fagkode på samme dokument.</td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>F0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤F</td><td>Alltid ¤F</td></tr>
+<tr><td>F1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986200</td><td>Dokumentidentifikatoren.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>80002 (en linje)</td><td>Se V1 side 14.</td></tr>
+<tr><td>F2</td><td>Fagkode</td><td>Ja</td><td>A10</td><td>KRO1001</td><td>En fagkode som er eller har vært</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>definert av Grep.</td></tr>
+<tr><td>F3</td><td>Fagtypekode</td><td>Ja</td><td>A2</td><td>FF</td><td>Obligatorisk kun for KL-vitnemål.</td></tr>
+<tr><td></td><td></td><td>for</td><td></td><td></td><td>FF = Fellesfag</td></tr>
+<tr><td></td><td></td><td>KL</td><td></td><td></td><td>FP = Felles programfag</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>VP = Valgfritt programfag</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>PF = Prosjekt til fordypning</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>UP = Uspesifisert programfag</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>GS = Grunnskolefag (ubrukt i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>NVB)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Gyldige for R94, men ikke KL:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>SF = Studieretningsfag(?)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>VF = Valgfag</td></tr>
+<tr><td>F4</td><td>Linjenr</td><td>Ja</td><td>N2</td><td style="text-align: right">23</td><td>Brukes til å bestemme rekkefølgen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>av fagene:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>KL: Sorterer på F3 deretter F4,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>men sett helst F4 slik at rapporter</td></tr>
+<tr><td style="text-align: right">5</td><td colspan="4">For dager og timer, P6 og P7: Obligatorisk for vitnemål hvis minst en standpunktkarakter finnes.</td><td></td></tr>
+<tr><td></td><td colspan="4"></td><td style="text-align: right">18</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">som fortsatt kun sorterer på F4 får<br/>riktig rekkefølge likevel.<br/>R94: Sorterer kun på F4.</td></tr>
+<tr><td>F5</td><td>Karakter_standpunkt</td><td>Ja 6</td><td>A2</td><td>D</td><td>1, 2, 3, 4, 5, 6 eller:</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>D = deltatt</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">F = fritatt, må da sette FAMnn-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>merknadkode</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>R = realkompetanse</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>B = bestått</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">BM = bestått meget godt (eller</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>BMG)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>IB = ikke bestått</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>GK=Godkjent</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">IV = Ikke vurderingsgrunnlag (kun</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">på komp.bevis og kun i stand-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>punktfeltet)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">IM = Ikke møtt (kun på</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>komp.bevis og kun i</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eksamensfeltet)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>0 = Kun i fag fra R94</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">- = ingen karakter (samme som</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>blank)</td><td></td></tr>
+<tr><td>F6</td><td>Karakter_eksamen</td><td>Ja"</td><td>A2</td><td style="text-align: right">6</td><td colspan="2">...samme som for F5, men:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>D = Deltatt kan brukes</td><td>i F5, men</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>ikke i F6.</td><td></td></tr>
+<tr><td>F7</td><td>Eksamensformkode</td><td></td><td>A2</td><td>S</td><td>Blank</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>S = Skriftlig eksamen</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>M = Muntlig eksamen</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">MP = Muntlig-praktisk eksamen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>P = Praktisk eksamen</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">TS = Tegnspråklig/Skriftlig(?)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">TP = Teoretisk/Praktisk 2</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">(Kontroll.exe vil kontrollere dette</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>mot Grep?)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">F7 er obligatorisk når F6 er satt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>(unntatt F og - strek).</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">F6 er obligatorisk og kan ikke</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">være blank/- når F7 er satt.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">Så enten er begge blanke eller</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">begge satt (unntak: F6=F/- og</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>F7=blank)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">Disse er lov for R94, men ikke</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>KL:</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>P Praktisk</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>S Skriftlig</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>M Muntlig</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>T Tegnspråklig</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>MP Muntlig/Praktisk</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>SP Skriftlig/Praktisk</td><td></td></tr>
+<tr><td style="text-align: right">6</td><td colspan="4">Bruk - (strek/minustegn) der det er ingen karakter</td><td colspan="2"></td></tr>
+<tr><td></td><td colspan="4"></td><td style="text-align: right" colspan="2">19</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td>TP Teoretisk/Praktisk 7<br/>SM Skriftlig/Muntlig<br/>ST Skriftlig/Tegnspråklig<br/>IM Ikke møtt (kun kompetanse-<br/>bevis, kan bli fjernet)</td></tr>
+<tr><td>F8</td><td>Omfang</td><td></td><td>N</td><td>Vanlige tall for</td><td>Tallet som står på dokumentet.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>KL nå er 56, 84,</td><td>Blank settes i stedet for -- som</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">112, 140, 159,</td><td>noen bruker i utskrift. F8 settes når</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">168, 169, 197,</td><td>omfangsfallet står ved siden av F2-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">224, 225, 253,</td><td>fagkoden i utskriften. Hvorvidt F8</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>337 og 393. På</td><td>brukes i omfangskontroll, avgjøres</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>eldre KL er også</td><td>av om fagkoden har omfang_-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>113, 150 og 365</td><td>overstyrbart = J i fagregisteret.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>vanlige.</td><td></td></tr>
+<tr><td>F9</td><td>Terminkode</td><td>Ja</td><td>A1</td><td>V</td><td>Het tidligere eksamenstermin.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Bruker kodene:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>V = vår og</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>H = høst.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>(Før har også måneder 05 og 12</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>vært sendt, men kun V og H nå)</td></tr>
+<tr><td>F10</td><td>Aar</td><td>Ja 8</td><td>N4</td><td style="text-align: right">2008</td><td>År. Eksamensår. På dokumentene</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>står for eksempel V14, dette</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>oversettes til F9=V og F10=2014 i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>filformatet.</td></tr>
+<tr><td>F12</td><td>Fagstatuskode</td><td>Ja</td><td>A1</td><td>E</td><td>Personens status i faget:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>E = Elevfag</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>P = Privatistfag</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Kode P gir feilmelding når det er</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>satt standpunktkarakter. Normalt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>kun P eller blank/E til NVB.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>I tillegg godtas også følgende i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>F12 for KL-vitnemål (men ikke</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>R94), men de vil kunne bli</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>ugyldige i senere versjoner (se det</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>nye feltet F18):</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>R = Realkompetansevurdert i faget</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>F = Fritatt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>V = Voksenopplæring</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>O = Oppdragsundervisning annen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>institusjon</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>A = Alternativ opplæringsplan,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>tolkes som E i kontrollene.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Følgende koder har vært innsendt,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>men blir pr versjon 15.10 (juni</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>2014) og trolig også tidligere</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>avvist av NVB-importen:</td></tr>
+<tr><td style="text-align: right">7</td><td colspan="4">TP og TS skulle være med ihht tlf fra SO 19. mai 2009</td><td></td></tr>
+<tr><td style="text-align: right">8</td><td colspan="4">Obligatorisk for KL-vitnemål, skal også settes for R94 om mulig</td><td></td></tr>
+<tr><td></td><td colspan="4"></td><td style="text-align: right">20</td></tr>
+</table>
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td>S = sluttet i faget?<br/>K = klage?<br/>N = nettundervisning? (som E?)<br/>O = oppdragsundervisning annen<br/>institusjon?<br/>U = utenlandsk utvekslingselev?<br/>H = ?<br/>Se også det nye feltet F18.</td></tr>
+<tr><td>F13</td><td>Merknadkode</td><td>A5</td><td>FAM11</td><td>KL: Hvis merknad, sett en lovlig<br/>Grepmerknadskode her. Kodesettet<br/>kommer fra UDIRs Grep-database.<br/>R94: Ingenting i F13 (foreløpig)</td></tr>
+<tr><td>F14</td><td>Merknadparameter</td><td>A</td><td>VG4003</td><td>KL: En parameter til merknaden</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>dersom merknadsteksten i Grep</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>inneholder &lt;år&gt; eller &lt;fagkode&gt;</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>eller &lt;noe annet&gt;. Kan være for</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>eksempel et årstall eller en R94-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>fagkode.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>R94: Hele merknaden i F14 og</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>F13 trenger ikke være satt.</td></tr>
+<tr><td>F15</td><td>Merknadparameter2</td><td>A</td><td></td><td>...som over... Settes når det finnes<br/>to &lt;parametere&gt; i meldingsteksten<br/>fra Grep.</td></tr>
+<tr><td>F16</td><td>Fordypningsfag</td><td>A1</td><td>J</td><td>Blank eller J.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>Skal være blank i KL-dokumenter.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>Skal være J i R94-vitnemål hvis</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>fagkoden inngår i fordypning,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>føres bare på fagkoden for høyeste</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>nivå.</td></tr>
+<tr><td>F17</td><td>Fagnavn</td><td>A</td><td></td><td>Normalt blank, men kan være satt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>for valgfag og lignende. Også satt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>hvis det er skrevet et annet</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>fagnavn på vitnemålet enn det som</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>står i Grep. Kontroll.exe varsler 9</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>hvis F17 er satt i KL-dokumenter</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>siden KL-dokumenter ikke har</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>brukerstyrte fagnavn. F17 brukes</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>kun for R94-vitnemål og da typisk</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>ved VL....fagkoder (valgfag).</td></tr>
+<tr><td>F18</td><td>Faginfokode</td><td>A1</td><td colspan="2">Bakgrunn er bl.a. e-post fra Geir A. 22 Jun 2009 15:33:</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">Vi må bruke F12-fagstatusfeltet til lese om personen er</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">elev eller privatist i faget. Det ser ut som om noen har</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">modellert for bruke F12- feltet til ulike formål. Extens</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">eller VIGO eller noen andre må etter vår oppfatning</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">splitte dette feltet i to, slik at informasjon om klage</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">ikke overskriver status for personen som brukes for å</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">sjekke rett karakterføring. På kort sikt kan dette bare</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">løses ved at verdien settes til E eller P for eksport til</td></tr>
+<tr><td></td><td></td><td></td><td colspan="2">oss, og så kan man rette den lokalt</td></tr>
+<tr><td></td><td></td><td></td><td>igjen senere.</td><td></td></tr>
+<tr><td style="text-align: right">9</td><td colspan="3">Kun varselmelding, ikke feilmelding</td><td></td></tr>
+<tr><td></td><td colspan="3"></td><td style="text-align: right">21</td></tr>
+</table>
+<table class="table table-striped table-bordered"><tr><td colspan="6">Følgende kodesett fra UDIRs definisjonskatalog (?)</td></tr>
+<tr><td colspan="6">skal foreløpig ikke inn i F12, men det kan kanskje bli</td></tr>
+<tr><td colspan="6">opprettet et nytt felt for de senere.</td></tr>
+<tr><td colspan="6">A = alternativ opplæringsplan, spesialundervisning</td></tr>
+<tr><td colspan="6">F = fritatt</td></tr>
+<tr><td colspan="6">N = nettundervisning</td></tr>
+<tr><td colspan="6">U = utenlandsk utvekslingselev i Norge</td></tr>
+<tr><td colspan="6">R = realkompetansevurdert (R i F12 eller F18?)</td></tr>
+<tr><td colspan="6">V = voksne</td></tr>
+<tr><td colspan="6">O = oppdragsundervisning fra annen institusjon</td></tr>
+<tr><td colspan="6">S = sluttet i faget</td></tr>
+<tr><td colspan="6">Det nye 10 frivillige feltet F18 er svaret på dette.</td></tr>
+<tr><td colspan="6">6.6 Vgdokmerknad-linjer ¤M</td></tr>
+<tr><td colspan="6">Merknader til enkeltfag eller til dokumentet (vitnemålet) som helhet.</td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>M0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤M</td><td>Alltid ¤M</td></tr>
+<tr><td>M1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986200<br/>80002 (en linje)</td><td>Dokumentidentifikatoren.<br/>Se V1 side 14.</td></tr>
+<tr><td>M2</td><td>Merknadnr</td><td>Ja</td><td>N</td><td style="text-align: right">2</td><td>Løpenr for merknaden. Unikt<br/>innen vitnemålet. Avgjør rekke-<br/>følgen hvis det er mer enn en<br/>merknad i et vitnemål.</td></tr>
+<tr><td>M3</td><td>Merknadkode</td><td>Ja</td><td>A5</td><td>VMM02</td><td>VMMnn der nn er et tosifret tall.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Som definert av Grep. Kun VMM-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>merknader, ikke FAMnn. FAMnn</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>settes i F12 i ¤F.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>For R94-vitnemål med ikke-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>kodifiserte merknader (kun tekst)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>er M3 = VMR94 og hele</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>merknadsteksten ligger i M4.</td></tr>
+<tr><td>M4</td><td>Merknadparameter</td><td></td><td>A</td><td style="text-align: right">2004</td><td>For eksempel et årstall eller en</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>R94-fagkode. Om M4 og M5 skal</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>settes kommer an på om</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>merknadsteksten tilknyttet M3-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>merknadskode krever en eller to</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>parametere.</td></tr>
+<tr><td>M5</td><td>Merknadparameter2</td><td></td><td>A</td><td></td><td></td></tr>
+<tr><td>M6</td><td>Merknadkategorikode</td><td></td><td>A4</td><td>DISP</td><td>Mulige verdier for R94-vitnemål:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>DISP = dispensasjonsmerknad</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>PRIM =</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>primærvitnemålsmerknad 11</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>FORS = forsøksmerknad</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>ANN = andre vitnemålmerknader</td></tr>
+<tr><td style="text-align: right">10</td><td colspan="3">Sep. 2014</td><td colspan="2"></td></tr>
+<tr><td style="text-align: right">11</td><td colspan="3">Brukes også til første</td><td colspan="2"></td></tr>
+<tr><td></td><td colspan="3"></td><td style="text-align: right" colspan="2">22</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td colspan="5">For KL-vitnemål er M6 alltid<br/>enten DISP eller ingenting (blank).<br/>DISP = dispensasjonsmerknad</td></tr>
+<tr><td>M7</td><td>Sidekode</td><td>A1</td><td>F</td><td colspan="5">F eller B. (Forsiden eller baksiden)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">Angir hvor merknaden på</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">dokumentet stod.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">Aldri B for KL-dokumenter.</td></tr>
+<tr><td>M8</td><td>Promrkode</td><td>A</td><td></td><td colspan="5">Settes sjelden. Kun hvis</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">merknaden tilhører et program-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">område (en av ¤P-linjene) og ikke</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">vitnemålet som helhet.</td></tr>
+<tr><td>M9</td><td>Linjenr</td><td>N</td><td></td><td colspan="5">Brukes bare for R94-vitnemål (se</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">under)</td></tr>
+<tr><td>M10</td><td>Merknadtekst</td><td>A</td><td></td><td colspan="5">Brukes bare for R94-vitnemål (se</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">under)</td></tr>
+<tr><td colspan="9">Anbefaler å ikke bruke M9 og M10, de skal helst være blanke. Men hvis de brukes skal det være kun</td></tr>
+<tr><td colspan="9">for R94-vitnemål (altså vitnemål der V4=R94). Hvis en av dem er satt skal begge være satt.</td></tr>
+<tr><td colspan="9">SO/NVB ønsker at også R94-merknader sendes inn på den nye måten. Dvs at en merknad på R94-</td></tr>
+<tr><td colspan="9">vitnemålet som går over flere linjer må slås sammen til en ¤M-linje her. M3 settes da til koden</td></tr>
+<tr><td colspan="9">VMR94 og M4 inneholder merknadsteksten, mens M9 og M10 er blanke. M4 kan nå inneholde et eller</td></tr>
+<tr><td colspan="9">flere linjeskift. Linjeskifttegn skal ihht ”5.8 Linjeskift i dataene” (side 10) enten erstattes av de to</td></tr>
+<tr><td colspan="9">tegnene \n eller så skal hele feltet pakkes inn i { }. Altså { som første tegn og } som siste i</td></tr>
+<tr><td colspan="9">meldingsteksten. \n er det anbefalte valget, da unngås linjer i filen som ikke starter på ¤.</td></tr>
+<tr><td colspan="5">En M-linje for et R94-vitnemål vil kunne se slik ut:</td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="5">¤M¤V97995898620080002¤1¤VMR94¤Her er første merknadslinje\nog</td><td>her</td><td>er</td><td>linje</td><td>to¤¤ANN¤F¤¤¤</td></tr>
+<tr><td colspan="5">6.7 Vgdokannullering-linjer ¤D</td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="9">Når utstederskole retter, endrer eller trekker tilbake dokumenter (vitnemål/kompetansebevis), skal det</td></tr>
+<tr><td colspan="9">utstedte dokumentet annulleres. Evt nytt dokument som erstatter det gamle, skal ha nytt vgdoknr.</td></tr>
+<tr><td colspan="9">Når dokumentet annulleres, skal det lages en ¤D-transaksjon i det skoleadministrative systemet, som</td></tr>
+<tr><td colspan="9">oversendes som ¤D-linjer til NVB. I NVB slettes ikke annullerte vitnemål, men blir liggende med</td></tr>
+<tr><td colspan="9">vitnemålstatuskode A, noe som tas hensyn til i SO-systemet slik at annullerte vitnemål ikke brukes</td></tr>
+<tr><td colspan="9">selv om de kan vises frem både til saksbehandler og eleven selv. (Da med annulleringsinformasjon i</td></tr>
+<tr><td colspan="5">rød skrift i tillegg)</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td colspan="4">Forklaring</td></tr>
+<tr><td>D0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤D</td><td colspan="4">Alltid ¤D</td></tr>
+<tr><td>D1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986200</td><td colspan="4">Dokumentidentifikatoren.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>80002 (en linje)</td><td colspan="4">Se V1 side 14.</td></tr>
+<tr><td>D2</td><td>Dato_annullert</td><td>Ja</td><td>D8</td><td style="text-align: right">20080909</td><td colspan="4">Datoen når annulleringsvedtaket</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">ble gjort. Dato på formen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">ÅÅÅÅMMDD.</td></tr>
+<tr><td>D3</td><td>Saksbehandler</td><td>Ja</td><td>A</td><td>Anna Annullerer</td><td colspan="4">Saksbehandler som annullerte</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">dokumentet. Den SO, univ. og</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">høgskoler kan kontakte ved</td></tr>
+<tr><td style="text-align: right" colspan="9">23</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">spørsmål. (Vises til søker? Husker<br/>ikke...)<br/>Bruk helst personens navn, ikke<br/>brukernavnet.</td></tr>
+<tr><td>D4</td><td>Vgdoknr_erstattes_av</td><td></td><td>A18</td><td>V979958986200</td><td colspan="2">Hvilket dokument som erstatter</td></tr>
+<tr><td></td><td></td><td></td><td></td><td style="text-align: right">80020</td><td colspan="2">dette. Trenger ikke å være satt,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">men bør settes hvis det er kjent.</td></tr>
+<tr><td>D5</td><td>Annulleringaarsak-</td><td>Ja</td><td>A3</td><td>KLA</td><td colspan="2">Årsak til annullering. Kodene er</td></tr>
+<tr><td></td><td>kode</td><td></td><td></td><td></td><td colspan="2">som i R94:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">KLA=Ny karakter etter klage.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">FEI=Pga feilføring</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">NVB=Annullert av NVB sentralt,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">for eksempel etter fax</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">m/underskrift. (Intern SOkode)</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">ANN=Annen årsak.</td></tr>
+<tr><td>D6</td><td>Merknad</td><td></td><td>A</td><td>...tekst...</td><td colspan="2">Hvis man har en merknad/-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">kommentar om annulleringen.</td></tr>
+<tr><td colspan="7">6.8 Rekkefølgen av linjetyper</td></tr>
+<tr><td>•</td><td colspan="6">Filene kan bestå av flere deler der hver del starter med en ¤A-linje fulgt av en frivillig ¤S-linje.</td></tr>
+<tr><td>•</td><td colspan="6">Under ¤A (og eventuelt ¤S) ligger en ¤V- eller en eller flere ¤D-linjer.</td></tr>
+<tr><td>•</td><td colspan="6">Under hver ¤V-linje ligger en-fem (normalt tre for vitnemål) ¤P-linjer, deretter noen ¤F-linjer</td></tr>
+<tr><td></td><td colspan="6">(snitt rundt 20 stk) og så null, en eller flere ¤M-linjer.</td></tr>
+<tr><td colspan="7">Det er altså ikke ønskelig at alle ¤A-linjene kommer øverst i filen, de skal innlede hver sin del.</td></tr>
+<tr><td colspan="7">(Dersom likevel alle ¤A-linjer ligger øverst, men hver fildel innledes med ¤S, så kan NVBimporten</td></tr>
+<tr><td colspan="7">likevel finne ut hvilken ¤A en ¤V tilhører ved å telle antal ¤V under hver ¤S og så sammenligne med</td></tr>
+<tr><td colspan="7">antall ¤V hver ¤A sier den skal ha (og tilsvarende for antall ¤P, ¤F, ¤M og ¤D, men dette er usikkert</td></tr>
+<tr><td colspan="7">siden to ¤A’er kan ha samme orgnr og samme antall ¤V, ¤P, ¤F, ¤M og ¤D). Denne usikkerheten gjør</td></tr>
+<tr><td colspan="7">av NVB ikke skal stole på hvilket versjonsnr av f.eks. SATS som har generert et vitnemål eller hvilken</td></tr>
+<tr><td colspan="7">dato/klokkeslett fildelen ble generert.</td></tr>
+<tr><td colspan="7">Derfor er det ønskelig å få ¤A-linjene før hver fildel i stedet for å få alle i toppen av filen.</td></tr>
+<tr><td colspan="7">6.9 Eksempel på inputfil</td></tr>
+<tr><td colspan="7">Denne eksempelfilen har to fildeler (2 stk ¤A), begge med ett vitnemål hver. Den første har i tillegg en</td></tr>
+<tr><td colspan="7">vitnemålsannullering.</td></tr>
+<tr><td colspan="5">¤A¤874544582¤01020¤1¤1¤22¤3¤1¤IST-EXTENS¤9.1¤20140911130900</td><td></td><td></td></tr>
+<tr><td colspan="5">¤S¤874544582¤¤01020¤¤¤Øst videregående skole¤01¤05¤¤F¤¤¤Kristin</td><td></td><td></td></tr>
+<tr><td colspan="5">Kontakt¤tittel¤krk@vgs.no¤99999999¤Kine Kontakt¤¤kik@vgs.no¤99999998¤Pb</td><td colspan="2">357¤¤1732¤HØTTEN¤¤¤¤¤¤</td></tr>
+<tr><td colspan="5">69162400¤69162599¤st.olav.vgs@ostfold-f.kommune.no¤www.skolen.no</td><td></td><td></td></tr>
+<tr><td colspan="5">¤V¤V87454458220140268¤N¤KL¤VM¤2014¤874544582¤Sarpsborg¤20140909¤Øst</td><td>videregående</td><td>skole¤Randi</td></tr>
+<tr><td colspan="5">Rektor¤Sara Sekretær¤241294¤44444¤Erik Elev¤¤J¤2608¤G¤G¤0¤¤B</td><td></td><td></td></tr>
+<tr><td colspan="5">¤P¤V87454458220140268¤PBPBY4YK--¤VG3¤B¤Bestått¤0¤0¤¤2014</td><td></td><td></td></tr>
+<tr><td colspan="5">¤P¤V87454458220140268¤RMKOK3----¤VG3¤B¤Bestått¤0¤0¤¤2013</td><td></td><td></td></tr>
+<tr><td colspan="5">¤P¤V87454458220140268¤RMKOS2----¤VG2¤B¤Bestått¤9¤9¤¤2012</td><td></td><td></td></tr>
+<tr><td colspan="5">¤P¤V87454458220140268¤RMRMF1----¤VG1¤B¤Bestått¤2¤9¤¤2011</td><td></td><td></td></tr>
+<tr><td colspan="5">¤F¤V87454458220140268¤ENG1003¤FF¤6¤6¤¤¤140¤V¤2012¤E¤¤¤¤¤</td><td></td><td></td></tr>
+<tr><td colspan="5">¤F¤V87454458220140268¤HIS1003¤FF¤6¤¤4¤M¤140¤V¤2014¤P¤¤¤¤¤</td><td></td><td></td></tr>
+<tr><td colspan="5">...flere ¤F-linjer som ikke tas med i eksempelet her</td><td></td><td></td></tr>
+<tr><td colspan="5">¤M¤V87454458220140268¤1¤VMM31¤Bestått fagopplæring 12.08.2014¤¤¤F¤¤¤</td><td></td><td></td></tr>
+<tr><td colspan="5">¤D¤V97459086720140063¤20140623¤Anne Annullerer¤V97459086720140255¤FEI¤</td><td></td><td></td></tr>
+<tr><td colspan="5">¤A¤974544482¤01042¤1¤0¤23¤3¤2¤IST-EXTENS¤9.1¤20140911130901</td><td></td><td></td></tr>
+<tr><td colspan="7">¤S¤974544482¤¤01042¤¤¤Livets videregående skole¤01¤06¤¤F¤¤¤Kåre Kontakt¤tittel¤kk@vgs.no¤¤¤¤¤¤</td></tr>
+<tr><td colspan="7">Pb 104¤Portveien 2¤6440¤Ellywood¤¤¤¤¤¤69005600¤69005601¤glemmen.vgs@ostfoldfk.no¤</td></tr>
+<tr><td colspan="5">www.glemmen.vgs.no</td><td></td><td></td></tr>
+<tr><td style="text-align: right" colspan="7">24</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td colspan="6">¤V¤V97454448220140214¤N¤KL¤VM¤2013¤974544482¤Fredrikstad¤20140908¤Livets videregående</td></tr>
+<tr><td colspan="6">skole¤Reidun Rektor¤Sigrun Sekretær¤241295¤33333¤Ellen Elev¤¤J¤263¤G¤G¤0¤¤B</td></tr>
+<tr><td colspan="6">¤P¤V97454448220140214¤HSHEA2----¤VG2¤B¤Bestått¤9¤12¤¤2010</td></tr>
+<tr><td colspan="6">¤P¤V97454448220140214¤HSHEA3----¤VG3¤B¤Bestått¤0¤0¤¤2013</td></tr>
+<tr><td colspan="6">¤P¤V97454448220140214¤HSHSF1----¤VG1¤B¤Bestått¤5¤27¤¤2009</td></tr>
+<tr><td colspan="6">¤P¤V97454448220140214¤PBPBY4YK--¤VG3¤B¤Bestått¤0¤0¤¤2014</td></tr>
+<tr><td colspan="6">¤F¤V97454448220140214¤ENG1003¤FF¤6¤6¤¤¤140¤V¤2010¤E¤¤¤¤¤</td></tr>
+<tr><td colspan="6">¤F¤V97454448220140214¤HIS1002¤FF¤6¤¤3¤M¤169¤V¤2012¤P¤¤¤¤¤</td></tr>
+<tr><td colspan="4">...flere ¤F-linjer som ikke tas med i eksempelet her</td><td colspan="2"></td></tr>
+<tr><td colspan="4">¤M¤V97454448220140214¤1¤VMM11¤¤¤¤F¤¤¤</td><td colspan="2"></td></tr>
+<tr><td colspan="4">¤M¤V97454448220140214¤2¤VMM31¤Bestått fagopplæring</td><td colspan="2">17.08.2012¤¤¤F¤¤¤</td></tr>
+<tr><td colspan="6">7 Feltene i resultatfilen</td></tr>
+<tr><td colspan="6">Første linje i resultatfilen starter alltid på ¤R</td></tr>
+<tr><td colspan="6">Så kommer null, en eller flere meldingslinjer som starter på ¤E og som har blank E2-Kontrollnr.</td></tr>
+<tr><td colspan="6">Deretter kommer null, en eller flere kontrollresultater ¤K som hver har null, en eller flere ¤E (med E2-</td></tr>
+<tr><td colspan="6">Kontrollnr satt) og så null, en eller flere ¤L under seg, så null en eller flere ¤O, før det eventuelt</td></tr>
+<tr><td colspan="6">kommer en ny ¤K.</td></tr>
+<tr><td colspan="6">Eksempel på linjerekkefølge som viser starten i hver linje på en resultatfil med 16 linjer:</td></tr>
+<tr><td colspan="6">¤R¤...</td></tr>
+<tr><td colspan="6">¤E¤...</td></tr>
+<tr><td colspan="6">¤E¤...</td></tr>
+<tr><td colspan="6">¤K¤1¤...</td></tr>
+<tr><td colspan="6">¤E¤...</td></tr>
+<tr><td colspan="6">¤E¤...</td></tr>
+<tr><td colspan="6">¤L¤...</td></tr>
+<tr><td colspan="6">¤L¤...</td></tr>
+<tr><td colspan="6">¤L¤...</td></tr>
+<tr><td colspan="6">¤O¤...</td></tr>
+<tr><td colspan="6">¤O¤...</td></tr>
+<tr><td colspan="6">¤K¤2¤...</td></tr>
+<tr><td colspan="6">¤L¤...</td></tr>
+<tr><td colspan="6">¤K¤3¤...</td></tr>
+<tr><td colspan="6">¤E¤...</td></tr>
+<tr><td colspan="6">¤O¤...</td></tr>
+<tr><td colspan="6">Første ¤K har to ¤E, tre ¤L og to ¤O</td></tr>
+<tr><td colspan="6">Andre ¤K har ingen ¤E, en ¤L og ingen ¤O</td></tr>
+<tr><td colspan="6">Tredje ¤K har en ¤E, ingen ¤L og ingen ¤O</td></tr>
+<tr><td style="text-align: right">7.1</td><td colspan="3">Resultatfiltopplinjen ¤R</td><td></td><td></td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>R0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤R</td><td>Alltid ¤R</td></tr>
+<tr><td>R1</td><td>Versjon</td><td>Ja</td><td>A10</td><td>10.0a</td><td>Versjon av lokal kontroll.exe</td></tr>
+<tr><td>R2</td><td>Versjonsdato</td><td>Ja</td><td>D8</td><td style="text-align: right">20080917</td><td>Når versjonen i R1 ble distribuert første<br/>gang</td></tr>
+<tr><td>R3</td><td>Versjon_server</td><td></td><td>A10</td><td style="text-align: right">10.1</td><td>Hvilken versjon kontrollene er kjørt mot.<br/>R3 settes kun ved bruk av -s eller -S.</td></tr>
+<tr><td>R4</td><td>Versjonsdato_se<br/>rver</td><td></td><td>D8</td><td style="text-align: right">20080919</td><td>Når versjonen i R3 ble distribuert eller tatt i<br/>bruk offentlig første gang. R4 settes kun<br/>ved bruk av -s eller -S.</td></tr>
+<tr><td>R5</td><td>Versjonsdato_ne<br/>ste</td><td>Ja</td><td>D8</td><td style="text-align: right">20081015</td><td>Når neste versjon av nedlastbar<br/>kontroll.exe antas å være klar. Det gis et<br/>varsel (rød tekst) i resultatrapporten når</td></tr>
+<tr><td style="text-align: right" colspan="6">25</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td>datoen er utløpt. Innen R5 bør alle sjekke<br/>om det finnes en nyere versjon på<br/>www.samordnaopptak.no/nvb og installere<br/>den.</td></tr>
+<tr><td>R6</td><td>Tidspunkt</td><td>Ja</td><td>T14</td><td>2008091714<br/>5100</td><td>Når resultatfilen ble laget</td></tr>
+<tr><td>R7</td><td>Kjoeretid</td><td>Ja</td><td>N6.2</td><td style="text-align: right">123.45</td><td>Kjøretid i sekunder.<br/>Ved bruk av -S er dette kjøretiden fra<br/>server mottok input til resultatet ble sendt<br/>tilbake.</td></tr>
+<tr><td>R8</td><td>Antall_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">234</td><td>Antall linjer i filen, inkl denne ¤R-linjen.</td></tr>
+<tr><td>R9</td><td>Antall_E_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">7</td><td>Antall ¤E-linjer i filen.</td></tr>
+<tr><td>R10</td><td>Antall_K_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">13</td><td>Antall ¤K-linjer i filen. Dvs antall<br/>kontrollerresultater. Normalt = antall<br/>dokumenter kontrollert.</td></tr>
+<tr><td>R11</td><td>Antall_L_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">49</td><td>Antall ¤L-linjer i filen. Antall logg-linjer.</td></tr>
+<tr><td style="text-align: right">7.2</td><td colspan="3">Kontrollresultat-linjer ¤K</td><td></td><td></td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>K0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤K</td><td>Alltid ¤K</td></tr>
+<tr><td>K1</td><td>Kontrollnr</td><td>Ja</td><td>N7</td><td style="text-align: right">1</td><td>Entydig løpenr. 1, 2, 3 osv for å skille<br/>kontrollene fra hverandre i ¤E og ¤L. Ingen<br/>¤K i samme fil har samme K1.</td></tr>
+<tr><td>K2</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td></td><td>Vgdoknr, dokumentidentifikator.<br/>Vitnemålsnr eller kompetansebevisnr til<br/>dokumentet som dette resultatet gjelder.</td></tr>
+<tr><td>K3</td><td>Kravkode</td><td>Ja</td><td>A40</td><td></td><td>Hvilket krav kontrollen ble kjørt mot. Styrt<br/>av enten –k eller ¤P-linjen(e) når –k<br/>mangler (noe den normalt gjør)</td></tr>
+<tr><td>K4</td><td>Tidspunkt</td><td>Ja</td><td>T14</td><td>2008091716<br/>2800</td><td>Når kontrollen startet. Dato og klokkeslett.</td></tr>
+<tr><td>K5</td><td>Resultattype</td><td>Ja</td><td>A1</td><td>B</td><td>Boolsk, Tall eller Error.<br/>Tre lovlige koder: B, T eller E.</td></tr>
+<tr><td>K6</td><td>Resultatkode</td><td></td><td>A5</td><td>SANN</td><td>Blank, SANN eller USANN.<br/>Blank dersom K5 = T eller E. Satt dersom<br/>K5=B (til SANN eller USANN).</td></tr>
+<tr><td>K7</td><td>Resultattall</td><td></td><td>N9.4</td><td style="text-align: right">45.2</td><td>Blank eller et desimaltall. Inneholder tall<br/>dersom K5=T.</td></tr>
+<tr><td>K8</td><td>Antall_fag</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K9</td><td>Omfang</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K10</td><td>Vekt</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K11</td><td>Antall_tallkarakt<br/>erer</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K12</td><td>Sum_tallkarakte<br/>rer</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K13</td><td>Snitt_tallkarakte<br/>rer</td><td></td><td>N9.4</td><td></td><td></td></tr>
+<tr><td>K14</td><td>Antall_fordypni<br/>nger_foert</td><td></td><td>N6</td><td></td><td></td></tr>
+<tr><td>K15</td><td>Var1</td><td></td><td>A200</td><td></td><td>K15-K18 er interne felt som kun brukes</td></tr>
+<tr><td>K16</td><td>Var2</td><td></td><td>A200</td><td></td><td>under debugging / feilfinning</td></tr>
+<tr><td style="text-align: right" colspan="6">26</td></tr>
+</table>
+<table class="table table-striped table-bordered"><tr><td>K17</td><td>Var3</td><td colspan="4">A200</td></tr>
+<tr><td>K18</td><td>Var4</td><td colspan="4">A200</td></tr>
+<tr><td colspan="6">7.3 Feilmeldings-/meldingslinjer ¤E (error)</td></tr>
+<tr><td colspan="6">Navnet E (for error) kan være misvisende siden meldingene kan også være av typen TIPS og annet</td></tr>
+<tr><td colspan="6">som ikke er feil. Bokstaven E er likevel beholdt fra det gamle formatet.</td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>E0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤E</td><td>Alltid ¤E</td></tr>
+<tr><td>E1</td><td>Meldingsnr</td><td>Ja</td><td>N8</td><td style="text-align: right">3</td><td>Entydig løpenr 1, 2, 3 osv. Ingen ¤E i<br/>samme fil har samme E1.</td></tr>
+<tr><td>E2</td><td>Kontrollnr</td><td></td><td>N7</td><td style="text-align: right">1</td><td>Blank eller et K1-Kontrollnr fra en ¤K i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>samme fil. Blank dersom dette er en</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>generell melding uavhengig av et bestemt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>dokument. Satt dersom meldingen gjelder</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>et dokument.</td></tr>
+<tr><td>E3</td><td>Meldingsklasse</td><td>Ja</td><td>A6</td><td>FIL</td><td>Sier om dette er en melding fra</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>filkontrollene, fagkontrollene eller en</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>system-feilmelding. Lovlige koder:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>SYSTEM</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>FIL</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>FAG</td></tr>
+<tr><td>E4</td><td></td><td>Ja</td><td>A6</td><td>FEIL</td><td>Sier noe om alvorlighetsgraden. Kodene er:</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>UTGÅTT – Vil trolig ikke brukes, men</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>kan brukes dersom man ønsker å ha med</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>seg ”pensjonerte” meldinger som enten er</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>utgått</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eller overtatt av andre.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>INFO – Ingen feil, men kanskje noe som er</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>nyttig å vite.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>TIPS – Hint om hva som kanskje er feil,</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>for</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eksempel manglende fagkoder.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>VARSEL – Kanskje feil, må sannsynligvis</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>rettes.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>FEIL – Feilmelding. Må rettes. Vitnemål</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>med en eller flere E4=FEIL importeres</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>ikke i NVB og skal ikke skrives ut.</td></tr>
+<tr><td>E5</td><td>Meldingskode</td><td>Ja</td><td>A5</td><td>KM101</td><td>Feilkoden. Denne feilkoden er konstant</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>selv om selve feilteksten i E6 endres pga</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>skrivefeil og annet. Muliggjør egen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>dokumentasjon på</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>nettet.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>KM000-KM099 Er systemfeil</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>(E3=SYSTEM),</td></tr>
+<tr><td style="text-align: right" colspan="6">27</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td>KM100-KM499 er filkontrollmeldinger<br/>(E3=FIL),<br/>KM500-KM999 er fagkontrollmeldinger<br/>(dvs E3=FAG for disse).</td></tr>
+<tr><td>E6</td><td>Meldingstekst</td><td>Ja</td><td>A</td><td>Fag</td><td>Selve meldingsteksten. Linjeskift i</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>&lt;fagkode&gt;</td><td>meldingen vil være erstattet av de to</td></tr>
+<tr><td></td><td></td><td></td><td></td><td>mangler</td><td>tegnene \n på filen (dette gjelder også E7-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>E10).</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Ved bruk av kjøreopsjon –p vil</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten bli parametrisert og felt</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>E7-E10 kan bli tatt i bruk. At</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten parametriseres betyr at</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten inneholder plassavholdere</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>som for eksempel &lt;årstall&gt; eller</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>&lt;fagkode&gt; der brukeren skal se et årstall</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eller</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>en fagkode.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>Altså &lt; fulgt av en eller flere bokstaver, tall</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>eller tegnet _ fulgt av &gt;. Alt uten</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>mellomrom.</td></tr>
+<tr><td>E7</td><td>Parameter1</td><td></td><td>A</td><td>NOR4004</td><td>Plugges inn i første [felt] når E6-meldingen</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>skal vises frem. Evt med egen farge for</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>parameterverdien.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>E7-E10 vil aldri være satt uten at kjøre-</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>opsjon –p er brukt. Mer om den side 6.</td></tr>
+<tr><td>E8</td><td>Parameter2</td><td></td><td>A</td><td style="text-align: right">2008</td><td>Plugges inn i andre [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E9</td><td>Parameter3</td><td></td><td>A</td><td>AA1005</td><td>Plugges inn i tredje [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E10</td><td>Parameter4</td><td></td><td>A</td><td>VG4064</td><td>Plugges inn i fjerde [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E11</td><td>Parameter5</td><td></td><td>A</td><td></td><td>Plugges inn i femte [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E12</td><td>Parameter6</td><td></td><td>A</td><td></td><td>Plugges inn i sjette [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E13</td><td>Parameter7</td><td></td><td>A</td><td></td><td>Plugges inn i sjuende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E14</td><td>Parameter8</td><td></td><td>A</td><td></td><td>Plugges inn i åttende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E15</td><td>Parameter9</td><td></td><td>A</td><td></td><td>Plugges inn i niende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td>E16</td><td>Parameter10</td><td></td><td>A</td><td></td><td>Plugges inn i tiende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
+<tr><td colspan="6">7.4 Logglinjer ¤L</td></tr>
+<tr><td colspan="6">Loggen fra Fagkontrollene.</td></tr>
+<tr><td>Felt</td><td>Feltnavn</td><td>Obl-</td><td>For-</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>nr</td><td></td><td>ig.</td><td>mat</td><td></td><td></td></tr>
+<tr><td style="text-align: right" colspan="6">28</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td>L0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤L</td><td>Alltid ¤L</td></tr>
+<tr><td>L1</td><td>Kontrollnr</td><td>Ja</td><td>N</td><td style="text-align: right">1</td><td>Et K1-Kontrollnr fra en ¤K i samme fil.<br/>Hvilken kontroll (dokument, vitnemål)<br/>denne logglinjen tilhører.</td></tr>
+<tr><td>L2</td><td>Linjenr</td><td>Ja</td><td>N</td><td style="text-align: right">23</td><td>Linjenr innen hver kontroll. Øverste ¤L<br/>under hver ¤K starter på 1.</td></tr>
+<tr><td>L3</td><td>Loggtekst</td><td></td><td>A</td><td></td><td>Denne linjen i loggen.</td></tr>
+<tr><td colspan="6">7.5 Oppbrukte fag ¤O</td></tr>
+<tr><td colspan="6">Kontroller som resulteter i SANN (eller et tall) har en liste av fagkoder den behøvdes for å gjøre</td></tr>
+<tr><td colspan="6">kontrollen SANN... Dette kalles oppbrukte fag fordi det internt i kontrollene ofte er slik at en fagkode</td></tr>
+<tr><td colspan="6">ikke kan brukes til å dekke flere krav...</td></tr>
+<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr><td>O0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤O</td><td>Alltid ¤O</td></tr>
+<tr><td>O1</td><td>Kontrollnr</td><td>Ja</td><td>N</td><td style="text-align: right">1</td><td>Et K1-Kontrollnr fra en ¤K i samme fil.</td></tr>
+<tr><td>O2</td><td>Fagkode</td><td>Ja</td><td>A10</td><td>UPF3003</td><td>En fagkode fra det vgdok-et som ble<br/>kontrollert. Dette finnes i K2-Vgdoknr i<br/>¤K-linjen med samme kontrollnr.</td></tr>
+<tr><td colspan="6">8 Vedlegg, zip-fil</td></tr>
+<tr><td colspan="6">Det er åpnet for innsending av vedleggfiler for vedlegg til vitnemålene sammen med en vanlig datafil,</td></tr>
+<tr><td colspan="6">men det er ikke påkrevd i første omgang. Vedleggfilene må ha et utskrivbart format. PDF- eller Word-</td></tr>
+<tr><td colspan="6">filer f.eks.</td></tr>
+<tr><td colspan="6">Innsending skjer ved å sende inn både datafilen (med ¤-linjene) og vedleggsfilene pakket i en .ZIP-fil.</td></tr>
+<tr><td colspan="6">V25-feltet (side 17) pluss evt M9 (side 23) i hvert dokument (dokumentmerknad) angir vedleggets</td></tr>
+<tr><td colspan="6">filnavn i .zip-filen.</td></tr>
+<tr><td colspan="6">Datafilen i den innsendte .zip-filen må ha nøyaktig samme navn som .zip-filen, bortsett fra .zip-</td></tr>
+<tr><td colspan="6">filendelsen. Det for å kunne vite hvilken av filene i .zip som er datafilen. Unngå også undermapper</td></tr>
+<tr><td colspan="6">i .zip-filen.</td></tr>
+<tr><td colspan="6">.tar-filer (eller .tar.gz eller .tgz) er et alternativ til .zip som er mer vanlig i Linux, de samme regler</td></tr>
+<tr><td colspan="6">skissert over gjelder her, bortsett fra pakkeformat og filendelse.</td></tr>
+<tr><td colspan="6">9 Organisasjonsnummer, kontrollsiffer</td></tr>
+<tr><td colspan="6">SOs NVB-database bruker orgnr som primærnøkkel for dokumentutsteder.</td></tr>
+<tr><td colspan="6">9.1 Gyldige orgnr</td></tr>
+<tr><td colspan="6">Alle orgnr-felter i filen skal være et ni-sifret organisasjonsnummer som normalt starter på 8 eller 9 og</td></tr>
+<tr><td colspan="6">finnes i NVBs skoleregister og hos www.brreg.no. Vha det bakerste sifferet i orgnr’et kan man avgjøre</td></tr>
+<tr><td colspan="6">om orgnr er et gyldig orgnr, eller om det har skjedd en tastefeil. De ni sifrene skal ligge etter hverandre</td></tr>
+<tr><td colspan="6">på filen uten mellomrom eller andre skilletegn. (Hvordan man velger å vise det på skjermen eller ta i</td></tr>
+<tr><td colspan="6">mot inntasting er en uavhengig sak).</td></tr>
+<tr><td style="text-align: right" colspan="6">29</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td colspan="11">Det bør heller ikke være slik at skolene må taste inn orgnr for hver filinnsending eller lignende. Det</td></tr>
+<tr><td colspan="11">bør evt ligge fast i ”Preferences” eller i en .INI-fil på det skoleadministrative systemet. Og der skolene</td></tr>
+<tr><td colspan="11">evt gis mulighet til å endre eller sette orgnr, kan det være en tekst a la ”husk å kontrollere dette mot</td></tr>
+<tr><td colspan="11">skoleregisteret på www.samordnaopptak.no/nvb for unngå at du bruker feil eller en annen skoles</td></tr>
+<tr><td colspan="11">orgnr”.</td></tr>
+<tr><td colspan="11">9.2 Kontrollsiffer</td></tr>
+<tr><td colspan="11">Det bakerste sifferet er et kontrollsiffer som avledes av de åtte sifrene foran. Poenget med</td></tr>
+<tr><td colspan="11">kontrollsifferet er å hindre gale inntastinger. (Fødselsnummer, VISA-nummer, og ofte KIDnumre på</td></tr>
+<tr><td colspan="11">regninger har også lignende kontrollsifre). Algoritmen for kontroll av riktig orgnr er slik: (det gyldige</td></tr>
+<tr><td colspan="11">orgnr 842872022 brukes her som eksempel):</td></tr>
+<tr><td></td><td>Siffer 1</td><td>Siffer 2</td><td>Siffer 3</td><td>Siffer 4</td><td>Siffer 5</td><td>Siffer 6</td><td>Siffer 7</td><td>Siffer 8</td><td>Siffer 9</td><td>Sum</td></tr>
+<tr><td>O=orgnr</td><td style="text-align: right">8</td><td style="text-align: right">4</td><td style="text-align: right">2</td><td style="text-align: right">8</td><td style="text-align: right">7</td><td style="text-align: right">2</td><td style="text-align: right">0</td><td style="text-align: right">2</td><td style="text-align: right">2</td><td>alle</td></tr>
+<tr><td>V=vekt<br/>fast tall</td><td style="text-align: right">3</td><td style="text-align: right">2</td><td style="text-align: right">7</td><td style="text-align: right">6</td><td style="text-align: right">5</td><td style="text-align: right">4</td><td style="text-align: right">3</td><td style="text-align: right">2</td><td style="text-align: right">1</td><td>O*V<br/>↓</td></tr>
+<tr><td>O*V</td><td style="text-align: right">24</td><td style="text-align: right">8</td><td style="text-align: right">14</td><td style="text-align: right">48</td><td style="text-align: right">35</td><td style="text-align: right">8</td><td style="text-align: right">0</td><td style="text-align: right">4</td><td style="text-align: right">2</td><td style="text-align: right">143</td></tr>
+<tr><td colspan="11">Om kontrollsifferet er riktig avgjøres av om summen dividert på 11 gir et tall uten rest (et heltall).</td></tr>
+<tr><td colspan="11">Dette er tilfelle her siden 143 / 11 = 13. Derfor har 842872022 gyldig kontrollsiffer og er høyst</td></tr>
+<tr><td colspan="11">sannsynlig ikke en inntastingsfeil. Algoritmen kan nemlig gi ok selv om man taster feil, men det</td></tr>
+<tr><td colspan="9">krever at minst to av sifrene er gale.</td><td colspan="2"></td></tr>
+<tr><td colspan="9">9.3 Orgnr for utenlandske skoler</td><td colspan="2"></td></tr>
+<tr><td colspan="11">For utenlandske skoler uten norsk orgnr benytter SO et såkalt fiktivt orgnr som starter på 4 (altså ikke</td></tr>
+<tr><td colspan="11">8 eller 9 som de vanlige). Disse har likevel ni sifre og riktig kontrollsiffer. Pr 2014 har det blitt tildelt</td></tr>
+<tr><td colspan="11">kun ett slikt. Kontakt SO (nvb-drift@samordnaopptak.no) for å få tildelt et slikt fiktivt orgnr for NVB.</td></tr>
+<tr><td colspan="11">Merk at noen videregående skoler i utenlandet likevel har norske orgnr, søk i brreg.no for å eventuelt</td></tr>
+<tr><td colspan="11">finne. NB: Slike fiktige orgnumre skal ikke spres slik at noen misforstår og tar de i bruk til andre</td></tr>
+<tr><td colspan="9">formål.</td><td colspan="2"></td></tr>
+<tr><td colspan="9">10 Versjonsnummer for kontroll.exe</td><td colspan="2"></td></tr>
+<tr><td colspan="11">Kontroll.exe får et nytt versjonsnr hver år. I 2014 er vi kommet til versjon 15. For nye versjoner innen</td></tr>
+<tr><td colspan="11">samme år økes 10-delsdesimalen. For mindre endringer som enten gjelder noen få skoler eller med</td></tr>
+<tr><td colspan="11">mindre betydningsfulle endringer som ikke trenger å lastes ned av alle økes 100-delsdesimalen.</td></tr>
+<tr><td colspan="11">For å angi at det er en tidlig eksperimentell versjon (alfaversjon) kan det settes en a bak versjons-</td></tr>
+<tr><td colspan="11">nummeret. En nesten endelig versjon (betaversjon) kan være angitt med en b bak versjonsnummeret.</td></tr>
+<tr><td colspan="9">11 Operativsystem og annen teknisk info</td><td colspan="2"></td></tr>
+<tr><td colspan="9">Kontroll.exe kjører på Windows.</td><td colspan="2"></td></tr>
+<tr><td colspan="9"></td><td style="text-align: right" colspan="2">30</td></tr>
+</table>
+
+<table class="table table-striped table-bordered"><tr><td>Men for de 12 som vil kjøre kontroll.exe på Linux legges det i tillegg ut en ut en Linux-binærfil i hver</td></tr>
+<tr><td>versjon. Alternativt kan man kjøre kontroll.exe (windows-binærfilen) i Linux via Wine, en test viste</td></tr>
+<tr><td>at det var mulig.</td></tr>
+<tr><td>Kontrollmotoren er skrevet i Perl 5.8 og skal i prinsippet kunne kjøres på alle operativsystemer der</td></tr>
+<tr><td>Perl kan installeres. Dvs de fleste.</td></tr>
+<tr><td>Den er utviklet i og testet på Linux og deretter ”kompilert” til kjørbare Windows- og Linux-binærfiler</td></tr>
+<tr><td>med programvaren PerlApp fra ActiveState.com.</td></tr>
+<tr><td>Fagkontrolldelen av kontrollmotoren finnes også i en PL/SQL-modul for Oracle som kan være<br/>tilgjengelig ved forespørsel. Denne kjører internt hos SO (i tillegg til perl-varianten) samt hos</td></tr>
+<tr><td>universitets- og høgskolesystemene FS (Felles studentsystem) og MSTAS fra IST.</td></tr>
+<tr><td>12TPSYS har kjørt på dette på Linux siden ca 2012</td></tr>
+<tr><td style="text-align: right">31</td></tr>
+</table>
+
