@@ -235,4 +235,111 @@ Valideringen foretrekker tegnsettet UTF-8. Dette har tatt over for ISO-8859-1 so
 ## Linjetyper og felter i inputfilen
 Feltnavnene her angir hva feltene heter i NVBs database. Hva de heter hos systemleverandørene er
 deres valg.
+
 Primærnøkkel er angitt med understreket feltnavn i tabellene under
+
+### Startlinjer ¤A
+I hver fil skal det være en ¤A for hvert orgnr i ¤V- og ¤D-linjene. Det skal altså ikke forekomme orgnr
+i ¤V og ¤D uten en ¤A.
+¤V- og ¤D-linjer skal stå under ¤A-en de tilhører (samme orgnr). Alle ¤A-linjene skal altså ikke
+samles i toppen av filen (mer om dette i avsnitt 6.8 Rekkefølgen av linjetyper side 24)
+
+<table cellspacing="0" border="0">
+	<colgroup span="6" width="133"></colgroup>
+	<tr>
+		<td>Feltnr</td>
+		<td>Feltnavn</td>
+		<td>Oblig.</td>
+		<td>Format</td>
+		<td>Eksempel</td>
+		<td>Forklaring</td>
+	</tr>
+	<tr>
+		<td>A0</td>
+		<td>Linjetype</td>
+		<td>Ja</td>
+		<td>A2</td>
+		<td>¤A</td>
+		<td>Alltid ¤A</td>
+	</tr>
+	<tr>
+		<td>A1</td>
+		<td>Orgnr</td>
+		<td>Ja</td>
+		<td>N9</td>
+		<td>979958986</td>
+		<td>Organisasjonsnr. Skal finnes i nasjonalt skoleregister. SO (og andre) kan gjøre et nytt forsøk på å innarbeide NSR i NVB. Orgnr skal stå i Foretaksregisteret (på<br>www.brreg.no ). Se side 30 for utenlandske skoler uten norsk organisasjonsnummer.</td>
+	</tr>
+	<tr>
+		<td>A2</td>
+		<td>Skolenr</td>
+		<td>Ja</td>
+		<td>N05</td>
+		<td>1020</td>
+		<td>Skolens VIGO-nummer. De to første sifrene er fylkesnr for fylkeskommunale skoler og 00 for privatskoler. NB: Skolens VIGO-nummer må ikke forveksles med RVO-nr og andre femsifrede skolenummer som har eksistert.</td>
+	</tr>
+	<tr>
+		<td>A3</td>
+		<td>Antall_vgdok</td>
+		<td>Ja</td>
+		<td>N</td>
+		<td>123</td>
+		<td>Antall ¤V i denne filen med samme orgnr som A1</td>
+	</tr>
+	<tr>
+		<td>A4</td>
+		<td>Antall_vgdokann</td>
+		<td>Ja</td>
+		<td>N</td>
+		<td>0</td>
+		<td>Antall ¤D i denne filen med samme orgnr som A1.</td>
+	</tr>
+	<tr>
+		<td>A5</td>
+		<td>Antall_vgdokfag</td>
+		<td>Ja</td>
+		<td>N</td>
+		<td>2345</td>
+		<td>Antall ¤F i denne filen som som tilhører ¤V med samme orgnr som A1.</td>
+	</tr>
+	<tr>
+		<td>A6</td>
+		<td>Antall_vgdokpromr</td>
+		<td>Ja</td>
+		<td>N</td>
+		<td>345</td>
+		<td>Antall ¤P i denne filen som tilhører ¤V med samme orgnr som A1</td>
+	</tr>
+	<tr>
+		<td>A7</td>
+		<td>Antall_vgdokmerknad</td>
+		<td>Ja</td>
+		<td>N</td>
+		<td>12</td>
+		<td>Antall ¤M i denne filen som tilhører ¤V med samme orgnr som A1</td>
+	</tr>
+	<tr>
+		<td>A8</td>
+		<td>Systemnavn</td>
+		<td>Ja</td>
+		<td>A</td>
+		<td>Systemnavn</td>
+		<td>Navnet på systemet som har laget filen. (Med kjøreopsjon -V må det stå Vigo her).</td>
+	</tr>
+	<tr>
+		<td>A9</td>
+		<td>Systemversjon</td>
+		<td>Ja</td>
+		<td>A</td>
+		<td>5.0.1</td>
+		<td>Versjonsnummer som lar seg sammenligne med tidligere versjonsnumre slik at man ved alfanumerisk sortering kan avgjøre og varsle brukere som har en lavere versjon enn andre.</td>
+	</tr>
+	<tr>
+		<td>A10</td>
+		<td>Tid_fil_laget</td>
+		<td>Ja</td>
+		<td>T14</td>
+		<td>20210512090100</td>
+		<td>Tidspunkt for når filen ble laget. Norsk tid.</td>
+	</tr>
+</table>
