@@ -1,8 +1,3 @@
-<head>
-	<style type="text/css">
-		td {vertical-align:top}
-	</style>
-	</head>
 	
 # NVB-kontrollmotor – teknisk brukerdokumentasjon
 
@@ -354,6 +349,9 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 ¤S alltid sendes etter ¤A, eller kun når endringer har skjedd.
 
 <table>
+	<style type="text/css">
+		td {vertical-align:top}
+	</style>
 <tr><td><b>Feltnr</b></td><td><b>Feltnavn</b></td><td><b>Oblig.</b></td><td><b>Format</b></td><td><b>Eksempel</b></td><td><b>Forklaring</b></td></tr>
 <tr><td>S0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤S</td><td>Alltid ¤S</td></tr>
 <tr><td>S1</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Organisasjonsnr. Skal finnes i NVBs skoleregister og i Foretaksregisteret (på www.brreg.no)</td></tr>
