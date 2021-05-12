@@ -426,48 +426,32 @@ samme som står på orginaldokumentet på papir.
 <tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens person-<br/>nummer. De fem siste sifrene av det 11-</td></tr>
 sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>kunne bruke vitnemålet i opptak. Det<br/>gis FEIL dersom de to bakerste<br/>kontrollsifrene her er ugyldige.</td></tr>
 <tr><td>V16</td><td>Personnavn</td><td>Ja</td><td>A</td><td>Erik Elev<br><i>eller</i><br>Etternavn, Erik</td><td>Elevens/privatistens/lærlingens fulle navn. Fornavn, eventuelle mellomnavn og Etternavn med mellomrom mellom. Formen Etternavn komma mellomrom Fornavn Mellomnavn er også ok. Mellomnavn bør skrives fullt ut, men kan skrives som initialer med punktum bak. Slik det står på papirdokumentet.</td></tr>
-<tr><td>V17</td><td>Dispensasjonkode</td><td></td><td>A1</td><td>D</td><td>D, F eller blank. F kun for R94-vitnemål. D = vitnemålet er gitt
-dispensasjon fra fagkontrollene.
-F = forsøksvitnemål (ugyldig KL-kode)
-Dersom koden er D skal det finnes
-minst en ¤M-linje som forklarer årsaken
-til dispensasjonen.</td></tr>
-<tr><td>V18</td><td>Gsk_ok</td><td></td><td>A1</td><td>J</td><td>J, N eller blank.
-Kode J angir at det stod noe ala ”...og
-har oppnådd generell studiekomp-
-etanse” på dokumentet.
-Feltet brukes av SO til å gjenskape et
-skjermvitnemål som er mest mulig likt
-papirvitnemålet.
-Kode N her vil gi et VARSEL dersom
-kontroll.exe finner ut at fagene tilsier at
-GSK er oppnådd likevel, unntatt for
-yrkesfaglige vm. (Og kanskje et
-VARSEL i det omvendte tilfellet også,
-der V18=J uten at gsk er oppnådd ifølge
-kontrollmotoren)
-Trigger teksten ”...og har oppnådd
-generell studiekompetanse” i SOs
-fremvisning av vitnemål for søker selv.
-Forslag fra Extens:
-G=”og har generell studiekompetanse”
-F=”og har bestått(?) fagopplæring”
-Y=”og har yrkeskompetanse(?)”
-...slik at V18 styrer den linjen på
-vitnemålet</td></tr>
+<tr><td>V17</td><td>Dispensasjonkode</td><td></td><td>A1</td><td>D</td><td>D, F eller blank.<br>
+    D = vitnemålet er gitt dispensasjon fra fagkontrollene.<br>
+    F = forsøksvitnemål (kun for R94, ugyldig for KL)<br>
+    Dersom koden er D skal det finnes minst en ¤M-linje som forklarer årsaken til dispensasjonen.</td></tr>
+<tr><td>V18</td><td>Gsk_ok</td><td></td><td>A1</td><td>J</td>
+  <td>J, N eller blank.<br><br>
+      Kode **J** angir at det stod noe ala ”...og har oppnådd generell studiekompetanse” på dokumentet.<br><br>
+      Feltet brukes av SO til å gjenskape et skjermvitnemål som er mest mulig likt papirvitnemålet.<br><br>
+    Kode **N** her vil gi et VARSEL dersom kontroll.exe finner ut at fagene tilsier at GSK er oppnådd likevel, unntatt for yrkesfaglige vm. (Og kanskje et VARSEL i det omvendte tilfellet også,
+    der V18=J uten at gsk er oppnådd ifølge kontrollmotoren)<br><br>
+      Trigger teksten ”...og har oppnådd generell studiekompetanse” i SOs fremvisning av vitnemål for søker selv.<br>
+Forslag fra Extens:<br>
+G=”og har generell studiekompetanse”<br>
+F=”og har bestått(?) fagopplæring”<br>
+Y=”og har yrkeskompetanse(?)”<br>
+...slik at V18 styrer den linjen på vitnemålet</td></tr>
 <tr><td>V20</td><td>Omfang</td><td>Ja</td><td>N4</td><td style="text-align: right">2345</td><td>Omfangstallet som står på vitnemålet /<br/>kompetansebeviset. Feltet brukes både<br/>for R94-vitnemål og KL-dokumenter<br/>selv om det er forskjellige tallskalaer.</td></tr>
 <tr><td>V22</td><td>Orden</td><td></td><td>A</td><td>N</td><td>Tre gyldige koder i V22 og V23:</td></tr>
 <tr><td>V23</td><td>Adferd</td><td></td><td>A</td><td>G</td><td>G = God<br/>N =Nokså god</td></tr>
 L = Lite god<br/>Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
 <tr><td>V24</td><td>Antall_vedlegg</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
 <tr><td>V25</td><td>Filnavn_vedlegg</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
-<tr><td>V26</td><td>Maalformkode</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:
-B = bokmål
-N = nynorsk
-S = samisk
-A = annet
-Papirdokumentet ble skrevet ut på
-bokmål, nynorsk, nord-samisk eller
-annet språk. Kan brukes av SO som
-foretrukket målform i skjermvisning.</td></tr>
+<tr><td>V26</td><td>Maalformkode</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:<br>
+B = bokmål<br>
+N = nynorsk<br>
+S = samisk<br>
+A = annet<br>
+Papirdokumentet ble skrevet ut på bokmål, nynorsk, nord-samisk eller annet språk. Kan brukes av SO som foretrukket målform i skjermvisning.</td></tr>
 </table>
