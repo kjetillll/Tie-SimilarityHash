@@ -419,12 +419,11 @@ samme som står på orginaldokumentet på papir.
 <tr><td>V7</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Utsteders/skolens organisasjonsnr.<br/>Normalt likt tegn 2 til 10 i V1 4</td></tr>
 <tr><td>V9</td><td>Utstedersted</td><td>Ja</td><td>A</td><td>Bergen</td><td>Utstedelsessted. Stedsnavn i ”sted og dato” som står ved siden av underskriftene på papirvitnemålet. Dette er et geografisk stedsnavn, for eksempel by, tettsted eller kommune. Ikke navn på skole, organisasjon eller annet.</td></tr>
 <tr><td>V10</td><td>Dato_utstedt</td><td>Ja</td><td>D8</td><td>20081224<br/>yyyymmdd</td><td>Utstedelsesdato. Datoen i ”sted og dato”<br/>som står ved siden av underskriftene.</td></tr>
-<tr><td>V11</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Borgen<br/>skole</td><td>Utsteders/skolens navn slik det står på<br/>papirdokumentet.</td></tr>
-<tr><td>V12</td><td>Rektornavn</td><td>Ja</td><td>A</td><td>Randi<br/>Rektor</td><td>Rektor eller den ansvarlige som har<br/>skrevet under. Slik det står på papiret.</td></tr>
-<tr><td>V13</td><td>Underskrivernavn</td><td>Ja</td><td>A</td><td>Sara<br/>Sekretær</td><td>Den andre personen som skrev under.<br/>Kontaktperson for dokumentet. Det skal<br/>vel alltid være to? ”For Sara Sekretær”</td></tr>
+<tr><td>V11</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Borgen skole</td><td>Utsteders/skolens navn slik det står på<br/>papirdokumentet.</td></tr>
+<tr><td>V12</td><td>Rektornavn</td><td>Ja</td><td>A</td><td>Randi Rektor</td><td>Rektor eller den ansvarlige som har<br/>skrevet under. Slik det står på papiret.</td></tr>
+<tr><td>V13</td><td>Underskrivernavn</td><td>Ja</td><td>A</td><td>Sara Sekretær</td><td>Den andre personen som skrev under.<br/>Kontaktperson for dokumentet. Det skal<br/>vel alltid være to? ”For Sara Sekretær”</td></tr>
 <tr><td>V14</td><td>Foedtdato</td><td>Ja</td><td>N06</td><td style="text-align: right">010871</td><td>formen DDMMÅÅ. Første del av det 11-sifrede norske fødselsnummeret. Kan være et såkalt D-nr som starter på DD+40 (dvs dato 01 blir 41 osv på slike)</td></tr>
-<tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens person-<br/>nummer. De fem siste sifrene av det 11-</td></tr>
-sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>kunne bruke vitnemålet i opptak. Det<br/>gis FEIL dersom de to bakerste<br/>kontrollsifrene her er ugyldige.</td></tr>
+<tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens person-<br/>nummer. De fem siste sifrene av det 11-sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>kunne bruke vitnemålet i opptak. Det<br/>gis FEIL dersom de to bakerste<br/>kontrollsifrene her er ugyldige.</td></tr>
 <tr><td>V16</td><td>Personnavn</td><td>Ja</td><td>A</td><td>Erik Elev<br><i>eller</i><br>Etternavn, Erik</td><td>Elevens/privatistens/lærlingens fulle navn. Fornavn, eventuelle mellomnavn og Etternavn med mellomrom mellom. Formen Etternavn komma mellomrom Fornavn Mellomnavn er også ok. Mellomnavn bør skrives fullt ut, men kan skrives som initialer med punktum bak. Slik det står på papirdokumentet.</td></tr>
 <tr><td>V17</td><td>Dispensasjonkode</td><td></td><td>A1</td><td>D</td><td>D, F eller blank.<br>
     D = vitnemålet er gitt dispensasjon fra fagkontrollene.<br>
@@ -432,9 +431,9 @@ sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>k
     Dersom koden er D skal det finnes minst en ¤M-linje som forklarer årsaken til dispensasjonen.</td></tr>
 <tr><td>V18</td><td>Gsk_ok</td><td></td><td>A1</td><td>J</td>
   <td>J, N eller blank.<br><br>
-      Kode **J** angir at det stod noe ala ”...og har oppnådd generell studiekompetanse” på dokumentet.<br><br>
+      Kode <b>J</b> angir at det stod noe ala ”...og har oppnådd generell studiekompetanse” på dokumentet.<br><br>
       Feltet brukes av SO til å gjenskape et skjermvitnemål som er mest mulig likt papirvitnemålet.<br><br>
-    Kode **N** her vil gi et VARSEL dersom kontroll.exe finner ut at fagene tilsier at GSK er oppnådd likevel, unntatt for yrkesfaglige vm. (Og kanskje et VARSEL i det omvendte tilfellet også,
+    Kode <b>N</b> her vil gi et VARSEL dersom kontroll.exe finner ut at fagene tilsier at GSK er oppnådd likevel, unntatt for yrkesfaglige vm. (Og kanskje et VARSEL i det omvendte tilfellet også,
     der V18=J uten at gsk er oppnådd ifølge kontrollmotoren)<br><br>
       Trigger teksten ”...og har oppnådd generell studiekompetanse” i SOs fremvisning av vitnemål for søker selv.<br>
 Forslag fra Extens:<br>
@@ -444,8 +443,11 @@ Y=”og har yrkeskompetanse(?)”<br>
 ...slik at V18 styrer den linjen på vitnemålet</td></tr>
 <tr><td>V20</td><td>Omfang</td><td>Ja</td><td>N4</td><td style="text-align: right">2345</td><td>Omfangstallet som står på vitnemålet /<br/>kompetansebeviset. Feltet brukes både<br/>for R94-vitnemål og KL-dokumenter<br/>selv om det er forskjellige tallskalaer.</td></tr>
 <tr><td>V22</td><td>Orden</td><td></td><td>A</td><td>N</td><td>Tre gyldige koder i V22 og V23:</td></tr>
-<tr><td>V23</td><td>Adferd</td><td></td><td>A</td><td>G</td><td>G = God<br/>N =Nokså god</td></tr>
-L = Lite god<br/>Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
+<tr><td>V23</td><td>Adferd</td><td></td><td>A</td><td>G</td>
+  <td>G = God<br/>
+      N = Nokså god<br/>
+      L = Lite god<br/>
+    Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
 <tr><td>V24</td><td>Antall_vedlegg</td><td>–</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
 <tr><td>V25</td><td>Filnavn_vedlegg</td><td>–</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
 <tr><td>V26</td><td>Maalformkode</td><td>–</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:<br>
