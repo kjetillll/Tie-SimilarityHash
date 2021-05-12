@@ -1,6 +1,10 @@
 
-<style >
+<style
+  type="text/css">
 td {vertical-align:top}
+h1 {color:red;}
+
+p {color:blue;}
 </style>
 
 # NVB-kontrollmotor – teknisk brukerdokumentasjon
