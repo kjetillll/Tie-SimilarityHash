@@ -446,9 +446,9 @@ Y=”og har yrkeskompetanse(?)”<br>
 <tr><td>V22</td><td>Orden</td><td></td><td>A</td><td>N</td><td>Tre gyldige koder i V22 og V23:</td></tr>
 <tr><td>V23</td><td>Adferd</td><td></td><td>A</td><td>G</td><td>G = God<br/>N =Nokså god</td></tr>
 L = Lite god<br/>Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
-<tr><td>V24</td><td>Antall_vedlegg</td><td>–</td>td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
-<tr><td>V25</td><td>Filnavn_vedlegg</td><td>–</td>td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
-<tr><td>V26</td><td>Maalformkode</td><td>–</td>td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:<br>
+<tr><td>V24</td><td>Antall_vedlegg</td><td>–</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
+<tr><td>V25</td><td>Filnavn_vedlegg</td><td>–</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
+<tr><td>V26</td><td>Maalformkode</td><td>–</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:<br>
 B = bokmål<br>
 N = nynorsk<br>
 S = samisk<br>
