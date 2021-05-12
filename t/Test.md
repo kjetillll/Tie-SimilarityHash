@@ -1,4 +1,9 @@
-
+<head>
+	<style type="text/css">
+		td {vertical-align:top}
+	</style>
+	</head>
+	
 # NVB-kontrollmotor – teknisk brukerdokumentasjon
 
 Unit.no, 11. mai 2021
