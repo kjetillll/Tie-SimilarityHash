@@ -135,25 +135,30 @@ andre kravuttrykk</td></tr>
 <tr><td>11-</td><td>F.o.m. 11: udefinert/udokumentert</td></tr>
 </table>
 
-## Filformat
+## Filformat for input og output
 
-Filformatet er linjeinndelte rader (records) med ¤ som skille mellom hver verdi (felt). Tegn nummer 2
-på hver linje angir hvilken tabell linjens data gjelder.
+Filformatet er linjeinndelt. En linje er en record med ¤ som skille mellom hvert felt. Tegnet ¤ ble valgt fordi det er sjeldent brukt i tekst,
+men likevel lett å skrive på norske PC-tastaturer med shift-4.
+
+Første tegn på hver linje er ¤ 
+
+Tegn nr 2 på hver linje er en stor bokstav som angir record typen. Bokstavkodene er A S V P F M D R L K eller E.
+Bokstaven koder hvilken tabell linjens data gjelder om man tenker på dette som databasetabeller.
+
+Siste tegn på hver linje er linjeskift. Normalt ascii-10-tegnet alene. (Dessverre har ikke verden vært helt enig historisk om hvordan linjeskift
+skal kodes. Derfor godtar APIet også de to variantene med to-tegnskombinasjonen ascii-13 fulgt av ascii-10 samt ascii-13 alene som linjeskift.
+Disse har historisk vært, og er det trolig fortsatt, mye brukt på hhv PC/Windows og Mac).
+
+Formatet kan sies å være [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) der ¤ erstatter komma eller semikolon for å skille feltene.
+Historisk har CSV stått for _comma-separated values_, men _character-separated values_ har vært foreslått som et bedre og mer inkluderende navn
+som også dekker bruk av andre skilletegn. Dette er normalt et enkelt filformat å både skrive og lese (parse) i programmer, men man må passe på
+at tekstfelt kan inneholde både ¤ og linjeskift i seg selv og at disse må behandles riktig (mer om dette under).
 
 ### Tegnsett
 
-UTF-8 er tegnsettet som benyttes. I dette tegnsettet kan hvert tegn
-bestå av mer enn en byte, feks består ¤ av to bytes: 194 og 164 (C2 og
-A4 i hex). Æ, Ø, Å og flere andre består også av 2-4 tegn. (På
-forespørsel kan det i en overgangsperiode vurderes å støtte det gamle
-tegnsettet ISO-8859-1 som ble brukt i kontroll.exe i forrige utgave av
-NVB).
-
-### Skilletegn
-
-Både input- og output-filer har fast feltskilletegn ¤. Dette ”soltegnet” er lite brukt ellers og lett å finne
-på norske Windows-tastaturer: shift-4. I tillegg til å skille hvert felt skal ¤ stå først på hver linje
-(unntak på side 10), men ikke sist med mindre siste felt har blank verdi.
+[UTF-8](https://en.wikipedia.org/wiki/UTF-8) er tegnsettet som benyttes. (Internetts mest brukte og i 2021 defaulten i mange systemer og
+programmeringsspråk. I en overgangsperiode kan [ISO-8859-1](https://en.wikipedia.org/wiki/ISO-8859-1) vurderes støttet. På forespørsel.
+Dette er default tegnsett i kontroll.exe i forrige utgave av NVB, og var det mest brukte tegnsettet i den vestlige verden dengang).
 
 ### Linjetypene i inputfilen
 
