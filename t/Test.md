@@ -12,15 +12,15 @@ Når vitnemål skal registreres/importeres i NVB brukes samme filformat som for 
 
 De viktigste kapitlene for å komme fort i gang:
 
-• Kapittel 4 side 4: Kommandolinjeopsjoner for hvordan kontroll.exe kjøres.
-• kapittel 5 side 9 og kapittel 6 side 11: Filformatet for inputfilen
-• kapittel 5 side 9 og kapittel 7 side 25: Filformat for outputfilene.
+* Kapittel 4 side 4: Kommandolinjeopsjoner for hvordan kontroll.exe kjøres.
+* kapittel 5 side 9 og kapittel 6 side 11: Filformatet for inputfilen
+* kapittel 5 side 9 og kapittel 7 side 25: Filformat for outputfilene.
 
 ## Endringer i dette dokumentet
 
 Ingen så langt.
 
-## Noen begreper
+## Liste over begreper brukt her
 
 <table>
 <tr><td>Begrep</td><td>Kort forklaring</td></tr>
