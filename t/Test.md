@@ -1,16 +1,16 @@
 
-# NVB-kontrollmotor – teknisk brukerdokumentasjon
+# NVB-kontrollmotor – teknisk brukerdokumentasjon for validering av vitnemål
 
 Unit.no, 11. mai 2021
 
 ## Formål med dokumentet
 
-Formålet med dokumentet er å beskrive formatet til input og output til NVBs kontrollmotor-API og
-dennes kjøreopsjoner/-moduser.
+Formålet med dokumentet er å beskrive filformatet for input og output fra NVBs kontrollmotor-API og
+dennes kjøreopsjoner og moduser.
 
-Når vitnemål og kompetansebevis skal sendes til NVB brukes samme filformat som input her. Det kan godt være de samme filene når de er klare for innsending.
+Når vitnemål skal registreres/importeres i NVB brukes samme filformat som for kontroll/validering. Det kan m.a.o. være samme fil som først kontrolleres og så sendes inn når vitnemålene utstedes.
 
-De viktigste kapitlene for de som vil komme fort i gang:
+De viktigste kapitlene for å komme fort i gang:
 
 • Kapittel 4 side 4: Kommandolinjeopsjoner for hvordan kontroll.exe kjøres.
 • kapittel 5 side 9 og kapittel 6 side 11: Filformatet for inputfilen
