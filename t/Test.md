@@ -44,6 +44,9 @@ re med ca 28.</td></tr>
 alesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
 <tr><td>Meldingstekst<br>Meldingsparametere</td><td>En fast tekst. Ofte med plassavholdere til variable meldingsparametere.</td></tr>
 <tr><td>Alvorlighetsgrad</td><td>Et tall på en melding. Tallet avgjør om meldingen ansees som feil, varsel eller info.</td></tr>
+<tr><td>NVB</td><td>[https://nasjonal-vitnemalsdatabase.no/](Nasjonal vitnemålsbase) for videregående opplæring</td></tr>
+<tr><td>SO</td><td>[www.samordnaopptak.no](Samordna opptak), systemet som NVB har vært en del av</td></tr>
+<tr><td>GSK</td><td>Generell studiekompetanse - kvalifikasjonskravet for de fleste rundt 80% av studiene i Samordna opptak. Noen studier krever mer, feks visse fag eller et visst karakternivå (eller noe ikke vitnemålsrelatert), og noen nokså få krever mindre/noe annet.</td></tr>
 <tr><td></td><td></td></tr>
 </table>
 ## Hvordan kjøre kontroll av vitnemål
@@ -246,8 +249,8 @@ Primærnøkkel er angitt med understreket feltnavn i tabellene under
 ### Startlinjer ¤A
 I hver fil skal det være en ¤A for hvert orgnr i ¤V- og ¤D-linjene. Det skal altså ikke forekomme orgnr
 i ¤V og ¤D uten en ¤A.
-¤V- og ¤D-linjer skal stå under ¤A-en de tilhører (samme orgnr). Alle ¤A-linjene skal altså ikke
-samles i toppen av filen (mer om dette i avsnitt 6.8 Rekkefølgen av linjetyper side 24)
+
+¤V- og ¤D-linjer skal stå under ¤A-en de tilhører (samme orgnr).
 
 <table>
 	<tr>
@@ -348,10 +351,10 @@ samles i toppen av filen (mer om dette i avsnitt 6.8 Rekkefølgen av linjetyper 
 	</tr>
 </table>
 
-### Skoleinfolinjer ¤S
-Hver ¤A-linje kan følges av en ¤S-linje med skoleinformasjon. SO bruker dataene i ¤S-linjene til
-vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk). Det er frivillig om
-¤S alltid sendes etter ¤A, eller kun når endringer har skjedd.
+### Skoleinfolinjer ¤S (frivillig)
+Hver ¤A-linje *kan* følges av en ¤S-linje med skoleinformasjon. NVB kan bruke dataene i ¤S-linjene til
+vedlikehold av NVBs eget skoleregister med ujevne mellomrom, ingen automatikk. 
+¤S kan enten alltid sendes etter ¤A, eller kun når endringer har skjedd (eller aldri).
 
 <table>
 <tr><td><b>Feltnr</b></td><td><b>Feltnavn</b></td><td><b>Oblig.</b></td><td><b>Format</b></td><td><b>Eksempel</b></td><td><b>Forklaring</b></td></tr>
@@ -370,7 +373,7 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 	P = privat<br>
 	K = kommunal<br>
 	S = statlig<br>
-	U = utenlandsk (se side 30 for skoler med manglende orgnr)</td></tr>
+	U = utenlandsk (se under for skoler med manglende orgnr)</td></tr>
 <tr><td>S11</td><td>Eksamensrett</td><td></td><td>A1</td><td>J</td><td>J eller ingenting. Om skolen har eksamensrett</td></tr>
 <tr><td>S12</td><td>Orgnr_eier</td><td></td><td>N9</td><td></td><td>Dersom orgnr i S1 er eid eller er en filial av et annet orgnr. S12 er oftest mest aktuelt for private skoler.</td></tr>
 <tr><td>S13</td><td>Kontaktperson</td><td>Ja</td><td>A</td><td>Donald Duck</td><td>Navn på kontaktperson for NVB på skolen</td></tr>
@@ -396,50 +399,59 @@ vedlikehold av sitt lokale skoleregister (med ujevne mellomrom, ingen automatikk
 <tr><td>S33</td><td>Webadresse</td><td></td><td>A</td><td>www.skole.no</td><td colspan="2">Skolens hjemmeside på internettet ... http:// er unødvendig</td></tr>
 </table>
 
-### 6.3 Vgdok-linjer ¤V
+### 6.3 Vitnemål/vgdok ¤V
 Spesielt om vgdoknr: Feltet Vgdoknr er unikt og skal aldri gjenbrukes dersom dokumentet er utstedt
 (gitt til eleven) eller sendt inn til NVB. Hvis et vitnemål eller kompetansebevis skal endres skal det få
-et nytt vgdoknr og det gamle skal annulleres (med en ¤D-linje, se side 23) selv om endringen er
-minimal. SO viser fram vitnemål til søkere til høyere utdanning og må da kunne vise nøyaktig det
+et nytt vgdoknr og det gamle skal annulleres (med en ¤D-linje, se under) selv om endringen er minimal.
+SO/NVB viser fram vitnemål til søkere til høyere utdanning og må da kunne vise nøyaktig det
 samme som står på orginaldokumentet på papir.
 
 <table>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td colspan="2">Forklaring</td></tr>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
+
 <tr><td>V0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤V</td><td colspan="2">Alltid ¤V</td></tr>
-<tr><td>V1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V97995898620080001</td>
-  <td>Vgdoknr (dokumentidentifikator).<br>
-    • Første tegn er bokstaven V for vitnemål og K for kompetansebevis<br>
-    • Så følger orgnr ni siffer for utstederorganisasjonen (oftest en skole).<br>
-    • Deretter årstall, fire siffer.<br>
-    • Og til slutt et løpenr på fire siffer 0001-9999.<br>
+<tr><td>V1</td><td>Vgdoknr</td><td>Ja</td><td>N013,A18,A19</td><td>V97995898620080001</td>
+  <td>Vgdoknr/vitnemålsnr (dokumentID)<br>
+    • Første tegn er bokstaven V for vitnemål, K for kompetansebevis og T for testvitnemål (T er lite brukt)<br>
+    • Så følger orgnr ni siffer for utstederorganisasjonen, oftest en skole<br>
+    • Deretter årstall, fire siffer, se felt V6 under<br>
+    • Og til slutt et løpenr på fire eller fem siffer: 0001-9999 eller 00001-99999.<br>
 <br>
-    Her kan også gamle vmnr stå: 13 siffer. (Ingen systemleverandører må lage nye vgdoknr på gamle vitnemål) Lov for VIGO: Store bokstaver A-Å i løpenr i tillegg til sifre.</td></tr>
+    Her kan også gamle vmnr fra R94 stå:<br>
+	  13 siffer. (Ingen systemleverandører må lage nye vgdoknr på gamle vitnemål) Lov for VIGO: Store bokstaver A-Å i løpenr i tillegg til sifre.</td></tr>
 <tr><td>V2</td><td>Foerstegangsvm</td><td></td><td>A1</td><td>J</td>
   <td>J = ja<br>
       N = nei<br>
-      Førstegangsvitnemål eller ikke står også på vitnemålet. Primærvitnemål heter<br/>dette i R94. Kan være J selv om eleven<br/>er eldre enn 21. Feltet er viktig i opptak<br/>til høgskoler/universiteter fordi det kan<br/>gi adgang til førstegangsvitnemålskvo-<br/>tene for søkere t.o.m. 21 år. Disse utgjør<br/>ofte 50% av studieplassene.</td></tr>
-<tr><td>V4</td><td>Reformkode</td><td>Ja</td><td>A3</td><td>KL</td><td>KL = Kunnskapsløftdokument<br/>R94 = Reform94-dokument<br/>Eldre reformer støttes ikke av NVB.</td></tr>
+      Utstedte førstegangsvitnemål (utskrifter) skal være merket med dette ordet og V2 skal da være J. Primærvitnemål heter dette i R94. Kan være J selv om eleven er eldre enn 21 (feks ved ny utskrift av gammelt vitnemål skal ikke dette endres). Feltet er viktig i opptak til høgskoler/universiteter i SO fordi det kan gi adgang til førstegangsvitnemålskvotene for søkere t.o.m. 21 år og disse kvotene utgjør 50% av studieplassene på de fleste studier.</td></tr>
+<tr><td>V4</td><td>Reformkode</td><td>Ja</td><td>A3</td><td>KL</td><td>KL = Kunnskapsløftetdokument<br/>R94 = Reform94-dokument<br/>Eldre reformer støttes ikke av NVB.</td></tr>
 <tr><td>V5</td><td>Vgdoktypekode</td><td>Ja</td><td>A2</td><td>VM</td><td>VM = vitnemål<br/>KB = kompetansebevis</td></tr>
-<tr><td>V6</td><td>Avgangsaar</td><td>Ja</td><td>N4</td><td style="text-align: right">2008</td><td>Avgangsår. Må ikke forveksles med årstallet i V9-Dato_utstedt eller innsendingsår til NVB. Årstallene i V9 og V6 kan være forskjellig. Skal normalt være likt tegnene 11-14 i felt V1. V6 settes også for kompetansebevis selv om det da ikke kan kalles avgangsår. Det året man har fullført og bestått vitnemålet. Etter de gamle reglene (som gjelder fremdeles?) skal det gamle året stå, selv om det er forbedringer. Bør presiseres....</td></tr>
-<tr><td>V7</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Utsteders/skolens organisasjonsnr.<br/>Normalt likt tegn 2 til 10 i V1 4</td></tr>
-<tr><td>V9</td><td>Utstedersted</td><td>Ja</td><td>A</td><td>Bergen</td><td>Utstedelsessted. Stedsnavn i ”sted og dato” som står ved siden av underskriftene på papirvitnemålet. Dette er et geografisk stedsnavn, for eksempel by, tettsted eller kommune. Ikke navn på skole, organisasjon eller annet.</td></tr>
-<tr><td>V10</td><td>Dato_utstedt</td><td>Ja</td><td>D8</td><td>20081224<br/>yyyymmdd</td><td>Utstedelsesdato. Datoen i ”sted og dato”<br/>som står ved siden av underskriftene.</td></tr>
-<tr><td>V11</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Borgen skole</td><td>Utsteders/skolens navn slik det står på<br/>papirdokumentet.</td></tr>
-<tr><td>V12</td><td>Rektornavn</td><td>Ja</td><td>A</td><td>Randi Rektor</td><td>Rektor eller den ansvarlige som har<br/>skrevet under. Slik det står på papiret.</td></tr>
-<tr><td>V13</td><td>Underskrivernavn</td><td>Ja</td><td>A</td><td>Sara Sekretær</td><td>Den andre personen som skrev under.<br/>Kontaktperson for dokumentet. Det skal<br/>vel alltid være to? ”For Sara Sekretær”</td></tr>
-<tr><td>V14</td><td>Foedtdato</td><td>Ja</td><td>N06</td><td style="text-align: right">010871</td><td>formen DDMMÅÅ. Første del av det 11-sifrede norske fødselsnummeret. Kan være et såkalt D-nr som starter på DD+40 (dvs dato 01 blir 41 osv på slike)</td></tr>
-<tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens person-<br/>nummer. De fem siste sifrene av det 11-sifrede fødselsnummeret. Ikke<br/>obligatorisk, men må settes om SO skal<br/>kunne bruke vitnemålet i opptak. Det<br/>gis FEIL dersom de to bakerste<br/>kontrollsifrene her er ugyldige.</td></tr>
-<tr><td>V16</td><td>Personnavn</td><td>Ja</td><td>A</td><td>Erik Elev<br><i>eller</i><br>Etternavn, Erik</td><td>Elevens/privatistens/lærlingens fulle navn. Fornavn, eventuelle mellomnavn og Etternavn med mellomrom mellom. Formen Etternavn komma mellomrom Fornavn Mellomnavn er også ok. Mellomnavn bør skrives fullt ut, men kan skrives som initialer med punktum bak. Slik det står på papirdokumentet.</td></tr>
+<tr><td>V6</td><td>Avgangsaar</td><td>Ja</td><td>N4</td><td style="text-align: right">2008</td><td>Avgangsår. Må ikke forveksles med årstallet i V9-Dato_utstedt eller innsendingsår til NVB. Årstallene i V9 og V6 kan være forskjellig. Skal normalt være likt tegnene 11-14 i felt V1. V6 settes også for kompetansebevis selv om det da ikke kan kalles avgangsår. Det året man har fullført og bestått vitnemålet. Etter de gamle reglene (som gjelder fremdeles?) skal det gamle året stå, selv om det er forbedringer. *Bør presiseres....*</td></tr>
+<tr><td>V7</td><td>Orgnr</td><td>Ja</td><td>N9</td><td style="text-align: right">979958986</td><td>Utsteders/skolens organisasjonsnr.<br/>Normalt likt tegn 2 til 10 i felt V1</td></tr>
+<tr><td>V9</td><td>Utstedersted</td><td>Ja</td><td>A</td><td>Bergen</td><td>Utstedelsessted, underskriftsted. Stedsnavn i ”sted og dato” som står ved siden av underskriftene på papirvitnemålet. Dette er et geografisk stedsnavn, for eksempel by, tettsted eller kommune. Ikke navn på skole, organisasjon eller annet, det står et annet sted.</td></tr>
+<tr><td>V10</td><td>Dato_utstedt</td><td>Ja</td><td>D8</td><td>20210601<br/>yyyymmdd</td><td>Utstedelsesdato på "maskinlesbar" form. Datoen i ”sted og dato”<br/>som står ved siden av underskriftene. Åtte sifre, kun sifre: årstall fire sifre, måned 01-12, dato 01-31. Feks 20210601 for 1. juni 2021.</td></tr>
+<tr><td>V11</td><td>Skolenavn</td><td>Ja</td><td>A</td><td>Borgen skole</td><td>Utsteders/skolens navn slik det står på papirdokumentet.</td></tr>
+<tr><td>V12</td><td>Rektornavn</td><td>Ja</td><td>A</td><td>Randi Rektor</td><td>Rektor eller den ansvarlige som har skrevet under. Slik det står på papiret.</td></tr>
+<tr><td>V13</td><td>Underskrivernavn</td><td>Ja</td><td>A</td><td>Sara Sekretær</td><td>Den andre personen som skrev under, normalt er det to personer, rektor og en annen ansatt. Kontaktperson for dokumentet.</td></tr>
+<tr><td>V14</td><td>Foedtdato</td><td>Ja</td><td>N06</td><td style="text-align: right">010871</td><td>formen DDMMÅÅ. De seks første sifrene i det 11-sifrede norske fødselsnummeret. Første siffer kan være 0. Kan være et såkalt D-nr som starter på DD+40 (dvs dato 01 blir 41 osv på slike)</td></tr>
+<tr><td>V15</td><td>Personnummer</td><td></td><td>N05</td><td style="text-align: right">34567</td><td>Elevens/privatistens/lærlingens personnr. De fem siste sifrene av det 11-sifrede fødselsnummeret. Ikke obligatorisk, men må settes dersom SO skal kunne bruke vitnemålet i opptak, så i praksis er det obligatorisk ved innsending. Det gis FEIL dersom de to bakerste kontrollsifrene her er ugyldige.</td></tr>
+<tr><td>V16</td><td>Personnavn</td><td>Ja</td><td>A</td><td>Erik Elev<br><i>eller</i><br>Etternavn, Erik</td><td>Elevens/privatistens/lærlingens fulle navn slik det står på utskriften/vitnemålet. Fornavn, eventuelle mellomnavn og Etternavn med mellomrom mellom. Formen Etternavn komma mellomrom Fornavn Mellomnavn er også ok. Mellomnavn bør skrives fullt ut, men kan skrives som initialer med punktum bak av plasshensyn. Slik det står på papirdokumentet.</td></tr>
 <tr><td>V17</td><td>Dispensasjonkode</td><td></td><td>A1</td><td>D</td><td>D, F eller blank.<br>
     D = vitnemålet er gitt dispensasjon fra fagkontrollene.<br>
     F = forsøksvitnemål (kun for R94, ugyldig for KL)<br>
-    Dersom koden er D skal det finnes minst en ¤M-linje som forklarer årsaken til dispensasjonen.</td></tr>
+    Dersom koden er D skal det finnes minst en ¤M-linje med riktig kode som forklarer årsaken til dispensasjonen.</td></tr>
 <tr><td>V18</td><td>Gsk_ok</td><td></td><td>A1</td><td>J</td>
   <td>J, N eller blank.<br><br>
       Kode <b>J</b> angir at det stod noe ala ”...og har oppnådd generell studiekompetanse” på dokumentet.<br><br>
-      Feltet brukes av SO til å gjenskape et skjermvitnemål som er mest mulig likt papirvitnemålet.<br><br>
-    Kode <b>N</b> her vil gi et VARSEL dersom kontroll.exe finner ut at fagene tilsier at GSK er oppnådd likevel, unntatt for yrkesfaglige vm. (Og kanskje et VARSEL i det omvendte tilfellet også,
-    der V18=J uten at gsk er oppnådd ifølge kontrollmotoren)<br><br>
+      Feltet brukes av SO til å gjenskape og fremvise et skjermvitnemål som er mest mulig likt papirvitnemålet i søknaden.<br><br>
+    Kode <b>N</b> her vil gi et VARSEL (en ¤E-linje type VARSEL) dersom kontrollen/valideringen finner ut at fagene tilsier at GSK er oppnådd likevel, unntatt for yrkesfaglige vm. (Og trolig et VARSEL i det omvendte tilfellet også,
+    der V18=J uten at GSK er oppnådd ifølge kontrollmotoren)<br><br>
       Trigger teksten ”...og har oppnådd generell studiekompetanse” i SOs fremvisning av vitnemål for søker selv.<br>
 Forslag fra Extens:<br>
 G=”og har generell studiekompetanse”<br>
@@ -452,24 +464,33 @@ Y=”og har yrkeskompetanse(?)”<br>
   <td>G = God<br/>
       N = Nokså god<br/>
       L = Lite god<br/>
-    Av historiske årsaker godtas også<br/>følgende fem koder/verdier: NG, LG,<br/>God, Nokså god og Lite god. V22 er<br/>obligatorisk når V5=VM eller når det er<br/>ført minst en standpunktkarakter. V23<br/>er obligatorisk når V4=KL og V5=VM</td></tr>
+    Av historiske årsaker godtas også<br/>følgende fem koder/verdier: `NG`, `LG`, `God`, `Nokså god` og `Lite god`.<br>
+	  V22 er obligatorisk for innsendte vitnemål (når V5=VM) eller når det er ført minst en standpunktkarakter i felt F5.<br>
+	  V23 er obligatorisk når V4=KL og V5=VM</td></tr>
 <tr><td>V24</td><td>Antall_vedlegg</td><td>–</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
 <tr><td>V25</td><td>Filnavn_vedlegg</td><td>–</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
-<tr><td>V26</td><td>Maalformkode</td><td>–</td><td>A1</td><td>B</td><td colspan="2">Fire gyldige koder i V26:<br>
+<tr><td>V26</td><td>Maalformkode</td><td>–</td><td>A1</td><td>B</td><td colspan="2">Gyldige koder i V26:<br>
 B = bokmål<br>
 N = nynorsk<br>
 S = samisk<br>
 A = annet<br>
-Papirdokumentet ble skrevet ut på bokmål, nynorsk, nord-samisk eller annet språk. Kan brukes av SO som foretrukket målform i skjermvisning.</td></tr>
+Papirdokumentet ble utstedt på bokmål, nynorsk, samisk (nordsamisk), engelsk eller annet språk. B og N brukes av SO som foretrukket målform i skjermvisning. (Et vitnemål kan i tillegg være oversatt til feks engelsk, men var først utstedt på norsk eller samisk)</td></tr>
 </table>
 
-#### 6.4 Vgdokpromr-linjer ¤P
+#### Vgdokpromr-linjer ¤P
 Vgdokpromr-tabellen har en linje pr programområde på et dokument. Normalt 3 stk pr vitnemål og 1
 på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med kun fellesfag.
 ¤P-linjer må ha en ¤V-linje i filen med samme Vgdoknr.
 
 <table>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>P0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤P</td><td>Alltid ¤P</td></tr>
 <tr><td>P1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V97995898</td><td>Dokumentidentifikatoren.</td></tr>
 <tr><td></td><td></td><td></td><td></td><td style="text-align: right">620080002</td><td>Se V1 side 14.</td></tr>
@@ -541,7 +562,16 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td></td><td colspan="4"></td><td style="text-align: right">18</td></tr>
 </table>
 
-<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">som fortsatt kun sorterer på F4 får<br/>riktig rekkefølge likevel.<br/>R94: Sorterer kun på F4.</td></tr>
+<table class="table table-striped table-bordered">
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">som fortsatt kun sorterer på F4 får<br/>riktig rekkefølge likevel.<br/>R94: Sorterer kun på F4.</td></tr>
 <tr><td>F5</td><td>Karakter_standpunkt</td><td>Ja 6</td><td>A2</td><td>D</td><td>1, 2, 3, 4, 5, 6 eller:</td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td>D = deltatt</td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">F = fritatt, må da sette FAMnn-</td></tr>
@@ -693,7 +723,17 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td colspan="6">Det nye 10 frivillige feltet F18 er svaret på dette.</td></tr>
 <tr><td colspan="6">6.6 Vgdokmerknad-linjer ¤M</td></tr>
 <tr><td colspan="6">Merknader til enkeltfag eller til dokumentet (vitnemålet) som helhet.</td></tr>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+</table>
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>M0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤M</td><td>Alltid ¤M</td></tr>
 <tr><td>M1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986200<br/>80002 (en linje)</td><td>Dokumentidentifikatoren.<br/>Se V1 side 14.</td></tr>
 <tr><td>M2</td><td>Merknadnr</td><td>Ja</td><td>N</td><td style="text-align: right">2</td><td>Løpenr for merknaden. Unikt<br/>innen vitnemålet. Avgjør rekke-<br/>følgen hvis det er mer enn en<br/>merknad i et vitnemål.</td></tr>
@@ -721,9 +761,7 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td style="text-align: right">10</td><td colspan="3">Sep. 2014</td><td colspan="2"></td></tr>
 <tr><td style="text-align: right">11</td><td colspan="3">Brukes også til første</td><td colspan="2"></td></tr>
 <tr><td></td><td colspan="3"></td><td style="text-align: right" colspan="2">22</td></tr>
-</table>
-
-<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td colspan="5">For KL-vitnemål er M6 alltid<br/>enten DISP eller ingenting (blank).<br/>DISP = dispensasjonsmerknad</td></tr>
+<tr><td></td><td></td><td></td><td></td><td colspan="5">For KL-vitnemål er M6 alltid<br/>enten DISP eller ingenting (blank).<br/>DISP = dispensasjonsmerknad</td></tr>
 <tr><td>M7</td><td>Sidekode</td><td>A1</td><td>F</td><td colspan="5">F eller B. (Forsiden eller baksiden)</td></tr>
 <tr><td></td><td></td><td></td><td></td><td colspan="5">Angir hvor merknaden på</td></tr>
 <tr><td></td><td></td><td></td><td></td><td colspan="5">dokumentet stod.</td></tr>
@@ -754,7 +792,17 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td colspan="9">vitnemålstatuskode A, noe som tas hensyn til i SO-systemet slik at annullerte vitnemål ikke brukes</td></tr>
 <tr><td colspan="9">selv om de kan vises frem både til saksbehandler og eleven selv. (Da med annulleringsinformasjon i</td></tr>
 <tr><td colspan="5">rød skrift i tillegg)</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td colspan="4">Forklaring</td></tr>
+</table>
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>D0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤D</td><td colspan="4">Alltid ¤D</td></tr>
 <tr><td>D1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986200</td><td colspan="4">Dokumentidentifikatoren.</td></tr>
 <tr><td></td><td></td><td></td><td></td><td>80002 (en linje)</td><td colspan="4">Se V1 side 14.</td></tr>
@@ -765,9 +813,7 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">dokumentet. Den SO, univ. og</td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td colspan="4">høgskoler kan kontakte ved</td></tr>
 <tr><td style="text-align: right" colspan="9">23</td></tr>
-</table>
-
-<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">spørsmål. (Vises til søker? Husker<br/>ikke...)<br/>Bruk helst personens navn, ikke<br/>brukernavnet.</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">spørsmål. (Vises til søker? Husker<br/>ikke...)<br/>Bruk helst personens navn, ikke<br/>brukernavnet.</td></tr>
 <tr><td>D4</td><td>Vgdoknr_erstattes_av</td><td></td><td>A18</td><td>V979958986200</td><td colspan="2">Hvilket dokument som erstatter</td></tr>
 <tr><td></td><td></td><td></td><td></td><td style="text-align: right">80020</td><td colspan="2">dette. Trenger ikke å være satt,</td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td colspan="2">men bør settes hvis det er kjent.</td></tr>
@@ -857,7 +903,17 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td colspan="6">Andre ¤K har ingen ¤E, en ¤L og ingen ¤O</td></tr>
 <tr><td colspan="6">Tredje ¤K har en ¤E, ingen ¤L og ingen ¤O</td></tr>
 <tr><td style="text-align: right">7.1</td><td colspan="3">Resultatfiltopplinjen ¤R</td><td></td><td></td></tr>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+</table>
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>R0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤R</td><td>Alltid ¤R</td></tr>
 <tr><td>R1</td><td>Versjon</td><td>Ja</td><td>A10</td><td>10.0a</td><td>Versjon av lokal kontroll.exe</td></tr>
 <tr><td>R2</td><td>Versjonsdato</td><td>Ja</td><td>D8</td><td style="text-align: right">20080917</td><td>Når versjonen i R1 ble distribuert første<br/>gang</td></tr>
@@ -875,7 +931,17 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td>R10</td><td>Antall_K_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">13</td><td>Antall ¤K-linjer i filen. Dvs antall<br/>kontrollerresultater. Normalt = antall<br/>dokumenter kontrollert.</td></tr>
 <tr><td>R11</td><td>Antall_L_linjer</td><td>Ja</td><td>N8</td><td style="text-align: right">49</td><td>Antall ¤L-linjer i filen. Antall logg-linjer.</td></tr>
 <tr><td style="text-align: right">7.2</td><td colspan="3">Kontrollresultat-linjer ¤K</td><td></td><td></td></tr>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+</table>
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>K0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤K</td><td>Alltid ¤K</td></tr>
 <tr><td>K1</td><td>Kontrollnr</td><td>Ja</td><td>N7</td><td style="text-align: right">1</td><td>Entydig løpenr. 1, 2, 3 osv for å skille<br/>kontrollene fra hverandre i ¤E og ¤L. Ingen<br/>¤K i samme fil har samme K1.</td></tr>
 <tr><td>K2</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td></td><td>Vgdoknr, dokumentidentifikator.<br/>Vitnemålsnr eller kompetansebevisnr til<br/>dokumentet som dette resultatet gjelder.</td></tr>
@@ -900,7 +966,17 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td colspan="6">7.3 Feilmeldings-/meldingslinjer ¤E (error)</td></tr>
 <tr><td colspan="6">Navnet E (for error) kan være misvisende siden meldingene kan også være av typen TIPS og annet</td></tr>
 <tr><td colspan="6">som ikke er feil. Bokstaven E er likevel beholdt fra det gamle formatet.</td></tr>
-<tr><td>Felt<br/>nr</td><td>Feltnavn</td><td>Obl-<br/>ig.</td><td>For-<br/>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+</table>
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>E0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤E</td><td>Alltid ¤E</td></tr>
 <tr><td>E1</td><td>Meldingsnr</td><td>Ja</td><td>N8</td><td style="text-align: right">3</td><td>Entydig løpenr 1, 2, 3 osv. Ingen ¤E i<br/>samme fil har samme E1.</td></tr>
 <tr><td>E2</td><td>Kontrollnr</td><td></td><td>N7</td><td style="text-align: right">1</td><td>Blank eller et K1-Kontrollnr fra en ¤K i</td></tr>
@@ -971,14 +1047,20 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
 <tr><td>E14</td><td>Parameter8</td><td></td><td>A</td><td></td><td>Plugges inn i åttende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
 <tr><td>E15</td><td>Parameter9</td><td></td><td>A</td><td></td><td>Plugges inn i niende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
 <tr><td>E16</td><td>Parameter10</td><td></td><td>A</td><td></td><td>Plugges inn i tiende [felt] i E6 når<br/>meldingen vises frem. Evt med egen farge.</td></tr>
-<tr><td colspan="6">7.4 Logglinjer ¤L</td></tr>
-<tr><td colspan="6">Loggen fra Fagkontrollene.</td></tr>
-<tr><td>Felt</td><td>Feltnavn</td><td>Obl-</td><td>For-</td><td>Eksempel</td><td>Forklaring</td></tr>
-<tr><td>nr</td><td></td><td>ig.</td><td>mat</td><td></td><td></td></tr>
-<tr><td style="text-align: right" colspan="6">28</td></tr>
 </table>
 
-<table class="table table-striped table-bordered"><tr><td>L0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤L</td><td>Alltid ¤L</td></tr>
+### Logglinjer ¤L
+Loggen fra Fagkontrollene.
+
+<table>
+<tr>
+  <td><b>Felt<br/>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br/>ig.</b></td>
+  <td><b>For<br/>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td colspan="2"><b>Forklaring</b></td>
+</tr>
 <tr><td>L1</td><td>Kontrollnr</td><td>Ja</td><td>N</td><td style="text-align: right">1</td><td>Et K1-Kontrollnr fra en ¤K i samme fil.<br/>Hvilken kontroll (dokument, vitnemål)<br/>denne logglinjen tilhører.</td></tr>
 <tr><td>L2</td><td>Linjenr</td><td>Ja</td><td>N</td><td style="text-align: right">23</td><td>Linjenr innen hver kontroll. Øverste ¤L<br/>under hver ¤K starter på 1.</td></tr>
 <tr><td>L3</td><td>Loggtekst</td><td></td><td>A</td><td></td><td>Denne linjen i loggen.</td></tr>
