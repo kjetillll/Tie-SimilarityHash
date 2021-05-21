@@ -23,7 +23,7 @@ Ingen så langt.
 ## Liste over begreper brukt her
 
 <table>
-<tr><td>Begrep</td><td>Kort forklaring</td></tr>
+<tr><td><b>Begrep</b></td><td><b>Kort forklaring</b></td></tr>
 <tr><td>Vgdok</td><td>NVB tok tidligere i mot kun dokumenter at type vitnemål, men kan nå også motta kompetansebevis. Vgdok (dokumentasjon fra videregående opplæring) er fellesbenevnelsen f\
 or vitnemål, kompetansebevis og ev andre senere dokumenttyper fra videregående opplæring til NVB</td></tr>
 <tr><td>Reform, KL, R94</td><td>Et vitnemål tilhører en reform. F.o.m. 2009 tilhører nye vitnemål KL (kunnskapsløftet), før det f.o.m. ca 1997 tilhører de R94 (Reform94).</td></tr>
