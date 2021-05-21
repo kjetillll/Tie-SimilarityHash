@@ -49,6 +49,7 @@ alesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
 <tr><td>GSK</td><td>Generell studiekompetanse - kvalifikasjonskravet for de fleste rundt 80% av studiene i Samordna opptak. Noen studier krever mer, feks visse fag eller et visst karakternivå (eller noe ikke vitnemålsrelatert), og noen nokså få krever mindre/noe annet.</td></tr>
 <tr><td></td><td></td></tr>
 </table>
+
 ## Hvordan kjøre kontroll av vitnemål
 
 ### Kjøreopsjoner for kontroll
@@ -62,11 +63,13 @@ alesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
 
     -v           Verbost modus hvor det skrives flere varsler fra filkontrollen.
 
-    -l n         Setter loggenivået i outputfilen til tallet n. Gyldige verdier er 0-11 (default: 5) og høyere nivå gir flere meldinger.
+    -l n         Setter loggenivået i outputfilen til tallet n. Gyldige verdier er 0-11 (default: 5) og
+                 høyere nivå gir flere meldinger.
 
-    -d liste     Kommaseparert liste av vgdoknr som spesifiserer hvilke dokumenter som skal kontrolleres (default: alle).
+    -d liste     Kommaseparert liste av vgdoknr på hvilke dokumenter som skal kontrolleres. Default: alle i input.
 
-    -k kravkode  Hvilket krav man kjører fagkontroller mot (default: Sammensatt av programområdene i dokumentet.).
+    -k kravkode  Hvilket krav man kjører fagkontroller mot. Default: Gitt av programområdene i dokumentet,
+                 dvs kombinasjonen av de vanligvis tre feltverdiene i felt P2.
 
     -T           Test-modus. Foreløpig betyr den ikke annet enn at den godtar at Vgdoknr
                  starter på T, istedenfor V eller K, og at løpenr (fire siste tegn) kan bestå av store
@@ -75,15 +78,21 @@ alesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
     -H           I tillegg til den vanlige maskinlesbare outputen får man med -H også en html-rapport
                  som en fil nr 2. Filene leveres som én output pakket i en TAR-fil.
 
+Kjøreopsjonene angis i requestens HTTP-header `X-NVB-KM` som det finnes en eller ingen av. Eksempler:
 
-Kjøreopsjonene angis i http-header `X-NVB-KM`. Det skal kun finnes en slik header pr kall. Eksempler:
-
+     X-NVB-KM:
      X-NVB-KM: -u
      X-NVB-KM: -k FFMAT -l 3
+     X-NVB-KM: -H -l 6
 
-I første eksempel kjøres kontrollene uten karakterkontroll.
+I første eksempel kjøres kontrollene med defaulter på alt. Dette er det samme som at X-NVB-KM-headeren ikke finnes.
 
-I andre eksempel kjøres kontrollen/beregningen FFMAT istedenfor default-kontrollen for løpet. Loggenivået er 3 og mindre blir logget som `¤L`-linjer i output enn i defaulten som er 5.
+I andre eksempel kjøres det uten karakterkontroll.
+
+I tredje eksempel kjøres kontrollen/beregningen FFMAT istedenfor default-kontrollen for løpet. Loggenivået er 3 og mindre blir logget som `¤L`-linjer i output enn i defaulten som er 5.
+
+I fjerde eksempel returneres en .html-rapport/-fil i tillegg til den vanlige mer maskinlesbare filen. Siden det er
+mer enn en fil er returen i TAR-format. Loggenivået er 6, dvs at det kan komme flere ¤E-rader enn normalt i defaulten 5.
 
 ### Kjøreeksempler med `curl`
 
@@ -106,7 +115,7 @@ Forklaring:
 ### Loggenivå
 
 <table>
-<tr><td>**Nivå**</td><td>**Hva mer logges i forhold til forrige nivå**</td></tr>
+<tr><td><b>Nivå</b></td><td><b>Hva mer logges i forhold til forrige nivå</b></td></tr>
 <tr><td>0</td><td>Logger ikke noe. Ingen ¤L-linjer på datafilen/resultatfilen.</td></tr>
 <tr><td>1</td><td>Logger bare systemfeil.</td></tr>
 <tr><td>2</td><td>Logger alle USANN-meldinger frem t.o.m. den meldingen som evt. viser hvorfor kontrollen
@@ -143,12 +152,13 @@ andre kravuttrykk</td></tr>
 Filformatet er linjeinndelt. En linje er en record med ¤ som skille mellom hvert felt. Tegnet ¤ ble valgt fordi det er sjeldent brukt i tekst,
 men likevel lett å skrive på norske PC-tastaturer med shift-4.
 
-Første tegn på hver linje er ¤ 
+Første tegn på hver linje er `¤`
 
-Tegn nr 2 på hver linje er en stor bokstav som angir record typen. Bokstavkodene er A S V P F M D R L K eller E.
-Bokstaven koder hvilken tabell linjens data gjelder om man tenker på dette som databasetabeller.
+Tegn nr 2 på hver linje er en stor bokstav som angir record-typen. Bokstavkodene er A S V P F M D R L K eller E
+og disse record-typene beskrives i hvert sitt avsnitt under. Bokstaven koder hvilken tabell linjens data gjelder
+om man tenker på dette som databasetabeller.
 
-Siste tegn på hver linje er linjeskift. Normalt ascii-10-tegnet alene. (Dessverre har ikke verden vært helt enig historisk om hvordan linjeskift
+Siste tegn på hver linje er linjeskift. Normalt ascii-10-tegnet alene. (Dessverre har det ikke vært enighet historisk om hvordan linjeskift
 skal kodes. Derfor godtar APIet også de to variantene med to-tegnskombinasjonen ascii-13 fulgt av ascii-10 samt ascii-13 alene som linjeskift.
 Disse har historisk vært, og er det trolig fortsatt, mye brukt på hhv PC/Windows og Mac).
 
@@ -166,41 +176,43 @@ Dette er default tegnsett i kontroll.exe i forrige utgave av NVB, og var det mes
 ### Linjetypene i inputfilen
 
 <table>
-<tr><td>¤A</td><td>–</td><td>Startlinjen for hver skole/orgnr. Det kan være flere ¤A i samme fil.</td></tr>
-<tr><td>¤S</td><td>Orgnr</td><td>Frivillige tilleggsopplysninger til ¤A om denne skolen / dette orgnummeret</td></tr>
-<tr><td>¤V</td><td>Vgdoknr</td><td>Vgdok-linje, dokumenthodet, vitnemålshodet - opplysninger det bare finnes en av på hvert vitnemål</td></tr>
-<tr><td>¤P</td><td>Vgdoknr og Promrkode</td><td>Vgdokpromr-linje, en linje for hvert programområde på dokumentet</td></tr>
-<tr><td>¤F</td><td>Vgdoknr og Fagkode</td><td>Vgdokfag-linje, en linje for hvert fag på dokumentet</td></tr>
-<tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td>Vgdokmerknader, en linje for hver vitnemålsmerknad (eller kompetansebevismerknad)</td></tr>
-<tr><td>¤D</td><td>Vgdoknr</td><td>Vgdokannullering-linje</td></tr>
+  <tr><td>¤A</td><td>–</td><td>Startlinjen for hver skole/orgnr. Det kan være flere ¤A i samme fil.</td></tr>
+  <tr><td>¤S</td><td>Orgnr</td><td>Frivillige tilleggsopplysninger til ¤A om denne skolen / dette orgnummeret</td></tr>
+  <tr><td>¤V</td><td>Vgdoknr</td><td>Vgdok-linje, dokumenthodet, vitnemålshodet - opplysninger det bare finnes en av på hvert vitnemål</td></tr>
+  <tr><td>¤P</td><td>Vgdoknr og Promrkode</td><td>Vgdokpromr-linje, en linje for hvert programområde på dokumentet</td></tr>
+  <tr><td>¤F</td><td>Vgdoknr og Fagkode</td><td>Vgdokfag-linje, en linje for hvert fag på dokumentet</td></tr>
+  <tr><td>¤M</td><td>Vgdoknr og Merknadnr</td><td>Vgdokmerknader, en linje for hver vitnemålsmerknad (eller kompetansebevismerknad)</td></tr>
+  <tr><td>¤D</td><td>Vgdoknr</td><td>Vgdokannullering-linje</td></tr>
 </table>
 
 ### Linjetypene i resultatfilen
 
 <table>
-<tr><td>¤R</td><td>–</td><td>Startlinjen, kun en pr fil, første linje</td></tr>
-<tr><td>¤K</td><td>Kontrollnr</td><td>Kontrollresultat, en linje pr kontroll kjørt. Default en ¤K-linje pr vitnemål i inputfilen</td></tr>
-<tr><td>¤E</td><td>Meldingsnr</td><td>Meldingslinje (info-, tips-, varsel- eller feilmelding)</td></tr>
-<tr><td>¤L</td><td>Kontrollnr + Linjenr</td><td>Logglinje</td></tr>
+  <tr><td>¤R</td><td>–</td><td>Startlinjen, kun en pr fil, første linje</td></tr>
+  <tr><td>¤K</td><td>Kontrollnr</td><td>Kontrollresultat, en linje pr kontroll kjørt. Default en ¤K-linje pr vitnemål i inputfilen</td></tr>
+  <tr><td>¤E</td><td>Meldingsnr</td><td>Meldingslinje (info-, tips-, varsel- eller feilmelding)</td></tr>
+  <tr><td>¤L</td><td>Kontrollnr + Linjenr</td><td>Logglinje</td></tr>
 </table>
 
 ### Feltformat
 
-I kap. 6 brukes følgende koding for å beskrive feltene:
+I kap. 6 brukes følgende koding for å beskrive felttypene:
 
 <table>
-    <tr><td>N</td><td>Heltall uten grense for maks antall sifre. Kan være 0, men ikke negativt</td></tr>
-    <tr><td>Nx</td><td>Heltall med maksimalt x sifre. Kan være 0, men ikke negativt</td></tr>
-    <tr><td>N0x</td><td>Heltall med x sifre der ledende nuller brukes. F.eks. er postnr typisk N04 for å ikke miste nullen foran på postnumre i Oslo</td></tr>
-    <tr><td>Nx.y</td><td>Desimaltall. Den maksimale feltbredden er x tegn, inkl punktumet, og feltet kan ha opptil y desimaler. Eksempel: Et N7.5-felt kan inneholde 3.14159, men ikke 36.46195 eller 3.141592</td></tr>
-    <tr><td>A</td><td>Alfanumerisk felt. Se avsnitt 5.7 og 5.8 for behandling av spesialtegn</td></tr>
-    <tr><td>Ax</td><td>Alfanumerisk, maksimalt x tegn</td></tr>
-    <tr><td>D8</td><td>Datofelt på formen ÅÅÅÅMMDD der ÅÅÅÅ er årstall på fire sifre, MM er måned med to
-sifre 01-12 og DD er dato med to sifre 01-31. Eksempel: 8. mai 1945 skrives 19450508.
-Oracle-eksempel: select to_char(datefelt,'YYYYMMDD')</td></tr>
-    <tr><td>K6</td><td>Klokkeslett på formen TTMMSS der timen TT er to sifre 00-23, minutt MM er to sifre 00-59
-og sekundsangivelsen SS er to sifre 00-59. Ledende nuller skal være med (feks er 8:49 *ikke* akseptert når det skal stå 084900). Eksempel: fem over åtte på kvelden skrives 200500. Oracle-eksempel: select to_char(datefelt,'HH24MISS')</td></tr>
-    <tr><td>T14</td><td>D8 og K6 sammenslått i ett tidspunkt-felt</td></tr>
+  <tr><td>N</td><td>Heltall uten grense for maks antall sifre. Kan være 0, men ikke negativt</td></tr>
+  <tr><td>Nx</td><td>Heltall med maksimalt x sifre. Kan være 0, men ikke negativt</td></tr>
+  <tr><td>N0x</td><td>Heltall med x sifre der ledende nuller brukes. F.eks. er postnr typisk N04 for å ikke miste nullen foran på postnumre i Oslo</td></tr>
+  <tr><td>Nx.y</td><td>Desimaltall. Den maksimale feltbredden er x tegn, inkl punktumet, og feltet kan ha opptil y desimaler. Eksempel: Et N7.5-felt kan inneholde 3.14159, men ikke 36.46195 eller 3.141592</td></tr>
+  <tr><td>A</td><td>Alfanumerisk felt. Se avsnitt 5.7 og 5.8 for behandling av spesialtegn</td></tr>
+  <tr><td>Ax</td><td>Alfanumerisk, maksimalt x tegn</td></tr>
+  <tr><td>D8</td><td>Datofelt på formen ÅÅÅÅMMDD der ÅÅÅÅ er årstall på fire sifre, MM er måned med to
+                     sifre 01-12 og DD er dato med to sifre 01-31. Eksempel: 8. mai 1945 skrives 19450508.
+                     Oracle-eksempel: select to_char(datefelt,'YYYYMMDD')</td></tr>
+  <tr><td>K6</td><td>Klokkeslett på formen TTMMSS der timen TT er to sifre 00-23, minutt MM er to sifre 00-59
+                     og sekundsangivelsen SS er to sifre 00-59. Ledende nuller skal være med
+       (feks er 8:49 <i>ikke</i> akseptert når det skal stå 084900). Eksempel: fem over åtte
+       på kvelden skrives 200500. Oracle-eksempel: select to_char(datefelt,'HH24MISS')</td></tr>
+  <tr><td>T14</td><td>D8 og K6 sammenslått i ett tidspunkt-felt</td></tr>
 </table>    
 
 I kolonnene **Oblig.** står det Ja hvis feltet er obligatorisk. Det kan da ikke være tomt/blankt.
@@ -253,102 +265,102 @@ i ¤V og ¤D uten en ¤A.
 ¤V- og ¤D-linjer skal stå under ¤A-en de tilhører (samme orgnr).
 
 <table>
-	<tr>
-		<td><b>Feltnr</b></td>
-		<td><b>Feltnavn</b></td>
-		<td><b>Oblig.</b></td>
-		<td><b>Format</b></td>
-		<td><b>Eksempel</b></td>
-		<td><b>Forklaring</b></td>
-	</tr>
-	<tr>
-		<td>A0</td>
-		<td>Linjetype</td>
-		<td>Ja</td>
-		<td>A2</td>
-		<td>¤A</td>
-		<td>Alltid ¤A</td>
-	</tr>
-	<tr>
-		<td>A1</td>
-		<td>Orgnr</td>
-		<td>Ja</td>
-		<td>N9</td>
-		<td>979958986</td>
-		<td>Organisasjonsnr. Skal finnes i nasjonalt skoleregister. SO (og andre) kan gjøre et nytt forsøk på å innarbeide NSR i NVB. Orgnr skal stå i Foretaksregisteret (på<br>www.brreg.no ). Se side 30 for utenlandske skoler uten norsk organisasjonsnummer.</td>
-	</tr>
-	<tr>
-		<td>A2</td>
-		<td>Skolenr</td>
-		<td>Ja</td>
-		<td>N05</td>
-		<td>1020</td>
-		<td>Skolens VIGO-nummer. De to første sifrene er fylkesnr for fylkeskommunale skoler og 00 for privatskoler. NB: Skolens VIGO-nummer må ikke forveksles med RVO-nr og andre femsifrede skolenummer som har eksistert.</td>
-	</tr>
-	<tr>
-		<td>A3</td>
-		<td>Antall_vgdok</td>
-		<td>Ja</td>
-		<td>N</td>
-		<td>123</td>
-		<td>Antall ¤V i denne filen med samme orgnr som A1</td>
-	</tr>
-	<tr>
-		<td>A4</td>
-		<td>Antall_vgdokann</td>
-		<td>Ja</td>
-		<td>N</td>
-		<td>0</td>
-		<td>Antall ¤D i denne filen med samme orgnr som A1.</td>
-	</tr>
-	<tr>
-		<td>A5</td>
-		<td>Antall_vgdokfag</td>
-		<td>Ja</td>
-		<td>N</td>
-		<td>2345</td>
-		<td>Antall ¤F i denne filen som som tilhører ¤V med samme orgnr som A1.</td>
-	</tr>
-	<tr>
-		<td>A6</td>
-		<td>Antall_vgdokpromr</td>
-		<td>Ja</td>
-		<td>N</td>
-		<td>345</td>
-		<td>Antall ¤P i denne filen som tilhører ¤V med samme orgnr som A1</td>
-	</tr>
-	<tr>
-		<td>A7</td>
-		<td>Antall_vgdokmerknad</td>
-		<td>Ja</td>
-		<td>N</td>
-		<td>12</td>
-		<td>Antall ¤M i denne filen som tilhører ¤V med samme orgnr som A1</td>
-	</tr>
-	<tr>
-		<td>A8</td>
-		<td>Systemnavn</td>
-		<td>Ja</td>
-		<td>A</td>
-		<td>Systemnavn</td>
-		<td>Navnet på systemet som har laget filen. (Med kjøreopsjon -V må det stå Vigo her).</td>
-	</tr>
-	<tr>
-		<td>A9</td>
-		<td>Systemversjon</td>
-		<td>Ja</td>
-		<td>A</td>
-		<td>5.0.1</td>
-		<td>Versjonsnummer som lar seg sammenligne med tidligere versjonsnumre slik at man ved alfanumerisk sortering kan avgjøre og varsle brukere som har en lavere versjon enn andre.</td>
-	</tr>
-	<tr>
-		<td>A10</td>
-		<td>Tid_fil_laget</td>
-		<td>Ja</td>
-		<td>T14</td>
-		<td>20210512090100</td>
-		<td>Tidspunkt for når filen ble laget. Norsk tid.</td>
-	</tr>
+  <tr>
+    <td><b>Feltnr</b></td>
+    <td><b>Feltnavn</b></td>
+    <td><b>Oblig.</b></td>
+    <td><b>Format</b></td>
+    <td><b>Eksempel</b></td>
+    <td><b>Forklaring</b></td>
+  </tr>
+  <tr>
+    <td>A0</td>
+    <td>Linjetype</td>
+    <td>Ja</td>
+    <td>A2</td>
+    <td>¤A</td>
+    <td>Alltid ¤A</td>
+  </tr>
+  <tr>
+    <td>A1</td>
+    <td>Orgnr</td>
+    <td>Ja</td>
+    <td>N9</td>
+    <td>979958986</td>
+    <td>Organisasjonsnr. Skal finnes i nasjonalt skoleregister. SO (og andre) kan gjøre et nytt forsøk på å innarbeide NSR i NVB. Orgnr skal stå i Foretaksregisteret (på<br>www.brreg.no ). Se side 30 for utenlandske skoler uten norsk organisasjonsnummer.</td>
+  </tr>
+  <tr>
+    <td>A2</td>
+    <td>Skolenr</td>
+    <td>Ja</td>
+    <td>N05</td>
+    <td>1020</td>
+    <td>Skolens VIGO-nummer. De to første sifrene er fylkesnr for fylkeskommunale skoler og 00 for privatskoler. NB: Skolens VIGO-nummer må ikke forveksles med RVO-nr og andre femsifrede skolenummer som har eksistert.</td>
+  </tr>
+  <tr>
+    <td>A3</td>
+    <td>Antall_vgdok</td>
+    <td>Ja</td>
+    <td>N</td>
+    <td>123</td>
+    <td>Antall ¤V i denne filen med samme orgnr som A1</td>
+  </tr>
+  <tr>
+    <td>A4</td>
+    <td>Antall_vgdokann</td>
+    <td>Ja</td>
+    <td>N</td>
+    <td>0</td>
+    <td>Antall ¤D i denne filen med samme orgnr som A1.</td>
+  </tr>
+  <tr>
+    <td>A5</td>
+    <td>Antall_vgdokfag</td>
+    <td>Ja</td>
+    <td>N</td>
+    <td>2345</td>
+    <td>Antall ¤F i denne filen som som tilhører ¤V med samme orgnr som A1.</td>
+  </tr>
+  <tr>
+    <td>A6</td>
+    <td>Antall_vgdokpromr</td>
+    <td>Ja</td>
+    <td>N</td>
+    <td>345</td>
+    <td>Antall ¤P i denne filen som tilhører ¤V med samme orgnr som A1</td>
+  </tr>
+  <tr>
+    <td>A7</td>
+    <td>Antall_vgdokmerknad</td>
+    <td>Ja</td>
+    <td>N</td>
+    <td>12</td>
+    <td>Antall ¤M i denne filen som tilhører ¤V med samme orgnr som A1</td>
+  </tr>
+  <tr>
+    <td>A8</td>
+    <td>Systemnavn</td>
+    <td>Ja</td>
+    <td>A</td>
+    <td>Systemnavn</td>
+    <td>Navnet på systemet som har laget filen. (Med kjøreopsjon -V må det stå Vigo her).</td>
+  </tr>
+  <tr>
+    <td>A9</td>
+    <td>Systemversjon</td>
+    <td>Ja</td>
+    <td>A</td>
+    <td>5.0.1</td>
+    <td>Versjonsnummer som lar seg sammenligne med tidligere versjonsnumre slik at man ved alfanumerisk sortering kan avgjøre og varsle brukere som har en lavere versjon enn andre.</td>
+  </tr>
+  <tr>
+    <td>A10</td>
+    <td>Tid_fil_laget</td>
+    <td>Ja</td>
+    <td>T14</td>
+    <td>20210512090100</td>
+    <td>Tidspunkt for når filen ble laget. Norsk tid.</td>
+  </tr>
 </table>
 
 ### Skoleinfolinjer ¤S (frivillig)
@@ -425,7 +437,7 @@ samme som står på orginaldokumentet på papir.
     • Og til slutt et løpenr på fire eller fem siffer: 0001-9999 eller 00001-99999.<br>
 <br>
     Her kan også gamle vmnr fra R94 stå:<br>
-	  13 siffer. (Ingen systemleverandører må lage nye vgdoknr på gamle vitnemål) Lov for VIGO: Store bokstaver A-Å i løpenr i tillegg til sifre.</td></tr>
+    13 siffer. (Ingen systemleverandører må lage nye vgdoknr på gamle vitnemål) Lov for VIGO: Store bokstaver A-Å i løpenr i tillegg til sifre.</td></tr>
 <tr><td>V2</td><td>Foerstegangsvm</td><td></td><td>A1</td><td>J</td>
   <td>J = ja<br>
       N = nei<br>
@@ -465,16 +477,17 @@ Y=”og har yrkeskompetanse(?)”<br>
       N = Nokså god<br/>
       L = Lite god<br/>
     Av historiske årsaker godtas også<br/>følgende fem koder/verdier: `NG`, `LG`, `God`, `Nokså god` og `Lite god`.<br>
-	  V22 er obligatorisk for innsendte vitnemål (når V5=VM) eller når det er ført minst en standpunktkarakter i felt F5.<br>
-	  V23 er obligatorisk når V4=KL og V5=VM</td></tr>
+    V22 er obligatorisk for innsendte vitnemål (når V5=VM) eller når det er ført minst en standpunktkarakter i felt F5.<br>
+    V23 er obligatorisk når V4=KL og V5=VM</td></tr>
 <tr><td>V24</td><td>Antall_vedlegg</td><td>–</td><td>N</td><td style="text-align: right">0</td><td colspan="2">Blank eller et heltall. Angir antall vedlegg til vitnemålet / kompetanse-beviset (antall sider?)</td></tr>
 <tr><td>V25</td><td>Filnavn_vedlegg</td><td>–</td><td>A</td><td></td><td colspan="2">Filnavn eller mappenavn for vedleggsdokumentet/-ene i .zip-fil eller .tar.gz-fil. Ikke obligatorisk felt selv om V24 &gt; 0. Se kap. 7.4 side 28.</td></tr>
 <tr><td>V26</td><td>Maalformkode</td><td>–</td><td>A1</td><td>B</td><td colspan="2">Gyldige koder i V26:<br>
-B = bokmål<br>
-N = nynorsk<br>
-S = samisk<br>
-A = annet<br>
-Papirdokumentet ble utstedt på bokmål, nynorsk, samisk (nordsamisk), engelsk eller annet språk. B og N brukes av SO som foretrukket målform i skjermvisning. (Et vitnemål kan i tillegg være oversatt til feks engelsk, men var først utstedt på norsk eller samisk)</td></tr>
+    B = bokmål<br>
+    N = nynorsk<br>
+    S = samisk<br>
+    A = annet<br>
+    Papirdokumentet ble utstedt på bokmål, nynorsk, samisk (nordsamisk), engelsk eller annet språk. B og N brukes av SO som foretrukket målform i skjermvisning.
+    (Et vitnemål kan senere være <i>oversatt</i> til feks engelsk, men var først utstedt på bokmål, nynorsk eller samisk)</td></tr>
 </table>
 
 #### Vgdokpromr-linjer ¤P
@@ -492,30 +505,16 @@ på kompetansebevis, men kan være 0 (ingen ¤P-linjer) for kompetansebevis med 
   <td colspan="2"><b>Forklaring</b></td>
 </tr>
 <tr><td>P0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤P</td><td>Alltid ¤P</td></tr>
-<tr><td>P1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V97995898</td><td>Dokumentidentifikatoren.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td style="text-align: right">620080002</td><td>Se V1 side 14.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td>(en linje)</td><td></td></tr>
-<tr><td>P2</td><td>Promrkode</td><td>Ja</td><td>A</td><td>STUSP1---</td><td>Lovlige koder er programområdekoder</td></tr>
-<tr><td></td><td></td><td></td><td></td><td style="text-align: right">-</td><td>som er eller har vært eksportert fra</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Grep. Tilsvarer</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>kurskode1-3 i $V-linjene R94.</td></tr>
-<tr><td>P3</td><td>Nivaakode</td><td>Ja</td><td>A3</td><td>VG1</td><td>Nivåkode. VG1, VG2, VG3, VG4</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>eller VG5. Det kan være flere ¤P-</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>linjer med samme nivaakode i samme</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>dokument (under samme ¤V).</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Nivaakode er altså ikke nødvendigvis</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>unikt. For V4=R94 godtas også GK,</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>VK1, VK2, VKI og VKII (disse kon-</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>verteres internt til VG1, VG2 og VG3)</td></tr>
-<tr><td>P4</td><td>Paastandkode</td><td></td><td>A2</td><td>F</td><td>Blank = står ingenting</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>B = Bestått</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>F = Fullført, alle fag er tatt, men ikke</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>bestått</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>FB = Fullført og bestått</td></tr>
-<tr><td style="text-align: right" colspan="6">17</td></tr>
-</table>
-<h2 class="pagenumber">Page 18</h2>
-<table class="table table-striped table-bordered"><tr><td></td><td></td><td></td><td></td><td></td><td>(”Bestått” står på vitnemålnivå, ikke<br/>pr år, når dokumenttypen er VM).<br/>Kontroll.exe krever at siste års ¤P har<br/>P4 = B eller F eller FB for vitnemål i<br/>KL). Koder H, I og M godtas også.</td></tr>
+<tr><td>P1</td><td>Vgdoknr</td><td>Ja</td><td>A18</td><td>V979958986<br>20080002<br>(en linje)</td><td>Dokumentidentifikatoren. Se felt V1 i forrige avsnitt.</td></tr>
+<tr><td>P2</td><td>Promrkode</td><td>Ja</td><td>A</td><td>STUSP1----</td><td>Lovlige koder er programområdekoder som er eller har vært eksportert fra Grep. Tilsvarer kurskode1-3 i R94.</td></tr>
+<tr><td>P3</td><td>Nivaakode</td><td>Ja</td><td>A3</td><td>VG1</td><td>Nivåkode. VG1, VG2, VG3, VG4 eller VG5. Det kan være flere ¤P-linjer med samme nivaakode i samme vitnemål (vgdok)
+   under samme ¤V. Nivaakode er altså ikke nødvendigvis unikt. For V4=R94 godtas også kodene GK, VK1, VK2, VKI og VKII (disse konverteres internt til VG1, VG2 og VG3)</td></tr>
+<tr><td>P4</td><td>Paastandkode</td><td></td><td>A2</td><td>F</td>
+  <td>Blank = står ingenting<br>
+      B = Bestått<br>
+      F = Fullført, alle fag er tatt, men ikke bestått<br>
+      FB = Fullført og bestått
+      (”Bestått” står på vitnemålnivå, ikke<br/>pr år, når dokumenttypen er VM).<br/>Kontroll.exe krever at siste års ¤P har<br/>P4 = B eller F eller FB for vitnemål i<br/>KL). Koder H, I og M godtas også.</td></tr>
 <tr><td>P5</td><td>Paastand</td><td></td><td>A</td><td>Fullført</td><td>Hva som faktisk stod på dokumentet.</td></tr>
 <tr><td>P6</td><td>Fravaer_dager</td><td>Ja 5</td><td>N3</td><td style="text-align: right">0</td><td>Fravær dette året, dager og timer.</td></tr>
 <tr><td>P7</td><td>Fravaer_timer</td><td>Ja</td><td>N3</td><td style="text-align: right">12</td><td>Normalt tall uten desimaler. Inkl 0.</td></tr>
