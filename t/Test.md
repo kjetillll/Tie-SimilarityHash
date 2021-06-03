@@ -34,16 +34,22 @@ Ingen så langt.
 <tr><td>Løp</td><td>Hvert vitnemål har normalt tre programområdekoder, en for hvert år. Kombinasjonen av disse (normalt tre) lagt etterhverandre kalles løp. I Reform94 kalt linje(?)</td></tr>
 <tr><td>Utdanningsprogram</td><td>Hvert programområde ligger innen et utdanningsprogram. Utdanningsprogram ble i R94 kalt studieretning.</td></tr>
 <tr><td>Nivå - VG1, VG2, VG3</td><td>Nivået angir år på videregående i KL (kunnskapsløftet). Ble i R94 kalt hhv GK (grunnkurs), VK1 og VK2.</td></tr>
-<tr><td>Fellesfag (FF)</td><td>Fagene på et KL-vitnemål grupperes i fellesfag (FF), felles programfag (FPF), valgfrie programfag (VP). Fellesfag ble i R94 kalt felles almenne fag og felles programfag ble kalt studieretningsfag.</td></tr>
-<tr><td>Omfang</td><td>Tall på vitnemål som finnes både pr fag og summert opp til et samlet tall. Angis i årstimer på KL-vitnemål og uketimer på R94. En omtrentlig omregning er å multiplisere med ca 28.</td></tr>
-<tr><td>Melding (output fra kontrollene)</td><td>Meldinger i output-filene fra kontroll.exe inkluderer feilmeldinger (som gjør at vitnemål avvises fra NVB), varsler (som vitnemålsutsteder bør lese og vurdere om noe skal rettes) og infomeldinger som oftest er uviktige. Mer om meldingene i kap 7.3 side 27.</td></tr>
-<tr><td>Meldignskode</td><td>F.eks. KM101. Alle starter på KM (kontrollmelding). Meldingene fra kontroll.exe er kodet for å kunne referere til mer dokumentasjon om meldingen og å ha noe datalesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
+<tr><td>Fellesfag (FF)</td><td>Fagene på et KL-vitnemål grupperes i fellesfag (FF), felles programfag (FPF), valgfrie programfag (VP).
+     Fellesfag ble i R94 kalt felles almenne fag og felles programfag ble kalt studieretningsfag.</td></tr>
+<tr><td>Omfang</td><td>Tall på vitnemål som finnes både pr fag og summert opp til et samlet tall. Angis i årstimer på KL-vitnemål og uketimer på R94.
+     En omtrentlig omregning er å multiplisere med ca 28.</td></tr>
+<tr><td>Melding (output fra kontrollene)</td><td>Meldinger i output-filene fra kontroll.exe inkluderer feilmeldinger (som gjør at vitnemål avvises fra NVB),
+     varsler (som vitnemålsutsteder bør lese og vurdere om noe skal rettes) og infomeldinger som oftest er uviktige. Mer om meldingene i kap 7.3 side 27.</td></tr>
+<tr><td>Meldignskode</td><td>F.eks. KM101. Alle starter på KM (kontrollmelding). Meldingene fra kontroll.exe er kodet for å kunne referere til mer dokumentasjon
+     om meldingen og å ha noe datalesbart selv om meldingsteksten endres over tid i senere versjoner.</td></tr>
 <tr><td>Meldingstekst<br>Meldingsparametere</td><td>En fast tekst. Ofte med plassavholdere til variable meldingsparametere.</td></tr>
-<tr><td>Alvorlighetsgrad</td><td>Et tall på en melding. Tallet avgjør om meldingen ansees som feil, varsel eller info.</td></tr>
-<tr><td>NVB</td><td>[https://nasjonal-vitnemalsdatabase.no/](Nasjonal vitnemålsbase) for videregående opplæring</td></tr>
+<tr><td>Alvorlighetsgrad</td><td>Et tall på en melding. Tallet avgjør om meldingen ansees som feil, varsel eller info. Kalles av og til loggenivå.</td></tr>
+<tr><td>NVB</td><td>[Nasjonal vitnemålsbase](https://nasjonal-vitnemalsdatabase.no/) for videregående opplæring</td></tr>
 <tr><td>SO</td><td>[www.samordnaopptak.no](Samordna opptak), systemet som NVB har vært en del av</td></tr>
-<tr><td>GSK</td><td>Generell studiekompetanse - kvalifikasjonskravet for de fleste rundt 80% av studiene i Samordna opptak. Noen studier krever mer, feks visse fag eller et visst karakternivå
-                    (eller noe ikke vitnemålsrelatert), og noen nokså få krever mindre/noe annet.</td></tr>
+<tr><td>GSK</td><td>Generell studiekompetanse - kvalifikasjonskravet for de fleste rundt 80% av studiene i Samordna opptak. Noen studier krever mer,
+     feks visse fag eller et visst karakternivå (eller noe ikke vitnemålsrelatert), og noen nokså få krever mindre/noe annet.</td></tr>
+<tr><td>VGS / VGO</td><td>Videregående skole/opplæring</td></tr>
+<tr><td></td><td></td></tr>
 <tr><td></td><td></td></tr>
 </table>
 
@@ -91,17 +97,17 @@ I tredje eksempel kjøres kontrollen/beregningen FFMAT istedenfor default-kontro
 I fjerde eksempel returneres en .html-rapport/-fil i tillegg til den vanlige mer maskinlesbare filen. Siden det er
 mer enn en fil er returen i TAR-format. Loggenivået er 6, dvs at det kan komme flere ¤E-rader enn normalt i defaulten 5.
 
-### Kjøreeksempler med `curl`
+### Kjøreeksempler med curl
 
 Her antas at input på soltegnformatet ligger i filen vm.nvb og at output skrives til resultat.nvb
 
-    1. curl -d@vm.nvb -si -X POST https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
+    1. curl -d@vm.nvb -si -X POST https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb                      #TODO url
     2. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -u" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
     3. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -u -x" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
     4. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -k GSK" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.nvb
     5. curl -d@vm.nvb -si -X POST -H"X-NVB-KM: -H" https://xyz.unit.no/nvb/kontroll/v1/ > resultat.tar
 
-Forklaring:
+Forklaring til 1-5:
 
     1. Sender innhold i vm.nvb til endepunktet (angitt url), kjører default kontroller på default loggenivå (dvs 5) og legger output i filen resultat.nvb
     2. Nå uten karakterkontroller
@@ -141,7 +147,7 @@ www.samordnaopptak.no/nvb/vmkrav.input.txt.html for fullstendig oversikt over op
 <tr><td>9</td><td>Logger alle operander uansett resultat.</td></tr>
 <tr><td>10</td><td>Viser også hvilke kravuttrykk som hoppes over, fordi resultatet allerede er gitt ved kontroll av
 andre kravuttrykk</td></tr>
-<tr><td>11-</td><td>F.o.m. 11: udefinert/udokumentert</td></tr>
+<tr><td>11+</td><td>F.o.m. 11 er loggenivået udefinert/udokumentert</td></tr>
 </table>
 
 ## Filformat for input og output
@@ -166,9 +172,9 @@ at tekstfelt kan inneholde både ¤ og linjeskift i seg selv og at disse må beh
 
 ### Tegnsett
 
-[UTF-8](https://en.wikipedia.org/wiki/UTF-8) er tegnsettet som benyttes. (Internetts mest brukte og i 2021 defaulten i mange systemer og
-programmeringsspråk. I en overgangsperiode kan [ISO-8859-1](https://en.wikipedia.org/wiki/ISO-8859-1) vurderes støttet. På forespørsel.
-Dette er default tegnsett i kontroll.exe i forrige utgave av NVB, og var det mest brukte tegnsettet i den vestlige verden dengang).
+[UTF-8](https://en.wikipedia.org/wiki/UTF-8) er tegnsettet som benyttes. Internetts mest brukte og i 2021 default i de fleste nye systemer
+og programmeringsspråk. I en overgangsperiode kan [ISO-8859-1](https://en.wikipedia.org/wiki/ISO-8859-1) vurderes støttet. På forespørsel.
+ISO-8859-1 er default tegnsett i kontroll.exe i forrige utgave av NVB, og var det mest brukte tegnsettet i den vestlige verden dengang.
 
 ### Linjetypene i inputfilen
 
@@ -182,7 +188,7 @@ Dette er default tegnsett i kontroll.exe i forrige utgave av NVB, og var det mes
   <tr><td>¤D</td><td>Vgdoknr</td><td>Vgdokannullering-linje</td></tr>
 </table>
 
-### Linjetypene i resultatfilen
+### Linjetypene i outputfilen, den maskinlesbare resultatfilen
 
 <table>
   <tr><td>¤R</td><td>–</td><td>Startlinjen, kun en pr fil, første linje</td></tr>
@@ -230,27 +236,28 @@ Linjeskift er binært byte 10 (hex-A) eller byte 13 (hex-D) eller flere påfølg
 av disse. Dette for at kontroll.exe skal tåle normal output uansett om filen kommer fra Windows, Mac,
 Linux, databasen el.l. Kontroll.exe hopper over tomme linjer (inkl. linjer med kun space og tab).
 
-### Skilletegnet ¤ i dataene
-Selv om skilletegnet ¤ er sjelden brukt er det likevel mulig at sluttbrukere skriver det inn i fritekstfelter.
+### Skilletegnet ¤ i dataene (TODO)
+Selv om skilletegnet `¤` er sjelden brukt er det likevel mulig at sluttbrukere skriver det inn i selve feltene. I feks fritekstfelter.
 Et felt som inneholder ¤ i selve teksten omhylles med { og } som første og siste tegn i feltet for å
 beskytte skilletegnet. Dersom { eller } står inne i et felt behandles de som vanlige tegn. For å slippe å
 ta hensyn til dette kan man godt bare avgjøre at brukerinput aldri har behov for tegnet ¤ og automatisk
 erstatte det med f.eks. * når man lager fil til kontroll.exe og NVB, f.eks. vha funksjonen
 replace(felt,'¤','*') i Oracle.
-Kontroll.exe vil "trimme" feltverdiene for mellomrom og tab-tegn i starten eller slutten av feltet og det
-anbefales at det samme skjer for innlesing av resultatfilen.
+
+### Trim av space i starten og slutten av verdier
+Kontroll.exe vil "trimme" feltverdiene for mellomrom og tab-tegn i starten eller slutten av feltet
+og det anbefales at det samme skjer ved innlesing av resultatfilen.
 
 ### Linjeskift i dataene
 For felter som inneholder linjeskift i selve dataene er det to alternativer:
 1. Feltet omhylles med { og } som første og siste tegn i feltet. Dermed vil det kunne finnes linjer i inputfilen som ikke starter med ¤.
-2. Eller linjeskift angis med de to tegnene \n Alternativ 2 anbefales og kan ordnes med f.eks. dette i Oracle: `select replace(felt,chr(10),'\n')` eller 
-`select replace(replace(felt,chr(10),'\n'),chr(13),'\n')`
+2. Eller linjeskift angis med de to tegnene \n Alternativ 2 anbefales og kan ordnes med f.eks. dette i Oracle: `select replace(felt,chr(10),'\n')`
+eller `select replace(replace(felt,chr(10),'\n'),chr(13),'\n')`
 
 ### Filformat JSON
-Mulighet for input- og outputfiler på JSON kommer kanskje i en senere versjon.
+Mulighet for input og output på [https://en.wikipedia.org/wiki/JSON](JSON)-formatet vurderes til en senere versjon.
 
-### Tegnsett
-Valideringen foretrekker tegnsettet UTF-8. Dette har tatt over for ISO-8859-1 som ble bruke i forrige utgave av NVB.
+
 
 ## Linjetyper og felter i inputfilen
 Feltnavnene her angir hva feltene heter i NVBs database. Hva de heter hos systemleverandørene er
@@ -287,7 +294,8 @@ i ¤V og ¤D uten en ¤A.
     <td>Ja</td>
     <td>N9</td>
     <td>979958986</td>
-    <td>Organisasjonsnr. Skal finnes i nasjonalt skoleregister. SO (og andre) kan gjøre et nytt forsøk på å innarbeide NSR i NVB. Orgnr skal stå i Foretaksregisteret (på<br>www.brreg.no ). Se side 30 for utenlandske skoler uten norsk organisasjonsnummer.</td>
+    <td>Organisasjonsnr. Skal finnes i nasjonalt skoleregister. SO (og andre) kan gjøre et nytt forsøk på å innarbeide NSR i NVB. Orgnr skal stå i Foretaksregisteret (på [brreg.no](https://brreg.no/ ).
+        Se side 30 for utenlandske skoler uten norsk organisasjonsnummer.</td>
   </tr>
   <tr>
     <td>A2</td>
@@ -995,27 +1003,25 @@ FAG = fagmeldinger, meldinger på vitnemålets gyldighet, feks om hvorfor et vit
 <tr><td>E5</td><td>Meldingskode</td><td>Ja</td><td>A5</td><td>KM101</td>
     <td>Feilkoden. Denne feilkoden er konstant selv om selve feilteksten i E6 endres pga skrivefeil og annet. Muliggjør egen dokumentasjon
         på nettet. KM000-KM099 Er systemfeil (E3=SYSTEM), KM100-KM499 er filkontrollmeldinger (E3=FIL), KM500-KM999 er fagkontrollmeldinger (dvs E3=FAG for disse).</td></tr>
-<tr><td>E6</td><td>Meldingstekst</td><td>Ja</td><td>A</td><td>Fag</td><td>Selve meldingsteksten. Linjeskift i</td></tr>
-<tr><td></td><td></td><td></td><td></td><td>&lt;fagkode&gt;</td><td>meldingen vil være erstattet av de to</td></tr>
-<tr><td></td><td></td><td></td><td></td><td>mangler</td><td>tegnene \n på filen (dette gjelder også E7-</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>E10).</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Ved bruk av kjøreopsjon –p vil</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten bli parametrisert og felt</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>E7-E10 kan bli tatt i bruk. At</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten parametriseres betyr at</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>meldingsteksten inneholder plassavholdere</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>som for eksempel &lt;årstall&gt; eller</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>&lt;fagkode&gt; der brukeren skal se et årstall</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>eller</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>en fagkode.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>Altså &lt; fulgt av en eller flere bokstaver, tall</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>eller tegnet _ fulgt av &gt;. Alt uten</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>mellomrom.</td></tr>
-<tr><td>E7</td><td>Parameter1</td><td></td><td>A</td><td>NOR4004</td><td>Plugges inn i første [felt] når E6-meldingen</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>skal vises frem. Evt med egen farge for</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>parameterverdien.</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>E7-E10 vil aldri være satt uten at kjøre-</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>opsjon –p er brukt. Mer om den side 6.</td></tr>
+<tr><td>E6</td><td>Meldingstekst</td><td>Ja</td><td>A</td><td>Fag &lt;fagkode&gt; mangler</td><td>Selve meldingsteksten. Linjeskift i
+
+Selve meldingsteksten. Linjeskift i meldingen vil være erstattet av de to tegnene \n på filen (dette gjelder også E7-E10).<br><br>
+
+Ved bruk av kjøreopsjon -p vil meldingsteksten bli parametrisert og
+felt E7-E10 kan bli tatt i bruk. At meldingsteksten parametriseres
+betyr at meldingsteksten inneholder plassavholdere som for eksempel
+&lt;årstall&gt; eller &lt;fagkode&gt; der brukeren skal se et årstall eller en fagkode.<br><br>
+
+Altså &lt; fulgt av en eller flere bokstaver, tall eller tegnet _ fulgt av &gt;. Alt uten mellomrom.
+</td></tr>
+
+<tr><td>E7</td><td>Parameter1</td><td></td><td>A</td><td>NOR4004</td><td>
+
+Plugges inn i første [felt] når E6-meldingen skal vises frem. Evt med egen farge for parameterverdien.<br><br>
+
+E7-E10 vil aldri være satt uten at kjøreopsjon -p er brukt. Mer om den side 6.
+
+</td></tr>
 <tr><td>E8</td><td>Parameter2</td><td></td><td>A</td><td>2008</td><td>Plugges inn i andre [felt] i E6 når<br>meldingen vises frem. Evt med egen farge.</td></tr>
 <tr><td>E9</td><td>Parameter3</td><td></td><td>A</td><td>AA1005</td><td>Plugges inn i tredje [felt] i E6 når<br>meldingen vises frem. Evt med egen farge.</td></tr>
 <tr><td>E10</td><td>Parameter4</td><td></td><td>A</td><td>VG4064</td><td>Plugges inn i fjerde [felt] i E6 når<br>meldingen vises frem. Evt med egen farge.</td></tr>
@@ -1042,83 +1048,109 @@ Loggen fra Fagkontrollene.
 <tr><td>L1</td><td>Kontrollnr</td><td>Ja</td><td>N</td><td>1</td><td>Et K1-Kontrollnr fra en ¤K i samme fil.<br>Hvilken kontroll (dokument, vitnemål)<br>denne logglinjen tilhører.</td></tr>
 <tr><td>L2</td><td>Linjenr</td><td>Ja</td><td>N</td><td>23</td><td>Linjenr innen hver kontroll. Øverste ¤L<br>under hver ¤K starter på 1.</td></tr>
 <tr><td>L3</td><td>Loggtekst</td><td></td><td>A</td><td></td><td>Denne linjen i loggen.</td></tr>
-<tr><td>7.5 Oppbrukte fag ¤O</td></tr>
-<tr><td>Kontroller som resulteter i SANN (eller et tall) har en liste av fagkoder den behøvdes for å gjøre</td></tr>
-<tr><td>kontrollen SANN... Dette kalles oppbrukte fag fordi det internt i kontrollene ofte er slik at en fagkode</td></tr>
-<tr><td>ikke kan brukes til å dekke flere krav...</td></tr>
-<tr><td>Felt<br>nr</td><td>Feltnavn</td><td>Obl-<br>ig.</td><td>For-<br>mat</td><td>Eksempel</td><td>Forklaring</td></tr>
+</table>
+
+### 7.5 Oppbrukte fag ¤O
+Kontroller som resulteter i SANN (eller et tall) har en liste av fagkoder den behøvdes for å gjøre
+kontrollen SANN... Dette kalles oppbrukte fag fordi det internt i kontrollene ofte er slik at en fagkode
+ikke kan brukes til å dekke flere krav...
+
+<table>
+<tr>
+  <td><b>Felt<br>nr</b></td>
+  <td><b>Feltnavn</b></td>
+  <td><b>Obl-<br>ig.</b></td>
+  <td><b>For<br>mat</b></td>
+  <td><b>Eksempel</b></td>
+  <td><b>Forklaring</b></td>
+</tr>
 <tr><td>O0</td><td>Linjetype</td><td>Ja</td><td>A2</td><td>¤O</td><td>Alltid ¤O</td></tr>
 <tr><td>O1</td><td>Kontrollnr</td><td>Ja</td><td>N</td><td>1</td><td>Et K1-Kontrollnr fra en ¤K i samme fil.</td></tr>
 <tr><td>O2</td><td>Fagkode</td><td>Ja</td><td>A10</td><td>UPF3003</td><td>En fagkode fra det vgdok-et som ble<br>kontrollert. Dette finnes i K2-Vgdoknr i<br>¤K-linjen med samme kontrollnr.</td></tr>
-<tr><td>8 Vedlegg, zip-fil</td></tr>
-<tr><td>Det er åpnet for innsending av vedleggfiler for vedlegg til vitnemålene sammen med en vanlig datafil,</td></tr>
-<tr><td>men det er ikke påkrevd i første omgang. Vedleggfilene må ha et utskrivbart format. PDF- eller Word-</td></tr>
-<tr><td>filer f.eks.</td></tr>
-<tr><td>Innsending skjer ved å sende inn både datafilen (med ¤-linjene) og vedleggsfilene pakket i en .ZIP-fil.</td></tr>
-<tr><td>V25-feltet (side 17) pluss evt M9 (side 23) i hvert dokument (dokumentmerknad) angir vedleggets</td></tr>
-<tr><td>filnavn i .zip-filen.</td></tr>
-<tr><td>Datafilen i den innsendte .zip-filen må ha nøyaktig samme navn som .zip-filen, bortsett fra .zip-</td></tr>
-<tr><td>filendelsen. Det for å kunne vite hvilken av filene i .zip som er datafilen. Unngå også undermapper</td></tr>
-<tr><td>i .zip-filen.</td></tr>
-<tr><td>.tar-filer (eller .tar.gz eller .tgz) er et alternativ til .zip som er mer vanlig i Linux, de samme regler</td></tr>
-<tr><td>skissert over gjelder her, bortsett fra pakkeformat og filendelse.</td></tr>
-<tr><td>9 Organisasjonsnummer, kontrollsiffer</td></tr>
-<tr><td>SOs NVB-database bruker orgnr som primærnøkkel for dokumentutsteder.</td></tr>
-<tr><td>9.1 Gyldige orgnr</td></tr>
-<tr><td>Alle orgnr-felter i filen skal være et ni-sifret organisasjonsnummer som normalt starter på 8 eller 9 og</td></tr>
-<tr><td>finnes i NVBs skoleregister og hos www.brreg.no. Vha det bakerste sifferet i orgnr’et kan man avgjøre</td></tr>
-<tr><td>om orgnr er et gyldig orgnr, eller om det har skjedd en tastefeil. De ni sifrene skal ligge etter hverandre</td></tr>
-<tr><td>på filen uten mellomrom eller andre skilletegn. (Hvordan man velger å vise det på skjermen eller ta i</td></tr>
-<tr><td>mot inntasting er en uavhengig sak).</td></tr>
-<tr><td>29</td></tr>
 </table>
 
-<table class="table table-striped table-bordered"><tr><td>Det bør heller ikke være slik at skolene må taste inn orgnr for hver filinnsending eller lignende. Det</td></tr>
-<tr><td>bør evt ligge fast i ”Preferences” eller i en .INI-fil på det skoleadministrative systemet. Og der skolene</td></tr>
-<tr><td>evt gis mulighet til å endre eller sette orgnr, kan det være en tekst a la ”husk å kontrollere dette mot</td></tr>
-<tr><td>skoleregisteret på www.samordnaopptak.no/nvb for unngå at du bruker feil eller en annen skoles</td></tr>
-<tr><td>orgnr”.</td></tr>
-<tr><td>9.2 Kontrollsiffer</td></tr>
-<tr><td>Det bakerste sifferet er et kontrollsiffer som avledes av de åtte sifrene foran. Poenget med</td></tr>
-<tr><td>kontrollsifferet er å hindre gale inntastinger. (Fødselsnummer, VISA-nummer, og ofte KIDnumre på</td></tr>
-<tr><td>regninger har også lignende kontrollsifre). Algoritmen for kontroll av riktig orgnr er slik: (det gyldige</td></tr>
-<tr><td>orgnr 842872022 brukes her som eksempel):</td></tr>
+## Vedlegg, zip-fil
+
+
+Det er åpnet for innsending av vedleggfiler for vedlegg til vitnemålene sammen med en vanlig datafil,
+men det er ikke påkrevd i første omgang. Vedleggfilene må ha et utskrivbart format. PDF- eller Word-
+filer f.eks.
+
+Innsending skjer ved å sende inn både datafilen (med ¤-linjene) og vedleggsfilene pakket i en .ZIP-fil.
+V25-feltet (side 17) pluss evt M9 (side 23) i hvert dokument (dokumentmerknad) angir vedleggets
+filnavn i .zip-filen.
+
+Datafilen i den innsendte .zip-filen må ha nøyaktig samme navn som .zip-filen, bortsett fra .zip-
+filendelsen. Det for å kunne vite hvilken av filene i .zip som er datafilen. Unngå også undermapper
+i .zip-filen.
+
+.tar-filer (eller .tar.gz eller .tgz) er et alternativ til .zip som er mer vanlig i Linux, de samme
+regler skissert over gjelder her, bortsett fra pakkeformat og filendelse.
+
+## Organisasjonsnummer, kontrollsiffer
+
+SOs NVB-database bruker orgnr som primærnøkkel for dokumentutsteder.
+
+### Gyldige orgnr
+
+Alle orgnr-felter i filen skal være et ni-sifret organisasjonsnummer som normalt starter på 8 eller 9 og
+finnes i NVBs skoleregister og hos www.brreg.no. Vha det bakerste sifferet i orgnr’et kan man avgjøre
+om orgnr er et gyldig orgnr, eller om det har skjedd en tastefeil. De ni sifrene skal ligge etter hverandre
+på filen uten mellomrom eller andre skilletegn. (Hvordan man velger å vise det på skjermen eller ta i
+mot inntasting er en uavhengig sak).
+
+Det bør heller ikke være slik at skolene må taste inn orgnr for hver filinnsending eller lignende. Det
+bør evt ligge fast i ”Preferences” eller i en .INI-fil på det skoleadministrative systemet. Og der skolene
+evt gis mulighet til å endre eller sette orgnr, kan det være en tekst a la ”husk å kontrollere dette mot
+skoleregisteret på www.samordnaopptak.no/nvb for unngå at du bruker feil eller en annen skoles orgnr”.
+
+### Kontrollsiffer
+
+Det bakerste sifferet er et kontrollsiffer som avledes av de åtte sifrene foran. Poenget med
+kontrollsifferet er å hindre gale inntastinger. (Fødselsnummer, VISA-nummer, og ofte KIDnumre på
+regninger har også lignende kontrollsifre). Algoritmen for kontroll av riktig orgnr er slik: (det gyldige
+orgnr 842872022 brukes her som eksempel):
+
+<table>
 <tr><td></td><td>Siffer 1</td><td>Siffer 2</td><td>Siffer 3</td><td>Siffer 4</td><td>Siffer 5</td><td>Siffer 6</td><td>Siffer 7</td><td>Siffer 8</td><td>Siffer 9</td><td>Sum</td></tr>
 <tr><td>O=orgnr</td><td>8</td><td>4</td><td>2</td><td>8</td><td>7</td><td>2</td><td>0</td><td>2</td><td>2</td><td>alle</td></tr>
 <tr><td>V=vekt<br>fast tall</td><td>3</td><td>2</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>O*V<br>↓</td></tr>
 <tr><td>O*V</td><td>24</td><td>8</td><td>14</td><td>48</td><td>35</td><td>8</td><td>0</td><td>4</td><td>2</td><td>143</td></tr>
-<tr><td>Om kontrollsifferet er riktig avgjøres av om summen dividert på 11 gir et tall uten rest (et heltall).</td></tr>
-<tr><td>Dette er tilfelle her siden 143 / 11 = 13. Derfor har 842872022 gyldig kontrollsiffer og er høyst</td></tr>
-<tr><td>sannsynlig ikke en inntastingsfeil. Algoritmen kan nemlig gi ok selv om man taster feil, men det</td></tr>
-<tr><td>krever at minst to av sifrene er gale.</td><td></td></tr>
-<tr><td>9.3 Orgnr for utenlandske skoler</td><td></td></tr>
-<tr><td>For utenlandske skoler uten norsk orgnr benytter SO et såkalt fiktivt orgnr som starter på 4 (altså ikke</td></tr>
-<tr><td>8 eller 9 som de vanlige). Disse har likevel ni sifre og riktig kontrollsiffer. Pr 2014 har det blitt tildelt</td></tr>
-<tr><td>kun ett slikt. Kontakt SO (nvb-drift@samordnaopptak.no) for å få tildelt et slikt fiktivt orgnr for NVB.</td></tr>
-<tr><td>Merk at noen videregående skoler i utenlandet likevel har norske orgnr, søk i brreg.no for å eventuelt</td></tr>
-<tr><td>finne. NB: Slike fiktige orgnumre skal ikke spres slik at noen misforstår og tar de i bruk til andre</td></tr>
-<tr><td>formål.</td><td></td></tr>
-<tr><td>10 Versjonsnummer for kontroll.exe</td><td></td></tr>
-<tr><td>Kontroll.exe får et nytt versjonsnr hver år. I 2014 er vi kommet til versjon 15. For nye versjoner innen</td></tr>
-<tr><td>samme år økes 10-delsdesimalen. For mindre endringer som enten gjelder noen få skoler eller med</td></tr>
-<tr><td>mindre betydningsfulle endringer som ikke trenger å lastes ned av alle økes 100-delsdesimalen.</td></tr>
-<tr><td>For å angi at det er en tidlig eksperimentell versjon (alfaversjon) kan det settes en a bak versjons-</td></tr>
-<tr><td>nummeret. En nesten endelig versjon (betaversjon) kan være angitt med en b bak versjonsnummeret.</td></tr>
-<tr><td>11 Operativsystem og annen teknisk info</td><td></td></tr>
-<tr><td>Kontroll.exe kjører på Windows.</td><td></td></tr>
-<tr><td></td><td>30</td></tr>
 </table>
 
-<table class="table table-striped table-bordered"><tr><td>Men for de 12 som vil kjøre kontroll.exe på Linux legges det i tillegg ut en ut en Linux-binærfil i hver</td></tr>
-<tr><td>versjon. Alternativt kan man kjøre kontroll.exe (windows-binærfilen) i Linux via Wine, en test viste</td></tr>
-<tr><td>at det var mulig.</td></tr>
-<tr><td>Kontrollmotoren er skrevet i Perl 5.8 og skal i prinsippet kunne kjøres på alle operativsystemer der</td></tr>
-<tr><td>Perl kan installeres. Dvs de fleste.</td></tr>
-<tr><td>Den er utviklet i og testet på Linux og deretter ”kompilert” til kjørbare Windows- og Linux-binærfiler</td></tr>
-<tr><td>med programvaren PerlApp fra ActiveState.com.</td></tr>
-<tr><td>Fagkontrolldelen av kontrollmotoren finnes også i en PL/SQL-modul for Oracle som kan være<br>tilgjengelig ved forespørsel. Denne kjører internt hos SO (i tillegg til perl-varianten) samt hos</td></tr>
-<tr><td>universitets- og høgskolesystemene FS (Felles studentsystem) og MSTAS fra IST.</td></tr>
-<tr><td>12TPSYS har kjørt på dette på Linux siden ca 2012</td></tr>
-<tr><td>31</td></tr>
-</table>
+Om kontrollsifferet er riktig avgjøres av om summen dividert på 11 gir et tall uten rest (et heltall).
+Dette er tilfelle her siden 143 / 11 = 13. Derfor har 842872022 gyldig kontrollsiffer og er høyst
+sannsynlig ikke en inntastingsfeil. Algoritmen kan nemlig gi ok selv om man taster feil, men det
+krever at minst to av sifrene er gale.</td><td>
 
+### Orgnr for utenlandske skoler (TODO, visma(?) bruker noe annet)
+
+For utenlandske skoler uten norsk orgnr benytter SO et såkalt fiktivt orgnr som starter på 4 (altså ikke
+8 eller 9 som de vanlige). Disse har likevel ni sifre og riktig kontrollsiffer. Pr 2014 har det blitt tildelt
+kun ett slikt. Kontakt SO (nvb-drift@samordnaopptak.no) for å få tildelt et slikt fiktivt orgnr for NVB.
+Merk at noen videregående skoler i utenlandet likevel har norske orgnr, søk i brreg.no for å eventuelt
+finne. NB: Slike fiktige orgnumre skal ikke spres slik at noen misforstår og tar de i bruk til andre
+formål.</td><td>
+
+## Versjonsnummer for kontrollmotoren
+
+Kontroll.exe får et nytt versjonsnr hver år. I 2014 er vi kommet til versjon 15. For nye versjoner innen
+samme år økes 10-delsdesimalen. For mindre endringer som enten gjelder noen få skoler eller med
+mindre betydningsfulle endringer som ikke trenger å lastes ned av alle økes 100-delsdesimalen.
+For å angi at det er en tidlig eksperimentell versjon (alfaversjon) kan det settes en a bak versjons-
+nummeret. En nesten endelig versjon (betaversjon) kan være angitt med en b bak versjonsnummeret.
+
+## Operativsystem og annen teknisk info
+
+Kontroll.exe kjører på Windows. Men for de  som vil kjøre kontroll.exe på Linux legges det
+i tillegg ut en ut en egen Linux-kjørbar binærfil for hver
+versjon. Skolesystemet TPSYS som noen VGSer bruker har kjørt kontroll.exe på Linux siden ca 2012.
+Alternativt kan man kjøre kontroll.exe (windows-binærfilen) i Linux via [Wine](https://www.winehq.org/), en test har vist at det også er mulig.
+
+Kontrollmotoren er skrevet i Perl 5.8 og skal i prinsippet kunne kjøres på alle operativsystemer der
+Perl kan installeres. Dvs Windows, Linux i alle varianter, Apples iOS og de fleste andre.
+
+Den er utviklet i og testet på Linux og deretter ”kompilert” til kjørbare Windows- og Linux-binærfiler med programvaren PerlApp fra ActiveState.com.
+
+Fagkontrolldelen av kontrollmotoren finnes også i en PL/SQL-modul for Oracle som kan være tilgjengelig ved forespørsel. Denne kjører internt
+os SO (i tillegg til perl-varianten) samt i Felles studentsystem (FS) som er studieadministrativt system hos norske universiteter og høgskoler.
